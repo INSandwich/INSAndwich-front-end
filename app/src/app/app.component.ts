@@ -1,7 +1,11 @@
 import { Component } from '@angular/core';
 
+import  { HeaderComponent } from './components/index';
+
 @Component({
-  selector: 'my-app',
-  template: `<h1>Hello {{name}}</h1>`,
+  selector: 'insandwich',
+  templateUrl: "app/app.html",
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {
+
+}
