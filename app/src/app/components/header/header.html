@@ -1,5 +1,19 @@
-<div class="insandwich-header mdl-layout__header mdl-layout__header--waterfall">
+<header class="insandwich-header mdl-layout__header mdl-layout__header--waterfall">
+  <div *ngIf="mobile" class="insandwich-mobile-navigation">
+    <ul class="insandwich-mobile-navigation-links">
+      <li class="insandwich-mobile-navigation-link"><img src="./images/logo.png" height="60"></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Sandwich</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Boissons</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Desserts</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i> Payer</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href=""><i class="material-icons">account_box</i> Profil</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()">Fermer</a></li>
+    </ul>
+  </div>
   <div class="mdl-layout__header-row">
+    <div (click)="toggleNav()" aria-expanded="false" role="button" tabindex="0" class="insandwich-mobile-navigation-toggle mdl-layout__drawer-button">
+      <i class="insandwich-color-grey material-icons">reorder</i>
+    </div>
     <span class="insandwich-title mdl-layout-title">
       <img src="./images/logo.png" height="60" alt="logo">
     </span>
@@ -7,12 +21,12 @@
     <nav class="insandwich-navigation mdl-navigation">
         <a class="mdl-navigation__link" href="">Sandwich</a>
         <a class="mdl-navigation__link" href="">Boissons</a>
-        <a class="mdl-navigation__link" href="">Grignotage</a>
+        <a class="mdl-navigation__link" href="">Desserts</a>
         <a class="mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i> Payer</a>
+        <a class="mdl-navigation__link" href=""><i class="material-icons">account_box</i> Profil</a>
     </nav>
-
     <span class="insandwich-mobile-title mdl-layout-title">
       <img src="./images/logo.png" height="60" alt="logo">
     </span>
   </div>
-</div>
+</header>

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 
-import  { HeaderComponent } from './components/index';
+import { HeaderComponent } from './components/index';
+
+import { MDLDirective } from './directives/index';
 
 @Component({
   selector: 'insandwich',
-  templateUrl: "app/app.html",
+  directives: [ MDLDirective ],
+  templateUrl: "app/app.html"
 })
-export class AppComponent  {
-
-}
+export class AppComponent  { }
