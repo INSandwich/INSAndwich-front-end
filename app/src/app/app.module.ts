@@ -5,37 +5,46 @@ import { AppComponent }  from './app.component';
 
 import {
   NotFoundComponent,
+  AdminComponent,
   CheckoutComponent,
   DessertComponent,
   DessertsComponent,
   DrinkComponent,
   DrinksComponent,
+  FooterComponent,
   HeaderComponent,
   HomeComponent,
   LoginComponent,
   ProfileComponent,
   RegisterComponent,
   SandwichComponent,
-  SandwichesComponent } from './components/index';
+  SandwichesComponent,
+  TermsComponent } from './components/index';
+
+import { MDLDirective } from './directives/mdl/mdl.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports:      [ BrowserModule, AppRoutingModule ],
   declarations: [ NotFoundComponent,
+                  AdminComponent,
                   AppComponent,
                   CheckoutComponent,
                   DessertComponent,
                   DessertsComponent,
                   DrinkComponent,
                   DrinksComponent,
+                  FooterComponent,
                   HeaderComponent,
                   HomeComponent,
                   LoginComponent,
+                  MDLDirective,
                   ProfileComponent,
                   RegisterComponent,
                   SandwichComponent,
-                  SandwichesComponent
+                  SandwichesComponent,
+                  TermsComponent
                 ],
   bootstrap:    [ AppComponent ]
 })

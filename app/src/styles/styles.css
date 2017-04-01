@@ -12,6 +12,21 @@
     text-align: center;
 }
 
+.mdl-layout__content {
+    display: -webkit-flex;
+	display: flex;
+    -webkit-flex-direction: column;
+	        flex-direction: column;
+}
+
+.mdl-layout__content {
+  min-width: 100%;
+}
+
+.insandwich-main {
+    display: inherit;
+}
+
 .insandwich-color-grey {
   color: #878787;
 }
@@ -47,7 +62,12 @@
   border-bottom: none;
 }
 
+insandwich-header {
+  z-index: 99;
+}
+
 .insandwich-header {
+  z-index: 99 !important;
   background-color: #FFFFFF !important;
   display: block !important;
   color: #878787;
@@ -76,6 +96,43 @@
 .insandwich-mobile-navigation a:hover {
   color: #999999 !important;
   border-bottom: 4px solid #E42618;
+}
+
+.insandwich-marketing-section {
+  position: relative;
+  width: auto;
+  background-color: #F3F3F3;
+}
+
+.insandwich-marketing-section *{
+  margin-bottom: 20px;
+}
+
+.insandwich-different {
+  margin-top: 20px;
+  width: 80%;
+}
+
+.insandwich-card-wide {
+  width: 100%;
+}
+
+.insandwich-card-wide > .mdl-card__title {
+  color: #fff;
+  height: 120px;
+  background: #E42618;
+}
+
+.insandwich-card-wide > .mdl-card__supporting-text {
+  font-size: 15px;
+}
+
+.insandwich-slogan {
+  font-size: 50px;
+  line-height: 50px;
+  color: #888888;
+  padding-top: 50px;
+  margin-bottom: 40px;
 }
 
 @media (max-width: 900px) {

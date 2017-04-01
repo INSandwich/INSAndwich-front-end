@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import {
   NotFoundComponent,
+  AdminComponent,
   CheckoutComponent,
   DessertComponent,
   DessertsComponent,
@@ -15,11 +16,13 @@ import {
   ProfileComponent,
   RegisterComponent,
   SandwichComponent,
-  SandwichesComponent } from './components/index';
+  SandwichesComponent,
+  TermsComponent } from './components/index';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: NotFoundComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'checkout', component: CheckoutComponent },
   // { path: 'desserts/:id', component: DessertComponent },
   { path: 'desserts', component: DessertsComponent },
@@ -31,6 +34,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   // { path: 'sandwiches/:id', component: SandwichComponent },
   { path: 'sandwiches', component: SandwichesComponent },
+  { path: 'terms', component: TermsComponent },
   { path: '**', redirectTo: '/404'}
 ];
 

@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
 
+import { MDLDirective } from '../../directives/mdl/mdl.directive';
+
 @Component({
+//  entryComponents: [ MDLDirective ],
   templateUrl: 'app/components/home/home.html'
 })
 export class HomeComponent {
