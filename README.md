@@ -6,14 +6,14 @@ The front-end will be built using angular 2, in Typescript. We'll also use mater
 `When you code some front-end, be sure to use the console ;)`
 
 Todo list:
-  - Start with a navbar and footer
-  - Create all components relative to the project
   - Add a generic http service to do requests on the rest api
+  - Begin styling the components nicely, start linking the rest api to the front-end
   - Create nice templates :)
 
 Todo, maybe:
   - Localization
   - Use stylus for better css management
+  - Password reset link thingy
 
 Links:
   - [Angular 2](https://angular.io)

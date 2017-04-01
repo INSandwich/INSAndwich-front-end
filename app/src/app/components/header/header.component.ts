@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 
-import { MDL } from '../../directives/index';
+import { MDLDirective } from '../../directives/index';
 
 @Component({
   selector: 'insandwich-header',
-  directives: [ MDL ],
+  //directives: [ MDLDirective ],
   templateUrl: 'app/components/header/header.html',
 })
 export class HeaderComponent {

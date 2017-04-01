@@ -1,12 +1,12 @@
 <header class="insandwich-header mdl-layout__header mdl-layout__header--waterfall">
   <div *ngIf="mobile" class="insandwich-mobile-navigation">
     <ul class="insandwich-mobile-navigation-links">
-      <li class="insandwich-mobile-navigation-link"><img src="./images/logo.png" height="60"></li>
-      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Sandwich</a></li>
-      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Boissons</a></li>
-      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href="">Desserts</a></li>
-      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i> Payer</a></li>
-      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" href=""><i class="material-icons">account_box</i> Profil</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="no-hover" (click)="toggleNav()" [routerLink]="['/home']"><img src="./images/logo.png" height="60"></a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/sandwiches']">Sandwiches</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/drinks']">Boissons</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/desserts']">Desserts</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> Payer</a></li>
+      <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/profile']"><i class="material-icons">account_box</i> Profil</a></li>
       <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()">Fermer</a></li>
     </ul>
   </div>
@@ -15,18 +15,18 @@
       <i class="insandwich-color-grey material-icons">reorder</i>
     </div>
     <span class="insandwich-title mdl-layout-title">
-      <img src="./images/logo.png" height="60" alt="logo">
+      <a [routerLink]="['/home']"><img src="./images/logo.png" height="60" alt="logo"></a>
     </span>
     <div class="mdl-layout-spacer"></div>
     <nav class="insandwich-navigation mdl-navigation">
-        <a class="mdl-navigation__link" href="">Sandwich</a>
-        <a class="mdl-navigation__link" href="">Boissons</a>
-        <a class="mdl-navigation__link" href="">Desserts</a>
-        <a class="mdl-navigation__link" href=""><i class="material-icons">shopping_cart</i> Payer</a>
-        <a class="mdl-navigation__link" href=""><i class="material-icons">account_box</i> Profil</a>
+        <a class="mdl-navigation__link" [routerLink]="['/sandwiches']">Sandwiches</a>
+        <a class="mdl-navigation__link" [routerLink]="['/drinks']">Boissons</a>
+        <a class="mdl-navigation__link" [routerLink]="['/desserts']">Desserts</a>
+        <a class="mdl-navigation__link" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> Payer</a>
+        <a class="mdl-navigation__link" [routerLink]="['/profile']"><i class="material-icons">account_box</i> Profil</a>
     </nav>
     <span class="insandwich-mobile-title mdl-layout-title">
-      <img src="./images/logo.png" height="60" alt="logo">
+      <a [routerLink]="['/home']"><img src="./images/logo.png" height="60" alt="logo"></a>
     </span>
   </div>
 </header>

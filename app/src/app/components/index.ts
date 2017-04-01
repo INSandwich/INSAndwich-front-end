@@ -1,3 +1,13 @@
-export { HeaderComponent } from './header/header.component';
 export { NotFoundComponent } from './404/404.component';
+export { CheckoutComponent } from './checkout/checkout.component';
+export { DessertComponent } from './dessert/dessert.component';
+export { DessertsComponent } from './desserts/desserts.component';
+export { DrinkComponent } from './drink/drink.component';
+export { DrinksComponent } from './drinks/drinks.component';
+export { HeaderComponent } from './header/header.component';
 export { HomeComponent } from './home/home.component';
+export { LoginComponent } from './login/login.component';
+export { ProfileComponent } from './profile/profile.component';
+export { RegisterComponent } from './register/register.component';
+export { SandwichComponent } from './sandwich/sandwich.component';
+export { SandwichesComponent } from './sandwiches/sandwiches.component';

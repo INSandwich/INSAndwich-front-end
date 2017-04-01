@@ -43,6 +43,10 @@
   cursor: pointer;
 }
 
+.insandwich-mobile-navigation-links .no-hover:hover {
+  border-bottom: none;
+}
+
 .insandwich-header {
   background-color: #FFFFFF !important;
   display: block !important;

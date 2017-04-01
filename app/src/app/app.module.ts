@@ -3,13 +3,40 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent }  from './app.component';
 
-import { HeaderComponent, HomeComponent, NotFoundComponent } from './components/index';
+import {
+  NotFoundComponent,
+  CheckoutComponent,
+  DessertComponent,
+  DessertsComponent,
+  DrinkComponent,
+  DrinksComponent,
+  HeaderComponent,
+  HomeComponent,
+  LoginComponent,
+  ProfileComponent,
+  RegisterComponent,
+  SandwichComponent,
+  SandwichesComponent } from './components/index';
 
 import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   imports:      [ BrowserModule, AppRoutingModule ],
-  declarations: [ AppComponent, HeaderComponent, HomeComponent, NotFoundComponent ],
+  declarations: [ NotFoundComponent,
+                  AppComponent,
+                  CheckoutComponent,
+                  DessertComponent,
+                  DessertsComponent,
+                  DrinkComponent,
+                  DrinksComponent,
+                  HeaderComponent,
+                  HomeComponent,
+                  LoginComponent,
+                  ProfileComponent,
+                  RegisterComponent,
+                  SandwichComponent,
+                  SandwichesComponent
+                ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
