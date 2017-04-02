@@ -113,14 +113,25 @@ insandwich-header {
   width: 80%;
 }
 
+.insandwich-404-card {
+  text-align: center !important;
+}
+
 .insandwich-card-wide {
   width: 100%;
+  text-align: justify;
 }
 
 .insandwich-card-wide > .mdl-card__title {
   color: #fff;
   height: 120px;
   background: #E42618;
+}
+
+.insandwich-404-card > .mdl-card__title {
+  height: 200px;
+  background: url('../images/hotdog.png') center no-repeat #E42618;
+  background-size: contain;
 }
 
 .insandwich-card-wide > .mdl-card__supporting-text {
