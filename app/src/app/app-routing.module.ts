@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: 'sandwiches/:id', component: SandwichComponent },
   { path: 'sandwiches', component: SandwichesComponent },
   { path: 'terms', component: TermsComponent },
-  { path: '**', redirectTo: '/404'}
+  { path: '**', redirectTo: '404'}
 ];
 
 @NgModule({

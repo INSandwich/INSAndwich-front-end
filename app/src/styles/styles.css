@@ -146,6 +146,19 @@ insandwich-header {
   margin-bottom: 40px;
 }
 
+.insandwich-login-form {
+  width: 70%;
+  max-width: 500px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.loginForm {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 .insandwich-product-detail {
   display: flex;
   align-items: center;
