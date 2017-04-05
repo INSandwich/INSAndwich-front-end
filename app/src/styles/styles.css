@@ -146,6 +146,43 @@ insandwich-header {
   margin-bottom: 40px;
 }
 
+.insandwich-product-detail {
+  display: flex;
+  align-items: center;
+}
+
+.productCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.productImage {
+  width: 85%;
+  height: 192px;
+  border-radius: 200px;
+  margin-bottom: 15px;
+}
+
+.productName {
+  font-size: 25px;
+  line-height: 25px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.productDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.productDetailPicture {
+  width: 95%;
+  min-height: 300px;
+  border-radius: 200px;
+  margin: auto;
+}
+
 @media (max-width: 900px) {
   .insandwich-mobile-title {
     display: block !important;

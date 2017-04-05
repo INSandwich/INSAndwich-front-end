@@ -1,1 +1,22 @@
-<p>This is the desserts component</p>
+<div class="insandwich-different mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="logo-font insandwich-slogan">Desserts</div>
+  </div>
+  <!-- To change when rest api is used -->
+  <div class="mdl-cell mdl-cell--4-col">
+    <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
+      <div class="productCard mdl-card__supporting-text">
+        <div class="productImage" style="background: url('http://www.newhealthadvisor.com/images/1HT02932/ice%20cream.jpg') no-repeat center /cover"></div>
+        <span class="productName">Glace</span>
+        <span class="productDesc">Le produit phare de l'été :)</span>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a [routerLink]="['3']" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Commander
+        </a>
+        <span class="productPrice">5 Tokens</span>
+      </div>
+    </div>
+  </div>
+
+</div>
