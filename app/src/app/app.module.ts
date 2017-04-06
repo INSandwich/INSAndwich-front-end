@@ -25,16 +25,18 @@ import { MDLDirective } from './directives/mdl/mdl.directive';
 
 import { AppRoutingModule } from './app-routing.module';
 
+import { ListedItemsModule } from './modules/index';
+
 @NgModule({
-  imports:      [ BrowserModule, AppRoutingModule ],
+  imports:      [ BrowserModule, AppRoutingModule, ListedItemsModule ],
   declarations: [ NotFoundComponent,
                   AdminComponent,
                   AppComponent,
                   CheckoutComponent,
                   DessertComponent,
-                  DessertsComponent,
+                  /*DessertsComponent,*/
                   DrinkComponent,
-                  DrinksComponent,
+                  /*DrinksComponent,*/
                   FooterComponent,
                   HeaderComponent,
                   HomeComponent,
@@ -43,7 +45,7 @@ import { AppRoutingModule } from './app-routing.module';
                   ProfileComponent,
                   RegisterComponent,
                   SandwichComponent,
-                  SandwichesComponent,
+                  /*SandwichesComponent,*/
                   TermsComponent
                 ],
   bootstrap:    [ AppComponent ]
