@@ -6,9 +6,8 @@ The front-end will be built using angular 2, in Typescript. We'll also use mater
 `When you code some front-end, be sure to use the console ;)`
 
 Todo list:
-  - Add a generic http service to do requests on the rest api
-  - Begin styling the components nicely, start linking the rest api to the front-end
-  - Create nice templates :)
+  - Add paging to list components
+  - Shorten description in list to something like 50 characters and add "(Commander pour voir plus)" after that.
 
 Todo, maybe:
   - Localization

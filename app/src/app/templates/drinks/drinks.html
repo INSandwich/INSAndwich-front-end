@@ -2,19 +2,18 @@
   <div class="mdl-cell mdl-cell--12-col">
     <div class="logo-font insandwich-slogan">Boissons</div>
   </div>
-  <!-- To change when rest api is used -->
-  <div class="mdl-cell mdl-cell--4-col">
+  <div *ngFor="let drink of drinks" class="mdl-cell mdl-cell--4-col">
     <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
       <div class="productCard mdl-card__supporting-text">
-        <div class="productImage"  style="background: url('https://pbs.twimg.com/profile_images/770467680012890112/kSz1jtnn.jpg') no-repeat center /cover"></div>
-        <span class="productName">Cola</span>
-        <span class="productDesc">Rien de tel qu'un bon cola pour se désalterer</span>
+        <div class="productImage" [style.background]="sanitize(drink.Image)"></div>
+        <span class="productName">{{ drink.Name }}</span>
+        <span class="productDesc">{{ drink.Description }}</span>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Commander
         </a>
-        <span class="productPrice">1 Token</span>
+        <span class="productPrice">{{ drink.Price }} Token<span *ngIf="drink.Price > 1">s</span></span>
       </div>
     </div>
   </div>

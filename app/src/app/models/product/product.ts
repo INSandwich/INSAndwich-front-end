@@ -1,4 +1,4 @@
-export class Dessert {
+export class Product {
   constructor(
     private _id: number,
     public name: string,

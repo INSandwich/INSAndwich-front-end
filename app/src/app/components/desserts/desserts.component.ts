@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { ListedItems, Dessert } from '../../models/index';
+import { ListedItems, Product } from '../../models/index';
 
 import { ListedItemsService } from '../../services/index';
 
@@ -15,7 +15,7 @@ export class DessertsComponent implements OnInit {
   // This component will contain a nicely organized list of desserts
   constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer) {}
 
-  desserts: Array<Dessert>;
+  desserts: Array<Product>;
 
   ngOnInit() {
     this.loadDesserts();
@@ -27,7 +27,7 @@ export class DessertsComponent implements OnInit {
 
   loadDesserts() {
     this.listedItemsService
-        .getItems<Dessert>("http://localhost:5000/products/2")
+        .getItems<Product>("http://localhost:5000/products/2")
         .subscribe(
           listedItems => { console.log(listedItems); this.desserts = listedItems.items; console.log(this.desserts)},
           err => { console.log(err); }

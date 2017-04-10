@@ -2,21 +2,19 @@
   <div class="mdl-cell mdl-cell--12-col">
     <div class="logo-font insandwich-slogan">Sandwiches</div>
   </div>
-  <!-- To change when rest api is used -->
-  <div class="mdl-cell mdl-cell--4-col">
+  <div *ngFor="let sandwich of sandwiches" class="mdl-cell mdl-cell--4-col">
     <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
       <div class="productCard mdl-card__supporting-text">
-        <div class="productImage"  style="background: url('https://s3-media3.fl.yelpcdn.com/bphoto/eBXcMq-5t-1Eu9UX55ngSA/o.jpg') no-repeat center /cover"></div>
-        <span class="productName">Tacos</span>
-        <span class="productDesc">Le bon grec sa mèrrrrrrrrre</span>
+        <div class="productImage" [style.background]="sanitize(sandwich.Image)"></div>
+        <span class="productName">{{ sandwich.Name }}</span>
+        <span class="productDesc">{{ sandwich.Description }}</span>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Commander
         </a>
-        <span class="productPrice">2 Tokens</span>
+        <span class="productPrice">{{ sandwich.Price }} Token<span *ngIf="sandwich.Price > 1">s</span></span>
       </div>
     </div>
   </div>
-
 </div>
