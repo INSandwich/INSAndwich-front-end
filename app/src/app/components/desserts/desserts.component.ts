@@ -7,7 +7,7 @@ import { ListedItems, Dessert } from '../../models/index';
 import { ListedItemsService } from '../../services/index';
 
 @Component({
-  templateUrl: 'app/components/desserts/desserts.html'
+  templateUrl: 'app/templates/desserts/desserts.html'
 })
 export class DessertsComponent implements OnInit {
   // Accessible thru /desserts

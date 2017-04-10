@@ -4,7 +4,7 @@ import { MDLDirective } from '../../directives/mdl/mdl.directive';
 
 @Component({
 //  entryComponents: [ MDLDirective ],
-  templateUrl: 'app/components/home/home.html'
+  templateUrl: 'app/templates/home/home.html'
 })
 export class HomeComponent {
   // Accessible thru /home

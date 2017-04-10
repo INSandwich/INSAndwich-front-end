@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/register/register.html'
+  templateUrl: 'app/templates/register/register.html'
 })
 export class RegisterComponent {
   // Accessible thru /login

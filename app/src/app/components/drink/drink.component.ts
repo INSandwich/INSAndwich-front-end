@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/drink/drink.html'
+  templateUrl: 'app/templates/drink/drink.html'
 })
 export class DrinkComponent {
   // Accessible thru /drinks/:id

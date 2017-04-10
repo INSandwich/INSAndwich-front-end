@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/sandwich/sandwich.html'
+  templateUrl: 'app/templates/sandwich/sandwich.html'
 })
 export class SandwichComponent {
   // Accessible thru /sandwiches/:id

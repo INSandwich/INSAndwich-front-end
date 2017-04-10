@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/drinks/drinks.html'
+  templateUrl: 'app/templates/drinks/drinks.html'
 })
 export class DrinksComponent {
   // Accessible thru /drinks

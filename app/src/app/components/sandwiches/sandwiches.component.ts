@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/sandwiches/sandwiches.html'
+  templateUrl: 'app/templates/sandwiches/sandwiches.html'
 })
 export class SandwichesComponent {
   // Accessible thru /sandwiches

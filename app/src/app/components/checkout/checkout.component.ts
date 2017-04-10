@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  templateUrl: 'app/components/checkout/checkout.html'
+  templateUrl: 'app/templates/checkout/checkout.html'
 })
 export class CheckoutComponent {
   // Accessible thru /checkout

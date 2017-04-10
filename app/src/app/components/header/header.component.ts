@@ -4,7 +4,7 @@ import { MDLDirective } from '../../directives/index';
 
 @Component({
   selector: 'insandwich-header',
-  templateUrl: 'app/components/header/header.html'
+  templateUrl: 'app/templates/header/header.html'
 })
 export class HeaderComponent {
 
