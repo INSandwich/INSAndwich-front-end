@@ -8,6 +8,7 @@ The front-end will be built using angular 2, in Typescript. We'll also use mater
 Todo list:
   - Add paging to list components
   - Shorten description in list to something like 50 characters and add "(Commander pour voir plus)" after that.
+  - Add a LoadingComponent to buffer when a component is loading data
 
 Todo, maybe:
   - Localization
