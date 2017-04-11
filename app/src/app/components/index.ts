@@ -8,6 +8,7 @@ export { DrinksComponent } from './drinks/drinks.component';
 export { FooterComponent } from './footer/footer.component';
 export { HeaderComponent } from './header/header.component';
 export { HomeComponent } from './home/home.component';
+export { LoadingComponent } from './loading/loading.component';
 export { LoginComponent } from './login/login.component';
 export { ProfileComponent } from './profile/profile.component';
 export { RegisterComponent } from './register/register.component';

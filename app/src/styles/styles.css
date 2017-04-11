@@ -19,6 +19,22 @@
 	        flex-direction: column;
 }
 
+.insandwich-loading-container {
+  height: 100%;
+  width: 100%;
+  background-color: rgba(245,245,245,0.5);
+  z-index: 9999999;
+}
+
+.insandwich-loading-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70px;
+  width: 70px;
+}
+
 .mdl-layout__content {
   min-width: 100%;
 }
@@ -84,12 +100,11 @@ insandwich-header {
 }
 
 .insandwich-navigation a:hover {
-  color: #999999 !important;
   border-bottom: 4px solid #E42618;
 }
 
 .insandwich-mobile-navigation *{
-  color: #555555 !important;
+  padding-bottom: 5px;
   font-size: 20px;
 }
 
