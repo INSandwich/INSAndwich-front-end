@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http, Headers, Response } from '@angular/http';
+import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
@@ -19,8 +19,13 @@ export class AuthService {
   login(username: string, password: string): Observable<boolean> {
     // The auth route will compare the hash for the username and will return the corresponding user info
     // As well as a jwt token
-    return this.http.post('http://localhost:5000/auth', JSON.stringify({ username: username, password: password }))
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post('http://localhost:5000/auth', { username: username, password: password }, options)
                     .map((res: Response) => {
+                      console.log(res);
                       let token = res.json() && res.json().token;
                       let role = res.json() && res.json().role;
                       if(token && role) {

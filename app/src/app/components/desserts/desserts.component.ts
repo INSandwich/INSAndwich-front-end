@@ -27,7 +27,7 @@ export class DessertsComponent implements OnInit {
 
   loadDesserts() {
     this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/2")
+        .getItems<Product>("http://localhost:5000/products/category/2")
         .subscribe(
           listedItems => { console.log(listedItems); this.desserts = listedItems.items; console.log(this.desserts)},
           err => { console.log(err); }

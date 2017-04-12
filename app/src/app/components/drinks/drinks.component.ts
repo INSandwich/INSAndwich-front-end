@@ -28,7 +28,7 @@ export class DrinksComponent implements OnInit {
 
   loadDrinks() {
     this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/3")
+        .getItems<Product>("http://localhost:5000/products/category/3")
         .subscribe(
           listedItems => { console.log(listedItems); this.drinks = listedItems.items; console.log(this.drinks)},
           err => { console.log(err); }

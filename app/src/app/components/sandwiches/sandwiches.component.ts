@@ -27,7 +27,7 @@ export class SandwichesComponent implements OnInit {
 
   loadSandwiches() {
     this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/1")
+        .getItems<Product>("http://localhost:5000/products/category/1")
         .subscribe(
           listedItems => { console.log(listedItems); this.sandwiches = listedItems.items; console.log(this.sandwiches)},
           err => { console.log(err); }
