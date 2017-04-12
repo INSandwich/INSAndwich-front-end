@@ -51,7 +51,7 @@ import { ListedItemsModule, AuthModule } from './modules/index';
                   SandwichComponent,
                   TermsComponent
                 ],
-  providers: [AppState]
+  providers: [AppState],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
