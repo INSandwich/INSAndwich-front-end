@@ -1,5 +1,6 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 
@@ -21,31 +22,31 @@ import {
   SandwichesComponent,
   TermsComponent } from './components/index';
 
-import { MDLDirective } from './directives/mdl/mdl.directive';
-
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListedItemsModule } from './modules/index';
+import { ListedItemsModule, AuthModule } from './modules/index';
 
 @NgModule({
-  imports:      [ BrowserModule, AppRoutingModule, ListedItemsModule ],
+  imports:      [
+    AppRoutingModule,
+    AuthModule,
+    BrowserModule,
+    FormsModule,
+    ListedItemsModule
+  ],
+  // This should change, as we add modules
   declarations: [ NotFoundComponent,
                   AdminComponent,
                   AppComponent,
                   CheckoutComponent,
                   DessertComponent,
-                  /*DessertsComponent,*/
                   DrinkComponent,
-                  /*DrinksComponent,*/
                   FooterComponent,
                   HeaderComponent,
                   HomeComponent,
-                  LoginComponent,
-                  MDLDirective,
                   ProfileComponent,
                   RegisterComponent,
                   SandwichComponent,
-                  /*SandwichesComponent,*/
                   TermsComponent
                 ],
   bootstrap:    [ AppComponent ]

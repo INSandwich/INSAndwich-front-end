@@ -5,7 +5,7 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { DessertsComponent, SandwichesComponent, DrinksComponent } from '../../components/index';
 
-import { ListedItemsService } from '../../services/listedItems/listed-items.service';
+import { ListedItemsService } from '../../services/index';
 
 @NgModule({
   imports: [
@@ -22,7 +22,6 @@ import { ListedItemsService } from '../../services/listedItems/listed-items.serv
   providers: [
     ListedItemsService
   ],
-
   exports:[
     DessertsComponent,
     SandwichesComponent,

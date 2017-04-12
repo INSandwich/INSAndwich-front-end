@@ -25,6 +25,7 @@
 
       // other libraries
       'rxjs':                      'npm:rxjs',
+      'ts-md5': 'src/js/ts-md5',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
     },
     // packages tells the System loader how to load when no filename and/or no extension
@@ -39,7 +40,8 @@
       },
       rxjs: {
         defaultExtension: 'js'
-      }
+      },
+      'ts-md5': {main: '/md5.js'},
     }
   });
 })(this);
