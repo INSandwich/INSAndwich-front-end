@@ -22,6 +22,8 @@ import {
   SandwichesComponent,
   TermsComponent } from './components/index';
 
+import { AppState } from './models/index';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { ListedItemsModule, AuthModule } from './modules/index';
@@ -49,6 +51,7 @@ import { ListedItemsModule, AuthModule } from './modules/index';
                   SandwichComponent,
                   TermsComponent
                 ],
+  providers: [AppState]
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

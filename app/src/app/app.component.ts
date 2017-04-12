@@ -1,9 +1,14 @@
 import { Component } from '@angular/core';
 
-//import { MDLDirective } from './directives/index';
+import { AppState } from './models/index';
 
 @Component({
   selector: 'insandwich',
   templateUrl: "app/app.html"
 })
-export class AppComponent  { }
+export class AppComponent  {
+  constructor(public appstate: AppState) {
+    
+  }
+
+}

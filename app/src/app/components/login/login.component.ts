@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   // This component will be used for the user to log in
   model: any = {};
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.authService.logout();
@@ -21,10 +21,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     console.log(Md5.hashStr(this.model.password));
-    this.authService.login(this.model.username, String(Md5.hashStr(this.model.password)))
+    this.authService.login(this.model.login, String(Md5.hashStr(this.model.password)))
                 .subscribe(
                     data => {
-                        console.log(data);
+                        this.router.navigate(['/home']);
                     },
                     error => {
                         console.log(error);
