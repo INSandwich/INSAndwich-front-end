@@ -9,8 +9,11 @@ Todo list:
   - Add paging to list components
   - Shorten description in list to something like 50 characters and add "(Commander pour voir plus)" after that.
   - Add a LoadingComponent to buffer when a component is loading data
+<<<<<<< HEAD
   - Safe Login / Registration (& Sessions)!
   - Remove all console.log() stuff
+=======
+>>>>>>> ab742ab4a100ae40ddaf0d32c62cc9cc4a5f5280
 
 Todo, maybe:
   - Localization
