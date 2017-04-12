@@ -8,8 +8,7 @@ declare var componentHandler: any;
 export class MDLDirective implements AfterViewInit {
 
     ngAfterViewInit() {
-            componentHandler.upgradeAllRegistered();
-
+        componentHandler.upgradeAllRegistered();
     }
 
 }

@@ -15,9 +15,7 @@ export class HeaderComponent {
   @Input() isAuthentificated: boolean;
   @Input() username: string;
 
-  constructor(private authService: AuthService, private router: Router) {
-
-  }
+  constructor(private authService: AuthService, private router: Router) {}
 
   mobile: boolean = false;
 

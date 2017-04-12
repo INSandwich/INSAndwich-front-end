@@ -12,6 +12,8 @@ export class LoginComponent implements OnInit {
   // Accessible thru /login
   // This component will be used for the user to log in
   model: any = {};
+  displayError: boolean = false;
+  errorMessage: string = "";
 
   constructor(private authService: AuthService, private router: Router) {}
 
@@ -20,14 +22,14 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(Md5.hashStr(this.model.password));
     this.authService.login(this.model.login, String(Md5.hashStr(this.model.password)))
                 .subscribe(
                     data => {
-                        this.router.navigate(['/home']);
+                          this.router.navigate(['/home']);
                     },
                     error => {
-                        console.log(error);
+                      this.displayError = true;
+                      this.errorMessage = error.json().detail;
                     });
   }
 

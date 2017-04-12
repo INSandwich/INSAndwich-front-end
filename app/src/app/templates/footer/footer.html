@@ -2,7 +2,7 @@
   <div class="mdl-mini-footer__left-section">
     <div class="mdl-logo">INSAndwich</div>
     <ul class="mdl-mini-footer__link-list">
-      <li><a [routerLink]="['/admin']">Admin</a></li>
+      <li *ngIf="role == 'admin'"><a [routerLink]="['/admin']">Admin</a></li>
       <li><a [routerLink]="['/terms']">Conditions générales</a></li>
     </ul>
   </div>

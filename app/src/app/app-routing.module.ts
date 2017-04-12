@@ -33,7 +33,7 @@ const routes: Routes = [
   { path: 'drinks', component: DrinksComponent },
   { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuard] }, 
   { path: 'register', component: RegisterComponent },
   { path: 'sandwiches/:id', component: SandwichComponent },
   { path: 'sandwiches', component: SandwichesComponent },
