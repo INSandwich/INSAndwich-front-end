@@ -20,9 +20,12 @@ import {
   RegisterComponent,
   SandwichComponent,
   SandwichesComponent,
-  TermsComponent } from './components/index';
+  TermsComponent,
+  UnauthorizedComponent } from './components/index';
 
 import { AppState } from './models/index';
+
+import { AuthGuard, AdminGuard } from './guards/index';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -49,9 +52,13 @@ import { ListedItemsModule, AuthModule } from './modules/index';
                   ProfileComponent,
                   RegisterComponent,
                   SandwichComponent,
-                  TermsComponent
+                  TermsComponent,
+                  UnauthorizedComponent
                 ],
-  providers: [AppState],
+  providers: [    AppState,
+                  AdminGuard,
+                  AuthGuard
+             ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

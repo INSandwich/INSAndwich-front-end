@@ -15,3 +15,4 @@ export { RegisterComponent } from './register/register.component';
 export { SandwichComponent } from './sandwich/sandwich.component';
 export { SandwichesComponent } from './sandwiches/sandwiches.component';
 export { TermsComponent } from './terms/terms.component';
+export { UnauthorizedComponent } from './unauthorized/unauthorized.component';
