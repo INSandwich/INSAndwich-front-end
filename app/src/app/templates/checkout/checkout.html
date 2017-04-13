@@ -1,1 +1,56 @@
-<p>This is the checkout component</p>
+<div mdl class="insandwich-different mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="logo-font insandwich-slogan">Payer</div>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Commande n°45852</h2>
+      </div>
+      <div class="commandCard mdl-card__supporting-text">
+        <table class="insandwich-commandLines mdl-data-table mdl-js-data-table">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric">Produit</th>
+              <th class="mdl-data-table__cell--non-numeric">Quantité</th>
+              <th class="mdl-data-table__cell--non-numeric">Prix à l'unité</th>
+              <th class="mdl-data-table__cell--non-numeric">Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">Tacos</td>
+              <td class="mdl-data-table__cell--non-numeric">1</td>
+              <td class="mdl-data-table__cell--non-numeric">3.5 tokens</td>
+              <td class="mdl-data-table__cell--non-numeric"><i class="material-icons">delete_forever</i></td>
+            </tr>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">Coca-cola</td>
+              <td class="mdl-data-table__cell--non-numeric">1</td>
+              <td class="mdl-data-table__cell--non-numeric">0.5 token</td>
+              <td class="mdl-data-table__cell--non-numeric"><i class="material-icons">delete_forever</i></td>
+            </tr>
+            <tr>
+              <td class="mdl-data-table__cell--non-numeric">Glace</td>
+              <td class="mdl-data-table__cell--non-numeric">1</td>
+              <td class="mdl-data-table__cell--non-numeric">2.5 tokens</td>
+              <td class="mdl-data-table__cell--non-numeric"><i class="material-icons">delete_forever</i></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <td class="mdl-data-table__cell--non-numeric" colspan="2"><b>Total</b></td>
+            <td class="mdl-data-table__cell--non-numeric" colspan="2">6.5 tokens</td>
+          </tfoot>
+        </table>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Payer
+        </a>
+      </div>
+      <div class="mdl-card__menu">
+          <span class="insandwich-command-token-amount">5000 tokens</span>
+      </div>
+    </div>
+  </div>
+</div>

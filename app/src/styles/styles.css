@@ -83,9 +83,10 @@
   line-height: 30px;
 }
 
-.insandwich-mobile-navigation-link *:hover {
+.insandwich-mobile-navigation-link * {
   cursor: pointer;
 }
+
 
 .insandwich-mobile-navigation-links .no-hover:hover {
   border-bottom: none;
@@ -221,6 +222,20 @@ insandwich-header {
   width: 95%;
   min-height: 300px;
   border-radius: 200px;
+  margin: auto;
+}
+
+.commandCard {
+  width: auto;
+}
+
+.insandwich-command-token-amount {
+  color: white;
+  font-size: 20px;
+}
+
+.insandwich-commandLines {
+  width: 90%;
   margin: auto;
 }
 
