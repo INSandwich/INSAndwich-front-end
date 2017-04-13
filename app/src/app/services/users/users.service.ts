@@ -25,7 +25,7 @@ export class UsersService {
 
     return this.http.post(url, JSON.stringify({firstname: firstname, lastname: lastname, email: email, login: username, password: password, adresse: adresse}), options)
                     .map((res: Response) => res.json())
-                    .catch((err: any) => Observable.throw(error.json().error || 'Server error'));
+                    .catch((err: any) => Observable.throw(err.json().error || 'Server error'));
   }
 
 }
