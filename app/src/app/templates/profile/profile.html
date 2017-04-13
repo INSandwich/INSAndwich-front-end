@@ -9,18 +9,6 @@
   <h1>Historique des commandes ?</h1>
 <div mdl class="insandwich-different mdl-grid">
   <div class="mdl-cell mdl-cell--12-col">
-    <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
-      <div class="productCard mdl-card__supporting-text">
-        <div class="productImage" [style.background]="sanitize(drink.Image)"></div>
-        <span class="productName">{{ drink.Name }}</span>
-        <span class="productDesc">{{ drink.Description }}</span>
-      </div>
-      <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-          Commander
-        </a>
-        <span class="productPrice">{{ drink.Price }} Token<span *ngIf="drink.Price > 1">s</span></span>
-      </div>
-    </div>
+    <div class="logo-font insandwich-slogan">Bonjour {{ user?.FirstName }} {{ user?.LastName }}</div>
   </div>
 </div>
