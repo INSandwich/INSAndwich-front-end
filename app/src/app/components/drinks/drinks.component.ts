@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { DomSanitizer } from '@angular/platform-browser';
 
@@ -9,7 +9,7 @@ import { ListedItemsService } from '../../services/index';
 @Component({
   templateUrl: 'app/templates/drinks/drinks.html'
 })
-export class DrinksComponent implements OnInit {
+export class DrinksComponent implements OnInit, OnDestroy {
   // Accessible thru /drinks
 
   // This component will contain a nicely organized list of drinks
@@ -17,6 +17,8 @@ export class DrinksComponent implements OnInit {
   constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer) {}
 
   drinks: Array<Product>;
+
+  private drinks$: any;
 
   ngOnInit() {
     this.loadDrinks();
@@ -27,12 +29,16 @@ export class DrinksComponent implements OnInit {
   }
 
   loadDrinks() {
-    this.listedItemsService
+    this.drinks$ = this.listedItemsService
         .getItems<Product>("http://localhost:5000/products/category/3")
         .subscribe(
           listedItems => { console.log(listedItems); this.drinks = listedItems.items; console.log(this.drinks)},
           err => { console.log(err); }
         );
+  }
+
+  ngOnDestroy() {
+    this.drinks$.unsubscribe();
   }
 
 }

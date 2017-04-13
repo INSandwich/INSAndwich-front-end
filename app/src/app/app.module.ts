@@ -29,7 +29,7 @@ import { AuthGuard, AdminGuard } from './guards/index';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListedItemsModule, AuthModule } from './modules/index';
+import { ListedItemsModule, AuthModule, UsersModule } from './modules/index';
 
 @NgModule({
   imports:      [
@@ -37,7 +37,8 @@ import { ListedItemsModule, AuthModule } from './modules/index';
     AuthModule,
     BrowserModule,
     FormsModule,
-    ListedItemsModule
+    ListedItemsModule,
+    UsersModule
   ],
   // This should change, as we add modules
   declarations: [ NotFoundComponent,
@@ -49,7 +50,6 @@ import { ListedItemsModule, AuthModule } from './modules/index';
                   FooterComponent,
                   HeaderComponent,
                   HomeComponent,
-                  ProfileComponent,
                   RegisterComponent,
                   SandwichComponent,
                   TermsComponent,
