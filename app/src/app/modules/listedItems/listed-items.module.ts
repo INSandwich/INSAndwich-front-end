@@ -3,6 +3,8 @@ import { BrowserModule }  from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule, JsonpModule } from '@angular/http';
 
+import { RouterModule } from '@angular/router'
+
 import { DessertsComponent, SandwichesComponent, DrinksComponent } from '../../components/index';
 
 import { ListedItemsService } from '../../services/index';
@@ -13,6 +15,7 @@ import { ListedItemsService } from '../../services/index';
     FormsModule,
     HttpModule,
     JsonpModule,
+    RouterModule
   ],
   declarations: [
     DessertsComponent,

@@ -1,19 +1,20 @@
 <div mdl class="insandwich-different insandwich-product-detail mdl-grid">
   <div class="mdl-cell mdl-cell--6-col">
     <div class="productDetailCard">
-      <div class="productDetailPicture" style="background: url('https://s3-media3.fl.yelpcdn.com/bphoto/eBXcMq-5t-1Eu9UX55ngSA/o.jpg') no-repeat center /cover"></div>
+      <div *ngIf="product" class="productDetailPicture" [style.background]="sanitize(product.Image)"></div>
     </div>
   </div>
   <div class="mdl-cell mdl-cell--6-col">
     <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Tacos</h2>
+        <h2 class="mdl-card__title-text">{{ product?.Name }}</h2>
       </div>
       <div class="productDetailCard mdl-card__supporting-text">
         <div class="productDetails">
-          <span class="productReference">Reference: 3</span>
-          <span class="productDescription">Descrition: Le bon grec sa mèrrrrrrrrre</span>
-          <span class="productPrice">Price: 2 tokens</span>
+          <span *ngIf="product?.Available != 1">Non</span> Disponible
+          <span class="productReference">Reference: {{ product?.Id }}</span>
+          <span class="productDescription">Descrition: {{ product?.Description }}</span>
+          <span class="productPrice">Price: {{ product?.Price }} token<span *ngIf="product?.Price > 1">s</span></span>
         </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">

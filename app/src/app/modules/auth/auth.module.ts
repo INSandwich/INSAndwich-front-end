@@ -5,9 +5,6 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppRoutingModule } from '../../app-routing.module';
 
-import { MDLModule } from '../index';
-
-import { MDLDirective } from '../../directives/index';
 
 import { LoginComponent } from '../../components/index';
 
@@ -20,19 +17,16 @@ import { AuthService } from '../../services/index';
     FormsModule,
     HttpModule,
     JsonpModule,
-    //MDLModule,
     AppRoutingModule
   ],
   declarations: [
     LoginComponent
-    //MDLDirective
   ],
   providers: [
     AuthService
   ],
   exports:[
     LoginComponent
-    //MDLDirective
   ]
 
 })

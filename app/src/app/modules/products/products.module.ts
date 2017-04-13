@@ -5,9 +5,9 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { AppRoutingModule } from '../../app-routing.module';
 
-import { ProfileComponent } from '../../components/index';
+import { ProductComponent } from '../../components/index';
 
-import { UsersService } from '../../services/index';
+import { ProductsService } from '../../services/index';
 
 @NgModule({
   imports: [
@@ -19,14 +19,14 @@ import { UsersService } from '../../services/index';
     //MDLModule
   ],
   declarations: [
-    ProfileComponent
+    ProductComponent
   ],
   providers: [
-    UsersService
+    ProductsService
   ],
   exports:[
-    ProfileComponent
+    ProductComponent
   ]
 })
-export class UsersModule {
+export class ProductsModule {
 }

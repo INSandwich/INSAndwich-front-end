@@ -10,7 +10,7 @@
         <span class="productDesc">{{ drink.Description }}</span>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        <a [routerLink]="['/product', drink.Id]" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Commander
         </a>
         <span class="productPrice">{{ drink.Price }} Token<span *ngIf="drink.Price > 1">s</span></span>

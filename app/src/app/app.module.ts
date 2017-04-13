@@ -8,9 +8,7 @@ import {
   NotFoundComponent,
   AdminComponent,
   CheckoutComponent,
-  DessertComponent,
   DessertsComponent,
-  DrinkComponent,
   DrinksComponent,
   FooterComponent,
   HeaderComponent,
@@ -18,7 +16,6 @@ import {
   LoginComponent,
   ProfileComponent,
   RegisterComponent,
-  SandwichComponent,
   SandwichesComponent,
   TermsComponent,
   UnauthorizedComponent } from './components/index';
@@ -31,7 +28,7 @@ import { MDLDirective } from './directives/index';
 
 import { AppRoutingModule } from './app-routing.module';
 
-import { ListedItemsModule, AuthModule, UsersModule } from './modules/index';
+import { ListedItemsModule, AuthModule, UsersModule, ProductsModule } from './modules/index';
 
 @NgModule({
   imports:      [
@@ -40,20 +37,18 @@ import { ListedItemsModule, AuthModule, UsersModule } from './modules/index';
     BrowserModule,
     FormsModule,
     ListedItemsModule,
-    UsersModule
+    UsersModule,
+    ProductsModule
   ],
   // This should change, as we add modules
   declarations: [ NotFoundComponent,
                   AdminComponent,
                   AppComponent,
                   CheckoutComponent,
-                  DessertComponent,
-                  DrinkComponent,
                   FooterComponent,
                   HeaderComponent,
                   HomeComponent,
                   RegisterComponent,
-                  SandwichComponent,
                   TermsComponent,
                   UnauthorizedComponent,
                   MDLDirective
