@@ -9,44 +9,70 @@
   <h1>Historique des commandes ?</h1-->
 
 <div mdl class="insandwich-different mdl-grid">
-  <div class="mdl-cell mdl-cell--12-col">
-    <div class="logo-font insandwich-slogan">Bonjour {{ user?.FirstName }} {{ user?.LastName }}</div>
-  </div>
     <div class="mdl-cell mdl-cell--12-col">
-      <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Modifier vos données</h2>
-        </div>
-        <div class="mdl-card__supporting-text">
-          <div class="loginForm">
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" [(ngModel)]="model.firstname" value="user?.firstname" type="text" id="firstname">
-                <label class="mdl-textfield__label" for="firstname">Prénom</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" [(ngModel)]="model.lastname" type="text" id="lastname">
-                <label class="mdl-textfield__label" for="lastname">Nom</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" [(ngModel)]="model.email" type="email" id="email">
-                <label class="mdl-textfield__label" for="email">Email</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" [(ngModel)]="model.login" type="text" id="login">
-                <label class="mdl-textfield__label" for="login">Login</label>
-              </div>
-              <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                <input class="mdl-textfield__input" [(ngModel)]="model.adresse" type="text" id="adresse">
-                <label class="mdl-textfield__label" for="adresse">Adresse</label>
-              </div>
+        <div class="logo-font insandwich-slogan">Bonjour {{ user?.FirstName }} {{ user?.LastName }}</div>
+    </div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Modifier vos données</h2>
             </div>
-        </div>
-        <div class="mdl-card__actions mdl-card--border">
-          <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+            <div class="mdl-card__supporting-text">
+                <div class="loginForm">
+                    <div class="formated-error-message">Erreur: message d'erreur (a modif)</div>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" [(ngModel)]="model.firstname" #firstname type="text" id="firstname">
+                    <label class="mdl-textfield__label" for="firstname">Prénom</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" [(ngModel)]="model.lastname" type="text" id="lastname">
+                    <label class="mdl-textfield__label" for="lastname">Nom</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" [(ngModel)]="model.email" type="email" id="email">
+                    <label class="mdl-textfield__label" for="email">Email</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" [(ngModel)]="model.login" type="text" id="login">
+                    <label class="mdl-textfield__label" for="login">Login</label>
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" [(ngModel)]="model.adresse" type="text" id="adresse">
+                    <label class="mdl-textfield__label" for="adresse">Adresse</label>
+                </div>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
             Modifier les paramètres
           </a>
+            </div>
         </div>
-      </div>
-  </div>
+    </div>
 
-</div>
+    <div class="mdl-cell mdl-cell--6-col">
+        <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
+            <div class="mdl-card__title">
+                <h2 class="mdl-card__title-text">Modifier votre mot de passe</h2>
+            </div>
+            <div class="mdl-card__supporting-text">
+                <div class="loginForm">
+                    <div class="formated-error-message">Erreur: message d'erreur (a modif)</div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]="model.mdp" #firstname type="password" id="pwd">
+                        <label class="mdl-textfield__label" for="pwd">Mot de passe</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]="model.mdpconfirm" type="password" id="pwdConfirm">
+                        <label class="mdl-textfield__label" for="pwdConfirm">Confirmer le mot de passe</label>
+                    </div>
+                </div>
+            </div>
+            <div class="mdl-card__actions mdl-card--border">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+          Modifier le mot de passe
+        </a>
+            </div>
+        </div>
+
+    </div>
