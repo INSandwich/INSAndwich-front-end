@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   // Accessible thru /profile/:username
   username: string;
   user: User;
+  model: any = {};
 
   private user$: any;
 
@@ -31,6 +32,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
             err => { console.log(err); }
         );
   }
+
+  
 
   ngOnDestroy() {
     this.user$.unsubscribe();

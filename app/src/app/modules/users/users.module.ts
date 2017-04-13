@@ -5,6 +5,10 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { ProfileComponent } from '../../components/index';
 
+import { MDLModule } from '../index';
+
+import { MDLDirective } from '../../directives/index';
+
 import { UsersService } from '../../services/index';
 
 @NgModule({
@@ -13,6 +17,7 @@ import { UsersService } from '../../services/index';
     FormsModule,
     HttpModule,
     JsonpModule,
+    //MDLModule
   ],
   declarations: [
     ProfileComponent
@@ -23,7 +28,6 @@ import { UsersService } from '../../services/index';
   exports:[
     ProfileComponent
   ]
-
 })
 export class UsersModule {
 }

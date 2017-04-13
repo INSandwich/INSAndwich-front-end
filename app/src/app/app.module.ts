@@ -27,6 +27,8 @@ import { AppState } from './models/index';
 
 import { AuthGuard, AdminGuard } from './guards/index';
 
+import { MDLDirective } from './directives/index';
+
 import { AppRoutingModule } from './app-routing.module';
 
 import { ListedItemsModule, AuthModule, UsersModule } from './modules/index';
@@ -53,7 +55,8 @@ import { ListedItemsModule, AuthModule, UsersModule } from './modules/index';
                   RegisterComponent,
                   SandwichComponent,
                   TermsComponent,
-                  UnauthorizedComponent
+                  UnauthorizedComponent,
+                  MDLDirective
                 ],
   providers: [    AppState,
                   AdminGuard,
