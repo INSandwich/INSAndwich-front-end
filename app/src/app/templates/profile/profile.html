@@ -10,42 +10,43 @@
 
 <div mdl class="insandwich-different mdl-grid">
     <div class="mdl-cell mdl-cell--12-col">
-        <div class="logo-font insandwich-slogan">Bonjour {{ user?.FirstName }} {{ user?.LastName }}</div>
+        <div class="logo-font insandwich-slogan">Bonjour {{ fullname }}</div>
     </div>
     <div class="mdl-cell mdl-cell--6-col">
         <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
             <div class="mdl-card__title">
                 <h2 class="mdl-card__title-text">Modifier vos données</h2>
             </div>
-            <div class="mdl-card__supporting-text">
+            <div *ngIf="user" class="mdl-card__supporting-text">
                 <div class="loginForm">
-                    <div class="formated-error-message">Erreur: message d'erreur (a modif)</div>
+                  <div *ngIf="displayModificationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
+                    <div *ngIf="displayError" class="formated-error-message">Erreur: {{ errorMessage }}</div>
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" [(ngModel)]="model.firstname" #firstname type="text" id="firstname">
-                    <label class="mdl-textfield__label" for="firstname">Prénom</label>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <label class="insandwich-form-label">Prénom:</label>
+                    <input class="mdl-textfield__input" [(ngModel)]="user.FirstName" placeholder="Prénom" #firstname type="text" id="firstname">
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" [(ngModel)]="model.lastname" type="text" id="lastname">
-                    <label class="mdl-textfield__label" for="lastname">Nom</label>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="insandwich-form-label">Nom:</label>
+                    <input class="mdl-textfield__input" [(ngModel)]="user.LastName" placeholder="Nom" type="text" id="lastname">
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" [(ngModel)]="model.email" type="email" id="email">
-                    <label class="mdl-textfield__label" for="email">Email</label>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="insandwich-form-label">E-mail:</label>
+                    <input class="mdl-textfield__input" [(ngModel)]="user.Email" placeholder="E-mail" type="email" id="email">
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" [(ngModel)]="model.login" type="text" id="login">
-                    <label class="mdl-textfield__label" for="login">Login</label>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="insandwich-form-label">Nom d'utilisateur:</label>
+                    <input class="mdl-textfield__input" [(ngModel)]="user.Login" placeholder="Login" type="text" id="login">
                 </div>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                    <input class="mdl-textfield__input" [(ngModel)]="model.adresse" type="text" id="adresse">
-                    <label class="mdl-textfield__label" for="adresse">Adresse</label>
+                <div class="mdl-textfield mdl-js-textfield">
+                  <label class="insandwich-form-label">Adresse:</label>
+                    <input class="mdl-textfield__input" [(ngModel)]="user.Adresse" placeholder="Adresse" type="text" id="adresse">
                 </div>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
-            Modifier les paramètres
-          </a>
+                <a (click)="updateUserInfos()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                  Modifier les paramètres
+                </a>
             </div>
         </div>
     </div>
@@ -57,19 +58,24 @@
             </div>
             <div class="mdl-card__supporting-text">
                 <div class="loginForm">
-                    <div class="formated-error-message">Erreur: message d'erreur (a modif)</div>
+                  <div *ngIf="displayPasswordModificationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
+                  <div *ngIf="displayPasswordModificationError" class="formated-error-message">Erreur : {{ pwdModificationErrorMessage }}</div><br />
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" [(ngModel)]="model.mdp" #firstname type="password" id="pwd">
-                        <label class="mdl-textfield__label" for="pwd">Mot de passe</label>
+                        <input class="mdl-textfield__input" [(ngModel)]="model.oldpwd" #firstname type="password" id="previouspwd">
+                        <label class="mdl-textfield__label" for="previouspwd">Ancien Mot de passe</label>
                     </div>
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" [(ngModel)]="model.mdpconfirm" type="password" id="pwdConfirm">
+                        <input class="mdl-textfield__input" [(ngModel)]="model.pwd" #firstname type="password" id="pwd">
+                        <label class="mdl-textfield__label" for="pwd">Nouveau mot de passe</label>
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        <input class="mdl-textfield__input" [(ngModel)]="model.pwdConfirm" type="password" id="pwdConfirm">
                         <label class="mdl-textfield__label" for="pwdConfirm">Confirmer le mot de passe</label>
                     </div>
                 </div>
             </div>
             <div class="mdl-card__actions mdl-card--border">
-                <a class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+                <a (click)="updatePassword()" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
           Modifier le mot de passe
         </a>
             </div>

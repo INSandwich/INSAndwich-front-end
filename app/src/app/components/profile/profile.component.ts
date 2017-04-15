@@ -6,6 +6,8 @@ import { User } from '../../models/index';
 
 import { UsersService } from '../../services/index';
 
+import { Md5 } from 'ts-md5/dist/md5';
+
 @Component({
   templateUrl: 'app/templates/profile/profile.html'
 })
@@ -15,7 +17,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
   user: User;
   model: any = {};
 
+  displayModificationSuccess: boolean = false;
+  displayError: boolean = false;
+
+  displayPasswordModificationSuccess: boolean = false;
+  displayPasswordModificationError: boolean = false;
+
+  errorMessage: string = "";
+  pwdModificationErrorMessage: string = "";
+
+  fullname: string;
+
   private user$: any;
+  private postUser$: any;
+  private passwordChangeSub$: any;
 
   constructor(private route: ActivatedRoute, private userService: UsersService) {
     this.username = route.snapshot.params['username'];
@@ -28,15 +43,39 @@ export class ProfileComponent implements OnInit, OnDestroy {
   loadUser() {
     this.user$ = this.userService.getUser("http://localhost:5000/users/login/", this.username)
         .subscribe(
-            user => { console.log(user); this.user = user; },
+            user => { this.user = user; this.fullname = user.FirstName + " " + user.LastName;  },
             err => { console.log(err); }
         );
   }
 
-  
+  updateUserInfos() {
+    this.postUser$ = this.userService.updateInfos("http://localhost:5000/users/"+this.user.Id+"/update-info", this.user)
+        .subscribe(
+          user => {  this.user = user; this.fullname = user.FirstName + " " + user.LastName; this.toggleSuccessDisplay(); },
+          error => { this.displayError = true; this.errorMessage = error.detail; console.log(error);}
+        );
+  }
+
+  updatePassword() {
+    if(this.model.pwd != this.model.pwdConfirm) { this.pwdModificationErrorMessage="Les deux mots de passe ne correspondent pas."; this.displayPasswordModificationError = true; return; }
+    console.log(String(Md5.hashStr(this.model.oldpwd)));
+    console.log(this.user.Password);
+    this.passwordChangeSub$ = this.userService
+        .updatePassword("http://localhost:5000/users/"+this.user.Id+"/update-passw", String(Md5.hashStr(this.model.oldpwd)), String(Md5.hashStr(this.model.pwd)))
+        .subscribe(
+          data=>{ this.displayPasswordModificationSuccess = true; },
+          error=>{ this.displayPasswordModificationError = true; this.pwdModificationErrorMessage = error.detail; console.log(error) }
+        );
+  }
+
+  toggleSuccessDisplay() {
+    this.displayModificationSuccess = !this.displayModificationSuccess;
+  }
 
   ngOnDestroy() {
-    this.user$.unsubscribe();
+    if(this.user$) {this.user$.unsubscribe();}
+    if(this.postUser$) {this.postUser$.unsubscribe();}
+    if(this.passwordChangeSub$) {this.passwordChangeSub$.unsubscribe();}
   }
 
 }

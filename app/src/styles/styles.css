@@ -21,15 +21,28 @@
 
 .formated-error-message {
   color: white;
-      background-color: rgba(228,38,24,0.6);
-      width: 80%;
-      line-height: 35px;
-      text-align: center;
-      font-weight: bold;
-      border: 1px solid #E42618;
-      border-radius: 5px;
-      padding-left: 5px;
-      padding-right: 5px;
+  background-color: rgba(228, 38, 24, 0.6);
+  width: 80%;
+  line-height: 35px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #E42618;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.formated-success-message {
+  color: white;
+  background-color: rgba(76, 175, 80, 0.6);
+  width: 80%;
+  line-height: 35px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #4CAF50;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 
 .insandwich-loading-container {
@@ -237,6 +250,11 @@ insandwich-header {
 .insandwich-commandLines {
   width: 90%;
   margin: auto;
+}
+
+.insandwich-form-label {
+  font-style: italic;
+  font-weight: bold;
 }
 
 @media (max-width: 900px) {

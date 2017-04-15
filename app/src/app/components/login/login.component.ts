@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model.login, String(Md5.hashStr(this.model.password)))
                 .subscribe(
-                    data => {
+                    data => { console.log(data);
                           this.router.navigate(['/home']);
                     },
                     error => {

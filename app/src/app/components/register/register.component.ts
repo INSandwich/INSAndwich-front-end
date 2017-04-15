@@ -20,8 +20,9 @@ export class RegisterComponent {
   register() {
     this.usersService.createUser('http://localhost:5000/users', this.model.firstname, this.model.lastname, this.model.email, this.model.login, String(Md5.hashStr(this.model.password)), this.model.adresse)
                      .subscribe(
-                        data => { this.router.navigate(['/home']); console.log(data) },
-                        err => { console.log(err);});
+                        data => { this.router.navigate(['/login']); console.log(data) },
+                        error => { this.displayError = true;
+                        this.errorMessage = error.json().detail;});
   }
 
 }
