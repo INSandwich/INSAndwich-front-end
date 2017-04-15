@@ -7,7 +7,7 @@
       <div class="productCard mdl-card__supporting-text">
         <div class="productImage" [style.background]="sanitize(drink.Image)"></div>
         <span class="productName">{{ drink.Name }}</span>
-        <span class="productDesc">{{ drink.Description }}</span>
+        <span class="productDesc">{{ drink.Description | truncate : 100 }}</span>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a [routerLink]="['/product', drink.Id]" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">

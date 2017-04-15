@@ -5,6 +5,8 @@ import { HttpModule, JsonpModule } from '@angular/http';
 
 import { RouterModule } from '@angular/router'
 
+import { TruncatePipe } from '../../directives/index';
+
 import { DessertsComponent, SandwichesComponent, DrinksComponent } from '../../components/index';
 
 import { ListedItemsService } from '../../services/index';
@@ -20,10 +22,11 @@ import { ListedItemsService } from '../../services/index';
   declarations: [
     DessertsComponent,
     SandwichesComponent,
-    DrinksComponent
+    DrinksComponent,
+    TruncatePipe
   ],
   providers: [
-    ListedItemsService
+    ListedItemsService, TruncatePipe
   ],
   exports:[
     DessertsComponent,

@@ -6,6 +6,7 @@ import { ListedItems, Product } from '../../models/index';
 
 import { ListedItemsService } from '../../services/index';
 
+
 @Component({
   templateUrl: 'app/templates/drinks/drinks.html'
 })
