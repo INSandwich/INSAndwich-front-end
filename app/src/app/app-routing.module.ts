@@ -8,6 +8,8 @@ import { AdminGuard, AuthGuard } from './guards/index';
 import {
   NotFoundComponent,
   AdminComponent,
+  AdminProductsComponent,
+  AdminUsersComponent,
   CheckoutComponent,
   DessertsComponent,
   DrinksComponent,
@@ -23,7 +25,9 @@ import {
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: NotFoundComponent },
-  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard] },
+  { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminGuard]},
+  { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
   { path: 'checkout', component: CheckoutComponent, canActivate: [AuthGuard] },
   { path: 'product/:id', component: ProductComponent },
   { path: 'desserts', component: DessertsComponent },

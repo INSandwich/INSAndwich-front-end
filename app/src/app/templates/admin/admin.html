@@ -1,1 +1,37 @@
-<p>This is the admin page! !:) </p>
+<div mdl class="insandwich-different mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="logo-font insandwich-slogan">Pannel d'administration</div>
+  </div>
+  <div class="mdl-cell mdl-cell--6-col">
+    <div class="products-admin-card insandwich-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Produits</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Managez la liste de vos produits ici. Ajoutez de nouveaux produits, editez ou supprimez les produits existants.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a [routerLink]="['./products']" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Administrer
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mdl-cell mdl-cell--6-col">
+    <div class="user-admin-card insandwich-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Utilisateurs</h2>
+      </div>
+      <div class="mdl-card__supporting-text">
+        Managez la liste de vos utilisateurs ici. Modifiez des droits d'accès, ou supprimez des utilisateurs existants.
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a [routerLink]="['./users']" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Administrer
+        </a>
+      </div>
+    </div>
+  </div>
+
+</div>

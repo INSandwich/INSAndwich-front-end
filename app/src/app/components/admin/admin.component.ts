@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
 export class AdminComponent {
   // This will be accessible with /admin
 
-  // I think it's pretty self explanatory
+  // Admin Dashboard essentially, all static
 
 }

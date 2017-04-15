@@ -7,6 +7,8 @@ import { AppComponent }  from './app.component';
 import {
   NotFoundComponent,
   AdminComponent,
+  AdminUsersComponent,
+  AdminProductsComponent,
   CheckoutComponent,
   DessertsComponent,
   DrinksComponent,
@@ -43,6 +45,8 @@ import { ListedItemsModule, AuthModule, UsersModule, ProductsModule } from './mo
   // This should change, as we add modules
   declarations: [ NotFoundComponent,
                   AdminComponent,
+                  AdminUsersComponent,
+                  AdminProductsComponent,
                   AppComponent,
                   CheckoutComponent,
                   FooterComponent,

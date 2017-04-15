@@ -7,7 +7,7 @@ The front-end will be built using angular 2, in Typescript. We'll also use mater
 
 Todo list:
   - Add paging to list components
-  - Administration panel !
+  - Administration panel ! -> current priority 
   - Commands !
   - Nice token amount display
 
