@@ -21,19 +21,14 @@
           </div>
         </div>
         <ul class="mdl-list">
-          <li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
+          <!--li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
               Bryan Cranston
             </span>
-          </li>
-          <li class="insandwich-search-section--item mdl-list__item">
+          </li-->
+          <li *ngFor="let user of users" (click)="onSelect(user)" [ngClass]="{'insandwich-list-selected': selected === user.Id }" class="insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
-              Aaron Paul
-            </span>
-          </li>
-          <li class="insandwich-search-section--item mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Bob Odenkirk
+              {{ user.FirstName }} {{ user.LastName }}
             </span>
           </li>
         </ul>
@@ -60,26 +55,25 @@
       <div class="mdl-card__supporting-text">
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col">
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Identifier:</span> 55 </p>
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Nom:</span> Cranston </p>
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Prénom:</span> Bryan </p>
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Login:</span> bcranston </p>
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Email:</span> bryan.cranston@breaking-bad.org </p>
-            <p class="insandwich-item-property"><span class="insandwich-item-title">Adresse:</span> 55 avenue de la meth, albuquerque, USA </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Identifier:</span> {{ selectedUser?.Id }} </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Nom:</span> {{ selectedUser?.LastName }} </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Prénom:</span> {{ selectedUser?.FirstName }} </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Login:</span> {{ selectedUser?.Login }} </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Email:</span> {{ selectedUser?.Email }} </p>
+            <p class="insandwich-item-property"><span class="insandwich-item-title">Adresse:</span> {{ selectedUser?.Adresse }} </p>
           </div>
           <div class="mdl-cell mdl-cell--6-col">
 
-            <div class="mdl-selectfield mdl-js-selectfield">
-              <select class="mdl-selectfield__select" id="role" name="role">
-                <option value="option1">user</option>
-                <option value="option2">admin</option>
+            <div *ngIf="selectedUser" class="mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" [(ngModel)]="selectedUser.Role" id="role" name="role">
+                <option value="user">user</option>
+                <option value="admin">admin</option>
               </select>
               <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
-              <label class="mdl-selectfield__label" for="role">Role</label>
             </div>
-            <div class="mdl-textfield mdl-js-textfield">
-              <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="tokens">
-              <label class="mdl-textfield__label" for="tokens">Tokens...</label>
+            <div *ngIf="selectedUser" class="mdl-textfield mdl-js-textfield">
+              <label class="insandwich-form-label" for="tokens">Tokens:</label>
+              <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" [(ngModel)]="selectedUser.Tokens" id="tokens">
               <span class="mdl-textfield__error">Entrez un nombre SVP !</span>
             </div>
           </div>

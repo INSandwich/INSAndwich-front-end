@@ -74,12 +74,13 @@
   width: 100%;
 }
 
-.insandwich-search-section--item:hover {
-  background: rgba(200,200,200,0.35);
-}
-
 .insandwich-list-selected {
   background: rgba(25,25,25,0.35);
+}
+
+.insandwich-search-section--item:hover {
+  background: rgba(200,200,200,0.35);
+  cursor: pointer;
 }
 
 .insandwich-search-bar {

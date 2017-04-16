@@ -21,19 +21,14 @@
           </div>
         </div>
         <ul class="mdl-list">
-          <li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
+          <!--li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
               Kebab
             </span>
-          </li>
-          <li class="insandwich-search-section--item mdl-list__item">
+          </li-->
+          <li *ngFor="let product of products" (click)="onSelect(product)" [ngClass]="{'insandwich-list-selected': selected === product.Id }" class="insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
-              Glace
-            </span>
-          </li>
-          <li class="insandwich-search-section--item mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Coca-Cola
+              {{ product.Name }}
             </span>
           </li>
         </ul>
@@ -57,41 +52,37 @@
       <div class="mdl-card__title">
         <h2 class="mdl-card__title-text">Editer un produit</h2>
       </div>
-      <div class="mdl-card__supporting-text">
-        <div class="mdl-card__supporting-text">
+      <div class="mdl-card__supporting-text" *ngIf="selectedProduct">
             <div class="loginForm">
               <div class="formated-success-message">Opération effectuée avec succès</div><br />
               <div class="formated-error-message">Erreur: errorMessage </div>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <label class="insandwich-form-label">Nom:</label>
-                <input class="mdl-textfield__input" placeholder="Nom de l'article" #firstname type="text" id="firstname">
+                <input class="mdl-textfield__input" placeholder="Nom de l'article" [(ngModel)]="selectedProduct.Name" type="text" id="name">
             </div>
             <div class="mdl-textfield mdl-js-textfield">
               <label class="insandwich-form-label" for="description">Description:</label>
-              <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" ></textarea>
+              <textarea class="mdl-textfield__input" [(ngModel)]="selectedProduct.Description" type="text" rows= "3" id="description" ></textarea>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
               <label class="insandwich-form-label">Image:</label>
-              <input class="mdl-textfield__input" placeholder="Lien de l'image" type="text" id="image">
+              <input class="mdl-textfield__input" [(ngModel)]="selectedProduct.Image" placeholder="Lien de l'image" type="text" id="image">
             </div>
             <div class="mdl-selectfield mdl-js-selectfield">
-              <select class="mdl-selectfield__select" id="category" name="category">
-                <option value=""></option>
+              <select class="mdl-selectfield__select" [(ngModel)]="selectedProduct.Category" id="category" name="category">
                 <option value="option1">Sandwich</option>
                 <option value="option2">Dessert</option>
                 <option value="option2">Boisson</option>
               </select>
               <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
-              <label class="mdl-selectfield__label" for="category">Categorie</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
               <label class="insandwich-form-label" for="tokens">Prix:</label>
-              <input class="mdl-textfield__input" placeholder="Prix en tokens" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="tokens">
+              <input class="mdl-textfield__input" placeholder="Prix en tokens" type="text" [(ngModel)]="selectedProduct.Price" pattern="-?[0-9]*(\.[0-9]+)?" id="tokens">
               <span class="mdl-textfield__error">Entrez un nombre SVP !</span>
             </div>
             <input type="hidden" name="available" value="1">
-        </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
