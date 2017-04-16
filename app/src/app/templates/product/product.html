@@ -11,10 +11,10 @@
       </div>
       <div class="productDetailCard mdl-card__supporting-text">
         <div class="productDetails">
-          <span *ngIf="product?.Available != 1">Non</span> Disponible
-          <span class="productReference">Reference: {{ product?.Id }}</span>
-          <span class="productDescription">Descrition: {{ product?.Description }}</span>
-          <span class="productPrice">Price: {{ product?.Price }} token<span *ngIf="product?.Price > 1">s</span></span>
+          <p class="insandwich-item-property"><span *ngIf="product?.Available != 1">Non</span> Disponible</p>
+          <p class="insandwich-item-property"><span class="insandwich-item-title">Reference:</span> {{ product?.Id }}</p>
+          <p class="insandwich-item-property"><span class="insandwich-item-title">Descrition:</span> {{ product?.Description }}</p>
+          <p class="insandwich-item-property"><span class="insandwich-item-title">Price:</span> {{ product?.Price }} token<span *ngIf="product?.Price > 1">s</span></p>
         </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">

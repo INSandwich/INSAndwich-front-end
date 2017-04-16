@@ -195,9 +195,14 @@ insandwich-header {
   text-align: center !important;
 }
 
+.insandwich-item-title {
+  font-weight: bold;
+}
+
 .insandwich-card-wide {
   width: 100%;
   text-align: justify;
+  overflow: visible;
 }
 
 .insandwich-card-wide > .mdl-card__title {
