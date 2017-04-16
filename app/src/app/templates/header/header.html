@@ -8,7 +8,7 @@
       <li class="insandwich-mobile-navigation-link" *ngIf="!isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/login']">Se Connecter</a></li>
       <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> <span class="mdl-badge" data-badge="4">Payer</span></a></li>
       <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/profile', username]"><i class="material-icons">account_box</i> {{ username }}</a></li>
-      <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="logout()">Se deconnecter</a></li>
+      <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="logout()" href="">Se deconnecter</a></li>
       <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()">Fermer</a></li>
     </ul>
   </div>
@@ -27,7 +27,7 @@
         <a class="mdl-navigation__link" *ngIf="!isAuthentificated" [routerLink]="['/login']">Se connecter</a>
         <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> <span class="mdl-badge" data-badge="4">Payer</span></a>
         <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/profile', username]"><i class="material-icons">account_box</i> {{ username }}</a>
-        <a class="mdl-navigation__link" *ngIf="isAuthentificated" (click)="logout()">Se deconnecter</a>
+        <a class="mdl-navigation__link" *ngIf="isAuthentificated" (click)="logout()" href="">Se deconnecter</a>
     </nav>
     <span class="insandwich-mobile-title mdl-layout-title">
       <a [routerLink]="['/home']"><img src="./images/logo.png" height="60" alt="logo"></a>

@@ -69,6 +69,38 @@
   min-width: 100%;
 }
 
+.insandwich-search-section {
+  padding: 0px;
+  width: 100%;
+}
+
+.insandwich-list-selected {
+  background: rgba(25,25,25,0.35);
+}
+
+.insandwich-search-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.insandwich-mini-paging {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.insandwich-search-bar > .mdl-textfield {
+  margin-top: 10px;
+  width: 90%;
+}
+
+.insandwich-navigation > * {
+  cursor: pointer;
+}
+
 .insandwich-main {
     display: inherit;
 }
@@ -100,7 +132,7 @@
   line-height: 30px;
 }
 
-.insandwich-mobile-navigation-link * {
+.insandwich-mobile-navigation-link {
   cursor: pointer;
 }
 
