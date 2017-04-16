@@ -58,7 +58,40 @@
         <h2 class="mdl-card__title-text">Editer un produit</h2>
       </div>
       <div class="mdl-card__supporting-text">
-        TODO
+        <div class="mdl-card__supporting-text">
+            <div class="loginForm">
+              <div class="formated-success-message">Opération effectuée avec succès</div><br />
+              <div class="formated-error-message">Erreur: errorMessage </div>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+                <label class="insandwich-form-label">Nom:</label>
+                <input class="mdl-textfield__input" placeholder="Nom de l'article" #firstname type="text" id="firstname">
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label class="insandwich-form-label" for="description">Description:</label>
+              <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" ></textarea>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label class="insandwich-form-label">Image:</label>
+              <input class="mdl-textfield__input" placeholder="Lien de l'image" type="text" id="image">
+            </div>
+            <div class="mdl-selectfield mdl-js-selectfield">
+              <select class="mdl-selectfield__select" id="category" name="category">
+                <option value=""></option>
+                <option value="option1">Sandwich</option>
+                <option value="option2">Dessert</option>
+                <option value="option2">Boisson</option>
+              </select>
+              <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
+              <label class="mdl-selectfield__label" for="category">Categorie</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield">
+              <label class="insandwich-form-label" for="tokens">Prix:</label>
+              <input class="mdl-textfield__input" placeholder="Prix en tokens" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="tokens">
+              <span class="mdl-textfield__error">Entrez un nombre SVP !</span>
+            </div>
+            <input type="hidden" name="available" value="1">
+        </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
@@ -79,7 +112,40 @@
         <h2 class="mdl-card__title-text">Créer un nouveau produit</h2>
       </div>
       <div class="mdl-card__supporting-text">
-        TODO
+          <div class="loginForm">
+            <div class="formated-success-message">Opération effectuée avec succès</div><br />
+            <div class="formated-error-message">Erreur: errorMessage </div>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="name">
+              <label class="mdl-textfield__label" for="name">Nom...</label>
+            </div>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="image">
+            <label class="mdl-textfield__label" for="image">Image...</label>
+          </div>
+          <div class="mdl-selectfield mdl-js-selectfield">
+            <select class="mdl-selectfield__select" id="category" name="category">
+              <option value=""></option>
+              <option value="option1">Sandwich</option>
+              <option value="option2">Dessert</option>
+              <option value="option2">Boisson</option>
+            </select>
+            <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
+            <label class="mdl-selectfield__label" for="category">Categorie</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="price">
+            <label class="mdl-textfield__label" for="price">Prix en tokens...</label>
+            <span class="mdl-textfield__error">Entrez un nombre SVP!</span>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" ></textarea>
+            <label class="mdl-textfield__label" for="description">Description:</label>
+          </div>
+          <input type="hidden" name="available" value="1">
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
