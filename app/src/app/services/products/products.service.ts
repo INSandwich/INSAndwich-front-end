@@ -19,4 +19,15 @@ export class ProductsService {
                     .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
+  createProduct(url: string, product: any): Observable<Product> {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(url, JSON.stringify({name: product.Name, description: product.Description, available: product.Available, image: product.Image, price: product.Price, category: product.Category_Id}), options)
+               .map((res: Response) => res.json())
+               .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+  }
+
 }

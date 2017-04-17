@@ -13,10 +13,10 @@ import 'rxjs/add/operator/debounceTime';
 export class AdminProductsComponent {
   // This will be accessible with /admin/products
 
+  productNameFilter: string;
+
   products: Array<Product>;
   products$: any;
-
-  productControl = new FormControl();
 
   selected: number;
 
@@ -26,7 +26,6 @@ export class AdminProductsComponent {
   }
 
   ngOnInit() {
-    this.productControl.valueChanges.debounceTime(500).subscribe(newValue => newValue ? this.loadProducts("http://localhost:5000/products", newValue): this.loadProducts("http://localhost:5000/products"))
     this.loadProducts("http://localhost:5000/products");
   }
 
@@ -48,6 +47,10 @@ export class AdminProductsComponent {
       this.selected = product.Id;
     }
     console.log(product);
+  }
+
+  search(name: string) {
+    this.loadProducts("http://localhost:5000/products", this.productNameFilter);
   }
 
   ngOnDestroy() {

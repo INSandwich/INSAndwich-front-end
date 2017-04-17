@@ -14,10 +14,15 @@
       </div>
 
       <div class="insandwich-search-section mdl-card__supporting-text">
-        <div class="insandwich-search-bar">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" #searchBox [formControl]="usernameControl" type="text" id="srch">
-            <label class="mdl-textfield__label" for="srch">Search...</label>
+        <div class="insandwich-search-bar-wrapper">
+          <div class="insandwich-search-bar">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" [(ngModel)]="usernameFilter" type="text" id="search">
+              <label class="mdl-textfield__label" for="search">Search...</label>
+            </div>
+            <button (click)="search()" class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored">
+              <i class="material-icons">search</i>
+            </button>
           </div>
         </div>
         <ul class="mdl-list">

@@ -4,9 +4,6 @@ import { ListedItems, User } from '../../../models/index';
 
 import { UsersService, ListedItemsService } from '../../../services/index';
 
-import {FormControl} from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
-
 @Component({
   templateUrl: 'app/templates/admin/users/admin-users.html'
 })
@@ -16,7 +13,7 @@ export class AdminUsersComponent {
   users: User[];
   users$: any;
 
-  usernameControl = new FormControl();
+  usernameFilter: string;
 
   selected: number;
 
@@ -26,7 +23,6 @@ export class AdminUsersComponent {
   }
 
   ngOnInit() {
-    this.usernameControl.valueChanges.debounceTime(500).subscribe(newValue => newValue ? this.loadUsers("http://localhost:5000/users", newValue): this.loadUsers("http://localhost:5000/users"))
     this.loadUsers("http://localhost:5000/users");
   }
 
@@ -49,6 +45,10 @@ export class AdminUsersComponent {
       this.selected = user.Id;
     }
     console.log(user);
+  }
+
+  search(username: string) {
+    this.loadUsers("http://localhost:5000/users", this.usernameFilter);
   }
 
   ngOnDestroy() {
