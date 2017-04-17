@@ -44,7 +44,7 @@ export class AdminProductsComponent {
   onSelect(product: Product) {
     var pId = product.Id;
     this.selectedProductSub$ = this.productsService
-      .getProduct("http://localhost:5000/products/",pId)
+      .getProduct("http://localhost:5000/products/", String(pId))
       .subscribe(
         item => { this.selectedProduct = item; },
         err => { console.log(err); }
