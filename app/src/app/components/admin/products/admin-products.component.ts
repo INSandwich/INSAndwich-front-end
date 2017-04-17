@@ -4,6 +4,9 @@ import { ListedItems, Product } from '../../../models/index';
 
 import { ProductsService, ListedItemsService } from '../../../services/index';
 
+import {FormControl} from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+
 @Component({
   templateUrl: 'app/templates/admin/products/admin-products.html'
 })
@@ -13,6 +16,8 @@ export class AdminProductsComponent {
   products: Array<Product>;
   products$: any;
 
+  productControl = new FormControl();
+
   selected: number;
 
   selectedProduct: Product;
@@ -21,11 +26,13 @@ export class AdminProductsComponent {
   }
 
   ngOnInit() {
-    this.loadProducts();
+    this.productControl.valueChanges.debounceTime(500).subscribe(newValue => newValue ? this.loadProducts("http://localhost:5000/products", newValue): this.loadProducts("http://localhost:5000/products"))
+    this.loadProducts("http://localhost:5000/products");
   }
 
-  loadProducts() {
-    this.products$ = this.listedItemsService.getItems<Product>("http://localhost:5000/products")
+  loadProducts(url: string, params?: string) {
+    var newUrl = params ? url + "?name=" + params : url;
+    this.products$ = this.listedItemsService.getItems<Product>(newUrl)
         .subscribe(
           listedItems => { this.products = listedItems.items; this.onSelect(this.products[0]); },
           err => { console.log(err); }

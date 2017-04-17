@@ -16,19 +16,14 @@
       <div class="insandwich-search-section mdl-card__supporting-text">
         <div class="insandwich-search-bar">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="search">
-            <label class="mdl-textfield__label" for="search">Search...</label>
+            <input class="mdl-textfield__input" #searchBox [formControl]="usernameControl" type="text" id="srch">
+            <label class="mdl-textfield__label" for="srch">Search...</label>
           </div>
         </div>
         <ul class="mdl-list">
-          <!--li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Bryan Cranston
-            </span>
-          </li-->
           <li *ngFor="let user of users" (click)="onSelect(user)" [ngClass]="{'insandwich-list-selected': selected === user.Id }" class="insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
-              {{ user.FirstName }} {{ user.LastName }}
+              {{ user.Login }}
             </span>
           </li>
         </ul>

@@ -4,14 +4,19 @@ import { ListedItems, User } from '../../../models/index';
 
 import { UsersService, ListedItemsService } from '../../../services/index';
 
+import {FormControl} from '@angular/forms';
+import 'rxjs/add/operator/debounceTime';
+
 @Component({
   templateUrl: 'app/templates/admin/users/admin-users.html'
 })
 export class AdminUsersComponent {
   // This will be accessible with /admin/products
 
-  users: Array<User>;
+  users: User[];
   users$: any;
+
+  usernameControl = new FormControl();
 
   selected: number;
 
@@ -21,14 +26,17 @@ export class AdminUsersComponent {
   }
 
   ngOnInit() {
-    this.loadProducts();
+    this.usernameControl.valueChanges.debounceTime(500).subscribe(newValue => newValue ? this.loadUsers("http://localhost:5000/users", newValue): this.loadUsers("http://localhost:5000/users"))
+    this.loadUsers("http://localhost:5000/users");
   }
 
-  loadProducts() {
-    this.users$ = this.listedItemsService.getItems<User>("http://localhost:5000/users")
+
+  loadUsers(url: string, params?: string) {
+    var newUrl = params ? url+"?login="+params : url;
+    this.users$ = this.listedItemsService.getItems<User>(newUrl)
         .subscribe(
           listedItems => { this.users = listedItems.items; this.onSelect(this.users[0]);},
-          err => { console.log(err); }
+          err => { console.log(err); /*Handle error here, sometimes*/ }
         )
   }
 
