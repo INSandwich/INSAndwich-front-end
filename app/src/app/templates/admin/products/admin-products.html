@@ -93,6 +93,9 @@
         <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           Editer
         </a>
+        <a *ngIf="selectedProduct" [routerLink]="['../../product', selectedProduct.Id]" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored">
+          Voir dans le magasin
+        </a>
       </div>
       <div class="mdl-card__menu">
        <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
@@ -109,42 +112,45 @@
       </div>
       <div class="mdl-card__supporting-text">
           <div class="loginForm">
-            <div class="formated-success-message">Opération effectuée avec succès</div><br />
-            <div class="formated-error-message">Erreur: errorMessage </div>
+            <div *ngIf="displayCreationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
+            <div *ngIf="displayCreationErr" class="formated-error-message">Erreur: {{ creationErrMsg }} </div>
           </div>
           <div class="mdl-textfield mdl-js-textfield">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="name">
+              <input class="mdl-textfield__input" [(ngModel)]="productModel.Name" type="text" id="name">
               <label class="mdl-textfield__label" for="name">Nom...</label>
             </div>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="image">
+            <input class="mdl-textfield__input" [(ngModel)]="productModel.Image" type="text" id="image">
             <label class="mdl-textfield__label" for="image">Image...</label>
           </div>
           <div class="mdl-selectfield mdl-js-selectfield">
-            <select class="mdl-selectfield__select" id="category" name="category">
+            <select class="mdl-selectfield__select" [(ngModel)]="productModel.Category_Id" id="category" name="category">
               <option value=""></option>
-              <option value="option1">Sandwich</option>
-              <option value="option2">Dessert</option>
-              <option value="option2">Boisson</option>
+              <option value="1">Sandwich</option>
+              <option value="2">Dessert</option>
+              <option value="3">Boisson</option>
             </select>
             <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
             <label class="mdl-selectfield__label" for="category">Categorie</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="price">
+            <input class="mdl-textfield__input" [(ngModel)]="productModel.Price" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="price">
             <label class="mdl-textfield__label" for="price">Prix en tokens...</label>
             <span class="mdl-textfield__error">Entrez un nombre SVP!</span>
           </div>
           <div class="mdl-textfield mdl-js-textfield">
-            <textarea class="mdl-textfield__input" type="text" rows= "3" id="description" ></textarea>
+            <textarea class="mdl-textfield__input" [(ngModel)]="productModel.Description" type="text" rows= "3" id="description" ></textarea>
             <label class="mdl-textfield__label" for="description">Description:</label>
           </div>
-          <input type="hidden" name="available" value="1">
+          <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="available">
+              <input type="checkbox" [(ngModel)]="productModel.Available" id="available" class="mdl-checkbox__input" checked>
+              <span class="mdl-checkbox__label">Available</span>
+          </label>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <a (click)="createProduct()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           Créer
         </a>
       </div>

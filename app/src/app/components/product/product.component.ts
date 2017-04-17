@@ -40,6 +40,8 @@ export class ProductComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustStyle("url('"+url+"') no-repeat center / cover");
   }
 
+  
+
   ngOnDestroy() {
     this.product$.unsubscribe();
   }
