@@ -75,10 +75,10 @@
               <input class="mdl-textfield__input" [(ngModel)]="selectedProduct.Image" placeholder="Lien de l'image" type="text" id="image">
             </div>
             <div class="mdl-selectfield mdl-js-selectfield">
-              <select class="mdl-selectfield__select" [(ngModel)]="selectedProduct.Category" id="category" name="category">
-                <option value="option1">Sandwich</option>
-                <option value="option2">Dessert</option>
-                <option value="option2">Boisson</option>
+              <select class="mdl-selectfield__select" [(ngModel)]="selectedProduct.Category_Id" id="category" name="category">
+                <option [ngValue]="1">Sandwiches</option>
+                <option [ngValue]="2">Desserts</option>
+                <option [ngValue]="3">Boissons</option>
               </select>
               <div class="mdl-selectfield__icon"><i class="material-icons">arrow_drop_down</i></div>
             </div>

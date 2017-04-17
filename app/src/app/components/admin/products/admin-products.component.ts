@@ -15,11 +15,14 @@ export class AdminProductsComponent {
 
   productNameFilter: string;
 
+  productModel: any = {};
+
   products: Array<Product>;
   products$: any;
 
   selected: number;
 
+  selectedProductSub$: any;
   selectedProduct: Product;
 
   constructor(private productsService: ProductsService, private listedItemsService: ListedItemsService) {
@@ -35,11 +38,17 @@ export class AdminProductsComponent {
         .subscribe(
           listedItems => { this.products = listedItems.items; this.onSelect(this.products[0]); },
           err => { console.log(err); }
-        )
+        );
   }
 
   onSelect(product: Product) {
-    this.selectedProduct = product;
+    var pId = product.Id;
+    this.selectedProductSub$ = this.productsService
+      .getProduct("http://localhost:5000/products/",pId)
+      .subscribe(
+        item => { this.selectedProduct = item; },
+        err => { console.log(err); }
+      );
     if (this.selected === product.Id) {
       this.selected = 0;
     }
@@ -55,6 +64,7 @@ export class AdminProductsComponent {
 
   ngOnDestroy() {
     if(this.products$) { this.products$.unsubscribe(); }
+    if(this.selectedProductSub$) { this.selectedProductSub$.unsubscribe(); }
   }
 
 }
