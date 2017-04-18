@@ -13,13 +13,22 @@ export class AdminUsersComponent {
   users: User[];
   users$: any;
 
+  userRoleModifSub$: any;
+  userTokensModifSub$: any;
+
   usernameFilter: string;
 
   selected: number;
 
   selectedUser: User;
 
-  constructor(private productsService: UsersService, private listedItemsService: ListedItemsService) {
+  // displays
+  displayModifiationSuccess: boolean = false;
+  displayModificationErr: boolean = false;
+
+  modificationErrMsg: string = "";
+
+  constructor(private usersService: UsersService, private listedItemsService: ListedItemsService) {
   }
 
   ngOnInit() {
@@ -45,6 +54,33 @@ export class AdminUsersComponent {
       this.selected = user.Id;
     }
     console.log(user);
+  }
+
+  editUser() {
+    if((Object.keys(this.selectedUser).length)!=9) {
+        this.modificationError("Veuillez remplir tous les champs");
+        return;
+    }
+    this.userRoleModifSub$ = this.usersService.updateUserRole("http://localhost:5000/users/"+this.selectedUser.Id+"/role", this.selectedUser.Role)
+                                 .subscribe(
+                                   response => { console.log(response); this.modificationSuccess(); },
+                                   err => { console.log(err); this.modificationError(err.detail); }
+                                 );
+    this.userTokensModifSub$ = this.usersService.updateUserTokens("http://localhost:5000/users/"+this.selectedUser.Id+"/tokens", this.selectedUser.Tokens)
+                                   .subscribe(
+                                     response => { console.log(response); },
+                                     err => { console.log(err); this.modificationError(err.detail); }
+                                   );
+
+  }
+
+  modificationSuccess() {
+    this.displayModifiationSuccess = true;
+  }
+
+  modificationError(err: string) {
+    this.displayModificationErr = true;
+    this.modificationErrMsg = err;
   }
 
   search(username: string) {

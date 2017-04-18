@@ -57,6 +57,29 @@ export class UsersService {
                     .catch(this.handleError);
   }
 
+  updateUserRole(url: string, newRole: string) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    console.log(newRole);
+
+    return this.http.put(url, JSON.stringify({role: newRole}), options)
+               .map(this.extractData)
+               .catch(this.handleError);
+  }
+
+  updateUserTokens(url: string, tokens: number) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(url, JSON.stringify({tokens: tokens}), options)
+               .map(this.extractData)
+               .catch(this.handleError);
+  }
+
     private extractData(res: Response) {
       let body = res.json();
       return body || { };
