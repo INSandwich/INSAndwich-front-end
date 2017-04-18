@@ -6,6 +6,6 @@ export class Product {
     public Available: number,
     public Image: string,
     public Price: number,
-    public CategoryId: number
+    public Category_Id: number
   ){}
 }

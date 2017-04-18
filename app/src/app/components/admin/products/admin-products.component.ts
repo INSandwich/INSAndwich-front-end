@@ -25,12 +25,18 @@ export class AdminProductsComponent {
 
   selectedProductSub$: any;
   selectedProduct: Product;
+  modifiedProductSub$: any;
 
   // display
   displayCreationErr: boolean = false;
   creationErrMsg: string = "";
 
   displayCreationSuccess: boolean = false;
+
+  displayModificationErr: boolean = false;
+  modificationErrMsg: string = "";
+
+  displayModificationSuccess: boolean = false;
 
   constructor(private productsService: ProductsService, private listedItemsService: ListedItemsService) {
   }
@@ -76,9 +82,31 @@ export class AdminProductsComponent {
     }
     this.createdProductSub$ = this.productsService.createProduct("http://localhost:5000/products", this.productModel)
         .subscribe(product => { this.onSelect(product); this.creationSuccess(); },
-          err => { console.log(err); this.creationError(err.detail); }
+          err => { console.log(err); this.creationError(err); }
         );
 
+  }
+
+  editProduct() {
+    
+    if((Object.keys(this.selectedProduct).length) != 7) {
+      this.modificationError("Veuillez remplir tous les champs");
+      return;
+    }
+    this.modifiedProductSub$ = this.productsService.updateProduct("http://localhost:5000/products/"+this.selectedProduct.Id, this.selectedProduct)
+        .subscribe(product => { this.onSelect(product); this.modificationSuccess(); },
+                   err => { console.log(err); this.creationError(err); }
+      );
+
+  }
+
+  modificationSuccess() {
+    this.displayModificationSuccess = true;
+  }
+
+  modificationError(err: string) {
+      this.modificationErrMsg = err;
+      this.displayModificationErr = true;
   }
 
   creationSuccess() {
@@ -94,6 +122,7 @@ export class AdminProductsComponent {
     if(this.products$) { this.products$.unsubscribe(); }
     if(this.selectedProductSub$) { this.selectedProductSub$.unsubscribe(); }
     this.createdProductSub$ ? this.createdProductSub$.unsubscribe() : null;
+    this.modifiedProductSub$ ? this.modifiedProductSub$.unsubscribe() : null;
   }
 
 }

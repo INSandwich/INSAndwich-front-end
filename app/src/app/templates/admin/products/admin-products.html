@@ -59,8 +59,8 @@
       </div>
       <div class="mdl-card__supporting-text" *ngIf="selectedProduct">
             <div class="loginForm">
-              <div class="formated-success-message">Opération effectuée avec succès</div><br />
-              <div class="formated-error-message">Erreur: errorMessage </div>
+              <div *ngIf="displayModifiationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
+              <div *ngIf="displayModificationErr" class="formated-error-message">Erreur: {{ modificationErrMsg }} </div>
             </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <label class="insandwich-form-label">Nom:</label>
@@ -90,7 +90,7 @@
             <input type="hidden" name="available" value="1">
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+        <a (click)="editProduct()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
           Editer
         </a>
         <a *ngIf="selectedProduct" [routerLink]="['../../product', selectedProduct.Id]" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--colored">

@@ -27,7 +27,19 @@ export class ProductsService {
 
     return this.http.post(url, JSON.stringify({name: product.Name, description: product.Description, available: product.Available, image: product.Image, price: product.Price, category: product.Category_Id}), options)
                .map((res: Response) => res.json())
-               .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
+               .catch((error: any) => Observable.throw(error.json().detail || 'Server error'));
+  }
+
+  updateProduct(url: string, product: Product) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+    console.log(product.Name);
+
+    return this.http.put(url, JSON.stringify({name: product.Name, description: product.Description, available: product.Available, image: product.Image, price: product.Price, category: product.Category_Id}), options)
+               .map((res: Response) => res.json())
+               .catch((error: any) =>  Observable.throw(error.json().detail || 'Server error'));
   }
 
 }
