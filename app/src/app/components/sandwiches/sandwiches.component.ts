@@ -16,6 +16,8 @@ export class SandwichesComponent implements OnInit, OnDestroy {
   constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer) {}
 
   sandwiches: Array<Product>;
+  pageNumber: number;
+  pageCount: number;
 
   private sandwiches$: any;
 
@@ -31,7 +33,12 @@ export class SandwichesComponent implements OnInit, OnDestroy {
     this.sandwiches$ = this.listedItemsService
         .getItems<Product>("http://localhost:5000/products/category/1")
         .subscribe(
-          listedItems => { console.log(listedItems); this.sandwiches = listedItems.items; console.log(this.sandwiches)},
+          listedItems => {
+            console.log(listedItems);
+            this.sandwiches = listedItems.items;
+            this.pageNumber = listedItems.pageNumber;
+            this.pageCount = listedItems.pageCnt; 
+            console.log(this.sandwiches)},
           err => { console.log(err); }
         );
   }

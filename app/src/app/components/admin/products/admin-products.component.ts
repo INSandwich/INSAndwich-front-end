@@ -88,7 +88,7 @@ export class AdminProductsComponent {
   }
 
   editProduct() {
-    
+
     if((Object.keys(this.selectedProduct).length) != 7) {
       this.modificationError("Veuillez remplir tous les champs");
       return;

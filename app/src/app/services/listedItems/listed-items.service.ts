@@ -13,12 +13,12 @@ export class ListedItemsService {
 
   constructor (private http: Http) {}
 
-  getItems<T>(url: string): Observable<ListedItems<T>> {
-    return this.http.get(url)
+  getItems<T>(url: string, pageNumber?: number): Observable<ListedItems<T>> {
+    return this.http.get(url+"?pageNumber="+String(pageNumber))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
-  
+
     private extractData(res: Response) {
       let body = res.json();
       return body || { };

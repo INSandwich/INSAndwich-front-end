@@ -269,6 +269,7 @@ insandwich-header {
   display: flex;
   align-items: center;
   flex-direction: column;
+  min-height: 275px;
 }
 
 .productImage {
@@ -314,6 +315,34 @@ insandwich-header {
 .insandwich-form-label {
   font-style: italic;
   font-weight: bold;
+}
+
+.insandwich-pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.insandwich-pagination {
+  display: inline-block;
+}
+
+.insandwich-pagination * {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.insandwich-pagination a.insandwich-pagination-active {
+  background-color: rgb(34, 150, 243);
+  color: white;
+}
+
+.insandwich-pagination a:hover:not(.insandwich-pagination-active) {
+  background-color: #ddd;
 }
 
 @media (max-width: 900px) {
