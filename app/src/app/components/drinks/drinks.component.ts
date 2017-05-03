@@ -18,6 +18,8 @@ export class DrinksComponent implements OnInit, OnDestroy {
   constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer) {}
 
   drinks: Array<Product>;
+  pageNumber: number;
+  pageCount: number;
 
   private drinks$: any;
 
@@ -29,13 +31,41 @@ export class DrinksComponent implements OnInit, OnDestroy {
     return this.sanitizer.bypassSecurityTrustStyle("url('"+url+"') no-repeat center / cover");
   }
 
-  loadDrinks() {
+  loadDrinks(pageNumber?: number) {
     this.drinks$ = this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/category/3")
+        .getItems<Product>("http://localhost:5000/products/category/3", pageNumber)
         .subscribe(
-          listedItems => { console.log(listedItems); this.drinks = listedItems.items; console.log(this.drinks)},
+          listedItems => {
+            this.drinks = listedItems.items;
+            this.pageNumber = listedItems.pageNumber;
+            this.pageCount = listedItems.pageCnt;
+          },
           err => { console.log(err); }
         );
+  }
+
+  goToNextPage() {
+    if(this.pageNumber < this.pageCount - 1) {
+      this.loadDrinks(this.pageNumber+1);
+    }
+  }
+
+  gotToPreviousPage() {
+    if(this.pageNumber != 0) {
+      this.loadDrinks(this.pageNumber-1);
+    }
+  }
+
+  gotToFirstPage() {
+    if(this.pageNumber != 0) {
+      this.loadDrinks(0);
+    }
+  }
+
+  goToLastPage() {
+    if(this.pageNumber != (this.pageCount - 1)) {
+      this.loadDrinks(this.pageCount - 1);
+    }
   }
 
   ngOnDestroy() {

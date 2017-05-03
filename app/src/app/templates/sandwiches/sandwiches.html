@@ -20,12 +20,13 @@
   <div class="mdl-cell mdl-cell--12-col">
     <div class="insandwich-pagination-wrapper">
       <div class="insandwich-pagination">
-        <a href="">&lt;</a>
-        <a href="" class="insandwich-pagination-active">1</a>
-        <a href="">2</a>
-        <p>...</p>
-        <a href="">75</a>
-        <a href="">&gt;</a>
+        <a (click)="gotToFirstPage()">&laquo;</a>
+        <a (click)="gotToPreviousPage()">&lt;</a>
+        <a class="insandwich-pagination-active">{{ pageNumber + 1 }}</a>
+        <p>/</p>
+        <p>{{ pageCount }}</p>
+        <a (click)="goToNextPage()">&gt;</a>
+        <a (click)="goToLastPage()">&raquo;</a>
       </div>
     </div>
   </div>
