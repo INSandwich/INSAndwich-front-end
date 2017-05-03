@@ -276,6 +276,12 @@ insandwich-header {
   height: 192px;
   border-radius: 200px;
   margin-bottom: 15px;
+  transition: width 2s,height 2s;
+}
+.productImage:hover {
+  width: 300px;
+  height: 200px;
+  position: center;
 }
 
 .productName {
@@ -337,6 +343,10 @@ insandwich-header {
 }
 
 @media (max-width: 1400px) {
+
+  .productCard {
+    min-height: 290px;
+  }
   .insandwich-navigation .mdl-navigation__link {
     font-size: 17px !important;
   }
