@@ -49,6 +49,13 @@
   padding-right: 5px;
 }
 
+.insandwich-sandstorm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
 .insandwich-loading-container {
   height: 100%;
   width: 100%;

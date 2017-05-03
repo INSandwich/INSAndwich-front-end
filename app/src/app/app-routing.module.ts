@@ -18,6 +18,7 @@ import {
   ProductComponent,
   ProfileComponent,
   RegisterComponent,
+  SandstormComponent,
   SandwichesComponent,
   TermsComponent,
   UnauthorizedComponent } from './components/index';
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'profile/:username', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'sandwiches', component: SandwichesComponent },
+  { path: 'sandstorm', component: SandstormComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: '**', redirectTo: '404'}

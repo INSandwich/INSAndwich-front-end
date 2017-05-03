@@ -11,6 +11,7 @@ export { LoginComponent } from './login/login.component';
 export { ProductComponent } from './product/product.component';
 export { ProfileComponent } from './profile/profile.component';
 export { RegisterComponent } from './register/register.component';
+export { SandstormComponent } from './sandstorm/sandstorm.component';
 export { SandwichesComponent } from './sandwiches/sandwiches.component';
 export { TermsComponent } from './terms/terms.component';
 export { UnauthorizedComponent } from './unauthorized/unauthorized.component';

@@ -19,6 +19,7 @@ import {
   LoginComponent,
   ProfileComponent,
   RegisterComponent,
+  SandstormComponent,
   SandwichesComponent,
   TermsComponent,
   UnauthorizedComponent } from './components/index';
@@ -54,6 +55,7 @@ import { ListedItemsModule, AuthModule, UsersModule, ProductsModule } from './mo
                   FooterComponent,
                   HeaderComponent,
                   HomeComponent,
+                  SandstormComponent,
                   RegisterComponent,
                   TermsComponent,
                   UnauthorizedComponent,
