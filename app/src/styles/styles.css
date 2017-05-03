@@ -335,3 +335,19 @@ insandwich-header {
     display: none !important;
   }
 }
+
+@media (max-width: 1400px) {
+  .insandwich-navigation .mdl-navigation__link {
+    font-size: 17px !important;
+  }
+  .insandwich-badge {
+    font-size: 17px !important;
+  }
+  .box-icon {
+    display: none !important;
+  }
+
+  .cart-icon {
+    display: none !important;
+  }
+}

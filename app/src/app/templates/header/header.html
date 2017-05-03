@@ -25,8 +25,8 @@
         <a class="mdl-navigation__link" [routerLink]="['/drinks']">Boissons</a>
         <a class="mdl-navigation__link" [routerLink]="['/desserts']">Desserts</a>
         <a class="mdl-navigation__link" *ngIf="!isAuthentificated" [routerLink]="['/login']">Se connecter</a>
-        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> <span class="mdl-badge" data-badge="4">Payer</span></a>
-        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/profile', username]"><i class="material-icons">account_box</i> {{ username }}</a>
+        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/checkout']"><i class="cart-icon material-icons">shopping_cart</i> <span class="insandwich-badge mdl-badge" data-badge="4">Payer</span></a>
+        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/profile', username]"><i class="box-icon material-icons">account_box</i> {{ username }}</a>
         <a class="mdl-navigation__link" *ngIf="isAuthentificated" (click)="logout()" href="">Se deconnecter</a>
     </nav>
     <span class="insandwich-mobile-title mdl-layout-title">
