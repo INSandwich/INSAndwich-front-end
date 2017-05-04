@@ -38,6 +38,8 @@ export class CheckoutComponent {
   command: Command = {
     id: 45879,
     totalPrice: 6.5,
+    totalQuantity: 3,
+    creationDate: "04/05/2017" 
     lines: this.commandLines
   };
 

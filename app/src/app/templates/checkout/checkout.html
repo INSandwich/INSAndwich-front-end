@@ -22,7 +22,7 @@
               <td class="mdl-data-table__cell--non-numeric">{{ line.name }}</td>
               <td class="mdl-data-table__cell--non-numeric">{{ line.quantity }}</td>
               <td class="mdl-data-table__cell--non-numeric">{{ line.price }} token<span *ngIf="line.price > 1">s</span></td>
-              <td class="mdl-data-table__cell--non-numeric"><i class="material-icons">delete_forever</i></td>
+              <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">delete_forever</i></button></td>
             </tr>
           </tbody>
           <tfoot>
@@ -34,6 +34,9 @@
       <div class="mdl-card__actions mdl-card--border">
         <a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">
           Payer
+        </a>
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+          Supprimer cette commande
         </a>
       </div>
       <div class="mdl-card__menu">
