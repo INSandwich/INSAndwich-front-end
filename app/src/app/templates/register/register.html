@@ -6,6 +6,7 @@
       </div>
       <div class="mdl-card__supporting-text">
         <div class="loginForm">
+          <div *ngIf="displayError" class="formated-error-message">Erreur: {{ errorMessage }}</div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" [(ngModel)]="model.firstname" type="text" id="firstname">
               <label class="mdl-textfield__label" for="firstname">Prénom</label>
@@ -24,7 +25,11 @@
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" [(ngModel)]="model.password" type="password" id="password">
-              <label class="mdl-textfield__label" for="password">Password</label>
+              <label class="mdl-textfield__label" for="password">Mot de passe</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" [(ngModel)]="model.passwordConfirm" type="password" id="passwordConfirm">
+              <label class="mdl-textfield__label" for="passwordConfirm">Confirmer le mot de passe</label>
             </div>
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" [(ngModel)]="model.adresse" type="text" id="adresse">
