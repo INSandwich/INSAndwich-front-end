@@ -6,7 +6,7 @@
       <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/drinks']">Boissons</a></li>
       <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/desserts']">Desserts</a></li>
       <li class="insandwich-mobile-navigation-link" *ngIf="!isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/login']">Se Connecter</a></li>
-      <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> <span class="mdl-badge" data-badge="4">Payer</span></a></li>
+      <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/checkout']"><i class="material-icons">shopping_cart</i> <span class="mdl-badge" data-badge="4">Panier</span></a></li>
       <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="toggleNav()" [routerLink]="['/profile', username]"><i class="material-icons">account_box</i> {{ username }}</a></li>
       <li class="insandwich-mobile-navigation-link" *ngIf="isAuthentificated"><a class="mdl-navigation__link" (click)="logout()" href="">Se deconnecter</a></li>
       <li class="insandwich-mobile-navigation-link"><a class="mdl-navigation__link" (click)="toggleNav()">Fermer</a></li>
@@ -25,7 +25,7 @@
         <a class="mdl-navigation__link" [routerLink]="['/drinks']">Boissons</a>
         <a class="mdl-navigation__link" [routerLink]="['/desserts']">Desserts</a>
         <a class="mdl-navigation__link" *ngIf="!isAuthentificated" [routerLink]="['/login']">Se connecter</a>
-        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/checkout']"><i class="cart-icon material-icons">shopping_cart</i> <span class="insandwich-badge mdl-badge" data-badge="4">Payer</span></a>
+        <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/checkout']"><i class="cart-icon material-icons">shopping_cart</i> <span class="insandwich-badge mdl-badge" data-badge="4">Panier</span></a>
         <a class="mdl-navigation__link" *ngIf="isAuthentificated" [routerLink]="['/profile', username]"><i class="box-icon material-icons">account_box</i> {{ username }}</a>
         <a class="mdl-navigation__link" *ngIf="isAuthentificated" (click)="logout()" href="">Se deconnecter</a>
     </nav>
