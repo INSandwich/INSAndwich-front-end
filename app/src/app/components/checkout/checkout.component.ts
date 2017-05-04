@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 
 import { Command, CommandLines } from '../../models/index';
 
+import { ModalService } from '../../services/index';
+
 @Component({
   templateUrl: 'app/templates/checkout/checkout.html'
 })
@@ -12,7 +14,7 @@ export class CheckoutComponent {
   // Perhaps we'll also send an email to the person saying "succesfully ordered x,y,z"
 
 
-  //constructor(private commandsService: CommandsService) {}
+  constructor(private modalService: ModalService) {}
 
   userTokens: number = 500;
   // This is a mock, which must change!
@@ -39,9 +41,18 @@ export class CheckoutComponent {
     id: 45879,
     totalPrice: 6.5,
     totalQuantity: 3,
-    creationDate: "04/05/2017" 
+    creationDate: "04/05/2017",
     lines: this.commandLines
   };
+  
+  openModal(id: string){
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string){
+      this.modalService.close(id);
+  }
+
 
   checkout() {
 

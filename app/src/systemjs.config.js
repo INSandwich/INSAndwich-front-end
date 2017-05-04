@@ -26,7 +26,9 @@
       // other libraries
       'rxjs':                      'npm:rxjs',
       'ts-md5': 'npm:ts-md5',
-      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+      'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js',
+      'jquery':                    'https://unpkg.com/jquery@3.1.1',
+      'underscore':                'https://unpkg.com/underscore@1.8.3'
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

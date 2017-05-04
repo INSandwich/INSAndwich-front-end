@@ -12,6 +12,50 @@
     text-align: center;
 }
 
+modal {
+    /* modals are hidden by default */
+    display: none;
+}
+
+.modal {
+    /* modal container fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* z-index must be higher than .modal-background */
+    z-index: 1000;
+    /* enables scrolling for tall modals */
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    animation: fadeInLoad 0.5s;
+}
+
+.modal-body {
+    padding: 30px;
+    background: #fff;
+    /* margin exposes part of the modal background */
+    margin: 40px;
+
+}
+
+.modal-background {
+    /* modal background fixed across whole screen */
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    /* semi-transparent black  */
+    background-color: #000;
+    opacity: 0.75;
+  /* z-index must be below .modal and above everything else  */
+  z-index: 900;
+}
+
 .mdl-layout__content {
     display: -webkit-flex;
 	display: flex;
@@ -206,6 +250,7 @@ insandwich-header {
 .insandwich-different {
   margin-top: 20px;
   width: 80%;
+  animation: fadeInLoad 0.5s;
 }
 
 .insandwich-404-card {
@@ -357,6 +402,15 @@ insandwich-header {
 
 .insandwich-pagination a:hover:not(.insandwich-pagination-active) {
   background-color: #ddd;
+}
+
+@keyframes fadeInLoad {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
 }
 
 @media (max-width: 900px) {

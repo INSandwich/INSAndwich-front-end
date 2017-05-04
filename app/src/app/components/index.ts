@@ -15,3 +15,4 @@ export { SandstormComponent } from './sandstorm/sandstorm.component';
 export { SandwichesComponent } from './sandwiches/sandwiches.component';
 export { TermsComponent } from './terms/terms.component';
 export { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+export { ModalComponent } from './modal/modal.component';

@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { User } from '../../models/index';
+import { User, ListedItems, Command } from '../../models/index';
 
 import { UsersService } from '../../services/index';
 
@@ -33,7 +33,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private passwordChangeSub$: any;
 
   // This is a mock
-  commands: listedItems<Command> = {
+  commands: ListedItems<Command> = {
     pageCnt: 5,
     pageSize: 10,
     pageNumber: 0,
@@ -87,7 +87,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
         id: 12345,
         totalPrice: 7.5,
         totalQuantity: 4,
-        creationDate: "7/12/2016" 
+        creationDate: "7/12/2016"
       },
     ]
   }

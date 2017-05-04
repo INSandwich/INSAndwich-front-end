@@ -8,7 +8,7 @@ import { AppState } from './models/index';
 })
 export class AppComponent  {
   constructor(public appstate: AppState) {
-    
+
   }
 
 }
