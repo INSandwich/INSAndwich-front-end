@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ListedItems, User } from '../../../models/index';
 
-import { UsersService, ListedItemsService } from '../../../services/index';
+import { UsersService, ListedItemsService, ModalService } from '../../../services/index';
 
 @Component({
   templateUrl: 'app/templates/admin/users/admin-users.html'
@@ -15,6 +15,8 @@ export class AdminUsersComponent {
 
   userRoleModifSub$: any;
   userTokensModifSub$: any;
+
+  userDeleteSub$: any;
 
   usernameFilter: string;
 
@@ -32,13 +34,29 @@ export class AdminUsersComponent {
   pageCount: number;
   pageNumber: number;
 
-  constructor(private usersService: UsersService, private listedItemsService: ListedItemsService) {
-  }
+  constructor(private modalService: ModalService, private usersService: UsersService, private listedItemsService: ListedItemsService) { }
 
   ngOnInit() {
     this.loadUsers("http://localhost:5000/users");
   }
 
+  deleteUser(divId: string, id: number) {
+    //console.log("product to delete id:",id);
+    this.closeModal(divId);
+    this.userDeleteSub$ = this.usersService.deleteUser("http://localhost:5000/users", id)
+        .subscribe(
+          res => { this.loadUsers("http://localhost:5000/users"); },
+          err => {console.log(err); }
+        );
+  }
+
+  openModal(id: string){
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string){
+      this.modalService.close(id);
+  }
 
   loadUsers(url: string, params?: string, pageNumber?: number) {
     //var newUrl = params ? url+"?login="+params : url;
@@ -123,6 +141,7 @@ export class AdminUsersComponent {
 
   ngOnDestroy() {
     if(this.users$) { this.users$.unsubscribe(); }
+    if(this.userDeleteSub$) { this.userDeleteSub$.unsubscribe(); }
   }
 
 }

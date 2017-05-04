@@ -1,3 +1,16 @@
+<modal id="custom-modal-1">
+    <div class="modal" *ngIf="selectedUser">
+        <div class="modal-body">
+            <h1>Supprimer {{ selectedUser.FirstName }} {{ selectedUser.LastName }} ?</h1>
+            <p>
+                Etes vous sur de vouloir supprimer {{ selectedUser.FirstName }} {{ selectedUser.LastName }} ?
+            </p>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="deleteUser('custom-modal-1', selectedUser.Id);">Oui</button>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" (click)="closeModal('custom-modal-1');">Non</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
 <div mdl class="insandwich-different mdl-grid">
   <div class="mdl-cell mdl-cell--12-col">
     <div class="logo-font insandwich-slogan">
@@ -90,7 +103,7 @@
         </a>
       </div>
       <div class="mdl-card__menu">
-       <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
+       <button (click)="openModal('custom-modal-1')" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
          <i id="tt3" class="material-icons">delete_forever</i>
        </button>
      </div>

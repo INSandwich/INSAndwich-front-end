@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ListedItems, Product } from '../../../models/index';
 
-import { ProductsService, ListedItemsService } from '../../../services/index';
+import { ProductsService, ListedItemsService, ModalService } from '../../../services/index';
 
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
@@ -42,11 +42,30 @@ export class AdminProductsComponent {
   pageCount: number;
   pageNumber: number;
 
-  constructor(private productsService: ProductsService, private listedItemsService: ListedItemsService) {
-  }
+  productDeleteSub$: any;
+
+  constructor(private modalService: ModalService, private productsService: ProductsService, private listedItemsService: ListedItemsService) {  }
 
   ngOnInit() {
     this.loadProducts("http://localhost:5000/products");
+  }
+
+  deleteProduct(divId: string, id: number) {
+    //console.log("product to delete id:",id);
+    this.closeModal(divId);
+    this.productDeleteSub$ = this.productsService.deleteProduct("http://localhost:5000/products", id)
+        .subscribe(
+          res => { this.loadProducts("http://localhost:5000/products");},
+          err => { console.log(err); }
+        );
+  }
+
+  openModal(id: string) {
+    this.modalService.open(id);
+  }
+
+  closeModal(id: string) {
+      this.modalService.close(id);
   }
 
   loadProducts(url: string, params?: string, pageNumber?: number) {
@@ -158,6 +177,7 @@ export class AdminProductsComponent {
     if(this.selectedProductSub$) { this.selectedProductSub$.unsubscribe(); }
     this.createdProductSub$ ? this.createdProductSub$.unsubscribe() : null;
     this.modifiedProductSub$ ? this.modifiedProductSub$.unsubscribe() : null;
+    this.productDeleteSub$ ? this.productDeleteSub$.unsubscribe() : null;
   }
 
 }

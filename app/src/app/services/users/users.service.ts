@@ -80,6 +80,12 @@ export class UsersService {
                .catch(this.handleError);
   }
 
+  deleteUser(url: string, id: number) {
+    return this.http.delete(url+"/"+id)
+               .map(this.extractData)
+               .catch(this.handleError);
+  }
+
     private extractData(res: Response) {
       let body = res.json();
       return body || { };

@@ -42,4 +42,10 @@ export class ProductsService {
                .catch((error: any) =>  Observable.throw(error.json().detail || 'Server error'));
   }
 
+  deleteProduct(url: string, id: number) {
+    return this.http.delete(url+"/"+id)
+               .map((res: Response) => res.json())
+               .catch((error: any) =>  Observable.throw(error.json().detail || 'Server error'));
+  }
+
 }
