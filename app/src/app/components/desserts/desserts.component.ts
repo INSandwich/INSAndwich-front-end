@@ -31,7 +31,7 @@ export class DessertsComponent implements OnInit, OnDestroy {
 
   loadDesserts(pageNumber?: number) {
     this.desserts$ = this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/category/2", pageNumber)
+        .getItemsFromPage<Product>("http://localhost:5000/products/category/2", pageNumber)
         .subscribe(
           listedItems => {
             this.desserts = listedItems.items;

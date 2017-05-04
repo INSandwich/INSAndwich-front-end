@@ -38,6 +38,10 @@ export class AdminProductsComponent {
 
   displayModificationSuccess: boolean = false;
 
+  // page count and number
+  pageCount: number;
+  pageNumber: number;
+
   constructor(private productsService: ProductsService, private listedItemsService: ListedItemsService) {
   }
 
@@ -45,11 +49,31 @@ export class AdminProductsComponent {
     this.loadProducts("http://localhost:5000/products");
   }
 
-  loadProducts(url: string, params?: string) {
-    var newUrl = params ? url + "?name=" + params : url;
+  loadProducts(url: string, params?: string, pageNumber?: number) {
+    //var newUrl = params ? url + "?name=" + params : url;
+
+    var newUrl = url;
+    if(params != null) {
+      newUrl += ("?name="+params);
+      if(pageNumber != null) {
+        newUrl += ("&pageNumber="+pageNumber);
+      }
+    }
+    else {
+      if(pageNumber != null) {
+        newUrl += ("?pageNumber="+pageNumber);
+      }
+    }
+    console.log("toto", newUrl);
+
     this.products$ = this.listedItemsService.getItems<Product>(newUrl)
         .subscribe(
-          listedItems => { this.products = listedItems.items; this.onSelect(this.products[0]); },
+          listedItems => {
+            this.products = listedItems.items;
+            this.pageNumber = listedItems.pageNumber;
+            this.pageCount = listedItems.pageCnt;
+            this.onSelect(this.products[0]);
+          },
           err => { console.log(err); }
         );
   }
@@ -68,11 +92,22 @@ export class AdminProductsComponent {
     else {
       this.selected = product.Id;
     }
-    console.log(product);
   }
 
-  search(name: string) {
-    this.loadProducts("http://localhost:5000/products", this.productNameFilter);
+  search(pageNumber?: number) {
+    this.loadProducts("http://localhost:5000/products", this.productNameFilter, pageNumber);
+  }
+
+  goToPreviousPage() {
+    if(this.pageNumber != 0) {
+      this.search(this.pageNumber - 1);
+    }
+  }
+
+  goToNextPage() {
+    if(this.pageNumber != (this.pageCount - 1)) {
+      this.search(this.pageNumber + 1);
+    }
   }
 
   createProduct() {

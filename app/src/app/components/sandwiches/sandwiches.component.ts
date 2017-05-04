@@ -31,7 +31,7 @@ export class SandwichesComponent implements OnInit, OnDestroy {
 
   loadSandwiches(pageNumber?: number) {
     this.sandwiches$ = this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/category/1", pageNumber)
+        .getItemsFromPage<Product>("http://localhost:5000/products/category/1", pageNumber)
         .subscribe(
           listedItems => {
             this.sandwiches = listedItems.items;

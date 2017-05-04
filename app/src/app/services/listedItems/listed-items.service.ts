@@ -13,7 +13,13 @@ export class ListedItemsService {
 
   constructor (private http: Http) {}
 
-  getItems<T>(url: string, pageNumber?: number): Observable<ListedItems<T>> {
+  getItems<T>(url: string): Observable<ListedItems<T>> {
+    return this.http.get(url)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  getItemsFromPage<T>(url: string, pageNumber?: number): Observable<ListedItems<T>> {
     var pageNum = pageNumber ? pageNumber : 0;
     return this.http.get(url+"?pageNumber="+String(pageNum))
                     .map(this.extractData)

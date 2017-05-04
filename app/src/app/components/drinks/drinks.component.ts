@@ -33,7 +33,7 @@ export class DrinksComponent implements OnInit, OnDestroy {
 
   loadDrinks(pageNumber?: number) {
     this.drinks$ = this.listedItemsService
-        .getItems<Product>("http://localhost:5000/products/category/3", pageNumber)
+        .getItemsFromPage<Product>("http://localhost:5000/products/category/3", pageNumber)
         .subscribe(
           listedItems => {
             this.drinks = listedItems.items;

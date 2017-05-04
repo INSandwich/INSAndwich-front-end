@@ -28,6 +28,10 @@ export class AdminUsersComponent {
 
   modificationErrMsg: string = "";
 
+  // page count and number
+  pageCount: number;
+  pageNumber: number;
+
   constructor(private usersService: UsersService, private listedItemsService: ListedItemsService) {
   }
 
@@ -36,11 +40,29 @@ export class AdminUsersComponent {
   }
 
 
-  loadUsers(url: string, params?: string) {
-    var newUrl = params ? url+"?login="+params : url;
+  loadUsers(url: string, params?: string, pageNumber?: number) {
+    //var newUrl = params ? url+"?login="+params : url;
+    var newUrl = url;
+    if(params != null) {
+      newUrl += ("?login="+params);
+      if(pageNumber != null) {
+        newUrl += ("&pageNumber="+pageNumber);
+      }
+    }
+    else {
+      if(pageNumber != null) {
+        newUrl += ("?pageNumber="+pageNumber);
+      }
+    }
+
     this.users$ = this.listedItemsService.getItems<User>(newUrl)
         .subscribe(
-          listedItems => { this.users = listedItems.items; this.onSelect(this.users[0]);},
+          listedItems => {
+            this.users = listedItems.items;
+            this.pageNumber = listedItems.pageNumber;
+            this.pageCount = listedItems.pageCnt;
+            this.onSelect(this.users[0]);
+          },
           err => { console.log(err); /*Handle error here, sometimes*/ }
         )
   }
@@ -63,13 +85,13 @@ export class AdminUsersComponent {
     }
     this.userRoleModifSub$ = this.usersService.updateUserRole("http://localhost:5000/users/"+this.selectedUser.Id+"/role", this.selectedUser.Role)
                                  .subscribe(
-                                   response => { console.log(response); this.modificationSuccess(); },
-                                   err => { console.log(err); this.modificationError(err.detail); }
+                                   response => { this.modificationSuccess(); },
+                                   err => { this.modificationError(err.detail); }
                                  );
     this.userTokensModifSub$ = this.usersService.updateUserTokens("http://localhost:5000/users/"+this.selectedUser.Id+"/tokens", this.selectedUser.Tokens)
                                    .subscribe(
-                                     response => { console.log(response); },
-                                     err => { console.log(err); this.modificationError(err.detail); }
+                                     response => { },
+                                     err => { this.modificationError(err.detail); }
                                    );
 
   }
@@ -83,8 +105,20 @@ export class AdminUsersComponent {
     this.modificationErrMsg = err;
   }
 
-  search(username: string) {
-    this.loadUsers("http://localhost:5000/users", this.usernameFilter);
+  search(pageNumber?: number) {
+    this.loadUsers("http://localhost:5000/users", this.usernameFilter, pageNumber);
+  }
+
+  goToPreviousPage() {
+    if(this.pageNumber != 0) {
+      this.search(this.pageNumber - 1);
+    }
+  }
+
+  goToNextPage() {
+    if(this.pageNumber != (this.pageCount - 1)) {
+      this.search(this.pageNumber + 1);
+    }
   }
 
   ngOnDestroy() {

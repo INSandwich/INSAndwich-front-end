@@ -39,11 +39,11 @@
         </ul>
         <div class="insandwich-mini-paging">
           <div class="insandwich-mini-paging-wrapper">
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            <button (click)="goToPreviousPage()" class="mdl-button mdl-js-button mdl-button--icon">
               <i class="material-icons">navigate_before</i>
             </button>
-            1 / 20
-            <button class="mdl-button mdl-js-button mdl-button--icon">
+            {{ pageNumber + 1 }} / {{ pageCount }}
+            <button (click)="goToNextPage()" class="mdl-button mdl-js-button mdl-button--icon">
               <i class="material-icons">navigate_next</i>
             </button>
           </div>
