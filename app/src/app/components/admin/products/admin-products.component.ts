@@ -138,11 +138,9 @@ export class AdminProductsComponent {
         .subscribe(product => { this.onSelect(product); this.creationSuccess(); },
           err => { console.log(err); this.creationError(err); }
         );
-
   }
 
   editProduct() {
-
     if((Object.keys(this.selectedProduct).length) != 7) {
       this.modificationError("Veuillez remplir tous les champs");
       return;
@@ -151,7 +149,6 @@ export class AdminProductsComponent {
         .subscribe(product => { this.onSelect(product); this.modificationSuccess(); },
                    err => { console.log(err); this.creationError(err); }
       );
-
   }
 
   modificationSuccess() {

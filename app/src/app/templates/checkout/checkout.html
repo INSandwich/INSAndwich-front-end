@@ -1,9 +1,9 @@
 <modal id="custom-modal-1">
-    <div class="modal">
+    <div class="modal" *ngIf="selectedLine">
         <div class="modal-body">
-            <h1>Supprimer ?</h1>
+            <h1>Retirer {{ selectedLine.name }} du panier ?</h1>
             <p>
-                Etes vous sur de vouloir supprimer ?
+                Etes vous sur de vouloir retirer {{ selectedLine.name }} du panier ?
             </p>
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="closeModal('custom-modal-1');">Oui</button>
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" (click)="closeModal('custom-modal-1');">Non</button>
@@ -11,6 +11,21 @@
     </div>
     <div class="modal-background"></div>
 </modal>
+
+<modal id="custom-modal-2">
+    <div class="modal" *ngIf="command">
+        <div class="modal-body">
+            <h1>Supprimer {{ command.id }}?</h1>
+            <p>
+                Etes vous sur de vouloir supprimer {{ command.id }} ?
+            </p>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="closeModal('custom-modal-2');">Oui</button>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" (click)="closeModal('custom-modal-2');">Non</button>
+        </div>
+    </div>
+    <div class="modal-background"></div>
+</modal>
+
 <div mdl class="insandwich-different mdl-grid">
   <div class="mdl-cell mdl-cell--12-col">
     <div class="logo-font insandwich-slogan">Panier</div>
@@ -27,7 +42,7 @@
               <th class="mdl-data-table__cell--non-numeric">Produit</th>
               <th class="mdl-data-table__cell--non-numeric">Quantité</th>
               <th class="mdl-data-table__cell--non-numeric">Prix à l'unité</th>
-              <th class="mdl-data-table__cell--non-numeric">Supprimer</th>
+              <th class="mdl-data-table__cell--non-numeric">Retirer du panier</th>
             </tr>
           </thead>
           <tbody>
@@ -35,7 +50,7 @@
               <td class="mdl-data-table__cell--non-numeric">{{ line.name }}</td>
               <td class="mdl-data-table__cell--non-numeric">{{ line.quantity }}</td>
               <td class="mdl-data-table__cell--non-numeric">{{ line.price }} token<span *ngIf="line.price > 1">s</span></td>
-              <td class="mdl-data-table__cell--non-numeric"><button (click)="openModal('custom-modal-1')" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">delete_forever</i></button></td>
+              <td class="mdl-data-table__cell--non-numeric"><button (click)="openModal('custom-modal-1', line)" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">clear</i></button></td>
             </tr>
           </tbody>
           <tfoot>
@@ -48,7 +63,7 @@
         <a class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">
           Payer
         </a>
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+        <a (click)="openModal('custom-modal-2')" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
           Supprimer cette commande
         </a>
       </div>

@@ -18,6 +18,8 @@ export class CheckoutComponent {
 
   userTokens: number = 500;
   // This is a mock, which must change!
+  selectedLine: CommandLines;
+  
   commandLines: CommandLines = [
     {
       id: 8,
@@ -44,9 +46,10 @@ export class CheckoutComponent {
     creationDate: "04/05/2017",
     lines: this.commandLines
   };
-  
-  openModal(id: string){
+
+  openModal(id: string, line?: CommandLines){
     this.modalService.open(id);
+    this.selectedLine = line;
   }
 
   closeModal(id: string){
