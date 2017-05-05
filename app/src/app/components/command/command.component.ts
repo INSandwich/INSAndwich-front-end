@@ -5,9 +5,9 @@ import { Command, CommandLines } from '../../models/index';
 import { ModalService, CommandsService } from '../../services/index';
 
 @Component({
-  templateUrl: 'app/templates/checkout/checkout.html'
+  templateUrl: 'app/templates/command/command.html'
 })
-export class CheckoutComponent implements OnInit, OnDestroy {
+export class CommandComponent implements OnInit, OnDestroy {
   // Accessible thru /checkout
 
   // This component while describe a command, and its command lines, with an editable form, mocking a transaction
@@ -18,14 +18,11 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   userTokens: number = 500;
   // This is a mock, which must change!
-  selectedLine: CommandLines;
 
 
   // Subs
   commandSub$: any;
-  checkoutSub$: any;
   deleteSub$: any;
-  deleteLineSub$: any;
 
   commandLines: CommandLines = [
     {
@@ -55,28 +52,20 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   };
 
   ngOnInit() {
-
       this.loadCommand();
-
   }
 
   loadCommand() {
-    console.log("Loading last command");
+    console.log("Loading command");
     // TODO:
   }
 
-  openModal(id: string, line?: CommandLines){
+  openModal(id: string){
     this.modalService.open(id);
-    this.selectedLine = line;
   }
 
   closeModal(id: string){
       this.modalService.close(id);
-  }
-
-  confirmLineDelete(divId: string, id: number) {
-    this.closeModal(divId);
-    this.deleteCommandLine(id);
   }
 
   confirmCommandDelete(divId: string, id: number) {
@@ -84,34 +73,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.deleteCommand(id);
   }
 
-  checkout() {
-    console.log("Checking out :)");
-
-    /* // TODO :
-    this.checkoutSub$ = this.commandsService.checkout()
-                                            .subscribe();
-    */
-  }
-
   deleteCommand(id: number) {
     console.log("Deleting Command ", String(id));
     /* // TODO: Reroute to home on done
     this.deleteSub$ = this.commandsService.
     */
-
-  }
-
-  deleteCommandLine(id: number) {
-    console.log("Deleting Command Line", String(id));
-    // TODO:
-
   }
 
   ngOnDestroy() {
     this.commandSub$ ? this.commandSub$.unsubscribe() : null;
-    this.checkoutSub$ ? this.checkoutSub$.unsubscribe() : null;
     this.deleteSub$ ? this.deleteSub$.unsubscribe() : null;
-    this.deleteLineSub$ ? this.deleteLineSub$.unsubscribe(): null;
   }
 
 }

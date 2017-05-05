@@ -94,7 +94,7 @@
                     <td class="mdl-data-table__cell--non-numeric">{{ command.totalQuantity }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ command.totalPrice }} token<span *ngIf="command.totalPrice > 1">s</span></td>
                     <td class="mdl-data-table__cell--non-numeric">{{ command.creationDate }}</td>
-                    <td class="mdl-data-table__cell--non-numeric"><button class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">exit_to_app</i></button></td>
+                    <td class="mdl-data-table__cell--non-numeric"><a [routerLink]="['/command']" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">exit_to_app</i></a></td>
                   </tr>
                 </tbody>
               </table>
