@@ -6,15 +6,12 @@ The front-end will be built using angular 2, in Typescript. We'll also use mater
 `When you code some front-end, be sure to use the console ;)`
 
 Todo list:
-  - Add paging to list components
-  - Administration panel ! -> current priority 
   - Commands !
   - Nice token amount display
 
 Todo, maybe:
   - Localization
   - Password reset link thingy
-  - Add a LoadingComponent to buffer when a component is loading data
 
 Links:
   - [Angular 2](https://angular.io)
