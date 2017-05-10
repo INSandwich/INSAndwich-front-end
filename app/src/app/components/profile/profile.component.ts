@@ -34,7 +34,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private commandSub$: any;
   // This is a mock
   commands: ListedItems<Command>;
-  
+
   constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService) {
     this.username = route.snapshot.params['username'];
   }
@@ -70,15 +70,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updatePassword() {
-    if(this.model.pwd != this.model.pwdConfirm) { this.pwdModificationErrorMessage="Les deux mots de passe ne correspondent pas."; this.displayPasswordModificationError = true; return; }
-    console.log(String(Md5.hashStr(this.model.oldpwd)));
-    console.log(this.user.Password);
-    this.passwordChangeSub$ = this.userService
-        .updatePassword("http://localhost:5000/users/"+this.user.Id+"/update-passw", String(Md5.hashStr(this.model.oldpwd)), String(Md5.hashStr(this.model.pwd)))
-        .subscribe(
-          data=>{ this.displayPasswordModificationSuccess = true; },
-          error=>{ this.displayPasswordModificationError = true; this.pwdModificationErrorMessage = error.detail; console.log(error) }
-        );
+    if(this.model.oldpwd && this.model.pwd && this.model.pwdConfirm) {
+      console.log(this.model);
+      if(this.model.pwd != this.model.pwdConfirm) { this.pwdModificationErrorMessage="Les deux mots de passe ne correspondent pas."; this.displayPasswordModificationError = true; return; }
+      console.log(String(Md5.hashStr(this.model.oldpwd)));
+      console.log(this.user.Password);
+      this.passwordChangeSub$ = this.userService
+          .updatePassword("http://localhost:5000/users/"+this.user.Id+"/update-passw", String(Md5.hashStr(this.model.oldpwd)), String(Md5.hashStr(this.model.pwd)))
+          .subscribe(
+            data=>{ this.displayPasswordModificationSuccess = true; },
+            error=>{ this.displayPasswordModificationError = true; this.pwdModificationErrorMessage = error.detail; console.log(error) }
+          );
+    }
   }
 
   toggleSuccessDisplay() {

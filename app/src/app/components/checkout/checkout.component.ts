@@ -121,6 +121,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                                     this.deleteCommand(this.command.Id);
                                                   }
                                                   else {
+                                                    this.authService.decrementCartSize(this.selectedLine.quantity);
                                                     this.loadCommand();
                                                   }
                                                 },
