@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
 import { Command, CommandLines } from '../../models/index';
 
-import { ModalService, CommandsService } from '../../services/index';
+import { ModalService, CommandsService, UsersService } from '../../services/index';
 
 @Component({
   templateUrl: 'app/templates/checkout/checkout.html'
@@ -14,55 +16,54 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   // Perhaps we'll also send an email to the person saying "succesfully ordered x,y,z"
 
 
-  constructor(private modalService: ModalService, private commandsService: CommandsService) {}
+  constructor(private route: ActivatedRoute, private modalService: ModalService, private commandsService: CommandsService, private userService: UsersService) {
+    this.userId = route.snapshot.params['userId'];
+  }
 
-  userTokens: number = 500;
+  userTokens: number = 0;
   // This is a mock, which must change!
   selectedLine: CommandLines;
 
+  userId: number = 0;
 
   // Subs
   commandSub$: any;
   checkoutSub$: any;
   deleteSub$: any;
   deleteLineSub$: any;
+  tokensSub$: any;
 
-  commandLines: CommandLines = [
-    {
-      id: 8,
-      name: "Tacos",
-      quantity: 1,
-      price: 3.5
-    }, {
-      id: 9,
-      name: "Coca-cola",
-      quantity: 1,
-      price: 0.5
-    }, {
-      id: 10,
-      name: "Glace",
-      quantity: 1,
-      price: 2.5
-    }
-  ];
-
-  command: Command = {
+  command: Command;/* = {
     id: 45879,
     totalPrice: 6.5,
     totalQuantity: 3,
     creationDate: "04/05/2017",
     lines: this.commandLines
   };
+  */
 
   ngOnInit() {
 
       this.loadCommand();
+      this.loadUserTokens();
+  }
 
+  loadUserTokens() {
+    this.tokensSub$ = this.userService.getUser("http://localhost:5000/users/", this.userId)
+                                      .subscribe(
+                                        user => { this.userTokens = user.Tokens; },
+                                        err => { console.log(err); }
+                                      );
   }
 
   loadCommand() {
-    console.log("Loading last command");
-    // TODO:
+    this.commandSub$ = this.commandsService.getCommand("http://localhost:5000/orders/last", this.userId)
+                                           .subscribe(command => {
+                                             this.command = command; console.log(command);
+                                           },
+                                           err => {
+                                             console.log(err);
+                                          });
   }
 
   openModal(id: string, line?: CommandLines){
@@ -112,6 +113,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.checkoutSub$ ? this.checkoutSub$.unsubscribe() : null;
     this.deleteSub$ ? this.deleteSub$.unsubscribe() : null;
     this.deleteLineSub$ ? this.deleteLineSub$.unsubscribe(): null;
+    this.tokensSub$ ? this.tokensSub$.unsubscribe(): null;
   }
 
 }

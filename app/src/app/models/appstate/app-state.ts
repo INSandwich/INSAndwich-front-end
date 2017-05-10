@@ -4,4 +4,5 @@ export class AppState {
     role: string;
     id: number;
     //lastCommandId: number;
+    cartSize: number;
 }

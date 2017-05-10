@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminGuard]},
   { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
-  { path: 'checkout/:username/:userId/:id', component: CheckoutComponent, canActivate: [AuthGuard] }, 
+  { path: 'checkout/:username/:userId', component: CheckoutComponent, canActivate: [AuthGuard] }, 
   { path: 'command/:username/:id', component: CommandComponent, canActivate: [AuthGuard]}, //canActivate: [AuthGuard] -> add user-id and command-id in route
   { path: 'product/:id', component: ProductComponent },
   { path: 'desserts', component: DessertsComponent },
