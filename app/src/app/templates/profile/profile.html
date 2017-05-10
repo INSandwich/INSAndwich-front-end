@@ -91,9 +91,9 @@
                 <tbody>
                   <tr *ngFor="let command of commands.items">
                     <td class="mdl-data-table__cell--non-numeric">{{ command.Id }}</td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ command.totalQuantity }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ command.total }}</td>
                     <td class="mdl-data-table__cell--non-numeric">{{ command.totalPrice }} token<span *ngIf="command.totalPrice > 1">s</span></td>
-                    <td class="mdl-data-table__cell--non-numeric">{{ command.creationDate }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ command.Creation_Date }}</td>
                     <td class="mdl-data-table__cell--non-numeric"><a [routerLink]="['/command', username, command.Id]" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons">exit_to_app</i></a></td>
                   </tr>
                 </tbody>
@@ -110,7 +110,7 @@
                 </div>
               </div>
             </div>
-            <div *ngIf="commands.items?.length == 0" class="no-commands mdl_card__supporting-text">Vous n'avez pas encore fait de commandes.</div>
+            <div *ngIf="(commands.items?.length == 0) || (!commands.items)" class="no-commands mdl_card__supporting-text">Vous n'avez pas encore payé de commandes.</div>
         </div>
     </div>
 

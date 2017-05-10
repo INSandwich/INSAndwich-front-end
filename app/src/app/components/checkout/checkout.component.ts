@@ -49,7 +49,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   loadUserTokens() {
-    this.tokensSub$ = this.userService.getUser("http://localhost:5000/users/", this.userId)
+    this.tokensSub$ = this.userService.getUser("http://localhost:5000/users/", String(this.userId))
                                       .subscribe(
                                         user => { this.userTokens = user.Tokens; },
                                         err => { console.log(err); }

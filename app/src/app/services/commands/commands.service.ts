@@ -35,7 +35,7 @@ export class CommandsService {
   }
 
   deleteCommand(url: string, id: number) {
-    return this.http.delete(url+"/"+id)
+    return this.http.delete(url+"/"+String(id))
                     .map(this.extractData)
                     .catch(this.handleError);
   }

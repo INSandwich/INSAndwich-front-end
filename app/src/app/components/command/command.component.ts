@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Command, CommandLines } from '../../models/index';
 
@@ -15,7 +15,7 @@ export class CommandComponent implements OnInit, OnDestroy {
   // This component while describe a command, and its command lines, with an editable form, mocking a transaction
   // Perhaps we'll also send an email to the person saying "succesfully ordered x,y,z"
 
-  constructor(private route: ActivatedRoute, private modalService: ModalService, private commandsService: CommandsService) {
+  constructor(private route: ActivatedRoute, private modalService: ModalService, private commandsService: CommandsService, private router: Router) {
     this.username = route.snapshot.params['username'];
     this.commandId = route.snapshot.params['id'];
 
@@ -88,9 +88,12 @@ export class CommandComponent implements OnInit, OnDestroy {
 
   deleteCommand(id: number) {
     console.log("Deleting Command ", String(id));
-    /* // TODO: Reroute to home on done
-    this.deleteSub$ = this.commandsService.
-    */
+    this.deleteSub$ = this.commandsService.deleteCommand("http://localhost:5000/orders", id)
+                          .subscribe(
+                            res => { this.router.navigate(['/profile', this.username]); },
+                            err => { console.log(err); }
+                          );
+
   }
 
   ngOnDestroy() {
