@@ -21,10 +21,12 @@ export class AuthService {
     this.token = currentUser && currentUser.token;
     this.role = currentUser && currentUser.role;
     this.userId = currentUser && currentUser.id;
-    if(this.role && this.token && this.userId) {
+    this.cartSize = currentUser && currentUser.cartSize;
+    if(this.role && this.token && this.userId & this.cartSize) {
       appstate.role = this.role;
       appstate.username = currentUser.username;
       appstate.id = currentUser.id;
+      appstate.cartSize = currentUser.cartSize;
       appstate.isAuthentificated = true;
     }
   }
@@ -79,6 +81,9 @@ export class AuthService {
     localStorage.removeItem('currentUser');
   }
 
+  updateCartSize(increment: number) {
+    this.appstate.cartSize += increment;
+  }
 
 
 }
