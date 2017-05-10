@@ -56,6 +56,11 @@ modal {
   z-index: 900;
 }
 
+.no-commands {
+  text-align:  center;
+  padding-top: 20px;
+}
+
 .mdl-layout__content {
     display: -webkit-flex;
 	display: flex;

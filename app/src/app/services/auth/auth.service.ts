@@ -10,6 +10,7 @@ export class AuthService {
 
   public token: string;
   public role: string;
+  public userId: number;
 
   constructor(private http: Http, public appstate: AppState) {
     // set token if set in localstorage
@@ -18,9 +19,11 @@ export class AuthService {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
     this.role = currentUser && currentUser.role;
+    this.userId = currentUser && currentUser.id;
     if(this.role && this.token) {
       appstate.role = this.role;
       appstate.username = currentUser.username;
+      appstate.id = currentUser.userId;
       appstate.isAuthentificated = true;
     }
   }
@@ -38,20 +41,23 @@ export class AuthService {
                       console.log(res.json());
                       let token = res.json() && res.json().token;
                       let role = res.json() && res.json().role;
-                      console.log(token, role)
-                      if(token && role) {
+                      let id = res.json() && res.json().id;
+                      if(token && role && id) {
                         this.token = token;
                         this.role = role;
+                        this.userId = id;
 
-                        localStorage.setItem('currentUser', JSON.stringify({ username: username, role: role, token: token}));
+                        localStorage.setItem('currentUser', JSON.stringify({ username: username, role: role, token: token, id: id}));
                         this.appstate.isAuthentificated = true;
                         this.appstate.username = username;
                         this.appstate.role = role;
+                        this.appstate.id = id;
                         return true;
                       }
                       else {
                         this.appstate.isAuthentificated = false;
                         this.appstate.role = 'user';
+                        this.appstate.id = 0;
                         return false;
                       }
                     });
@@ -62,6 +68,7 @@ export class AuthService {
     this.role = null;
     this.appstate.isAuthentificated = false;
     this.appstate.role = 'user';
+    this.appstate.id = 0;
     localStorage.removeItem('currentUser');
   }
 

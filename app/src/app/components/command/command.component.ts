@@ -1,5 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
+import { ActivatedRoute } from '@angular/router';
+
 import { Command, CommandLines } from '../../models/index';
 
 import { ModalService, CommandsService } from '../../services/index';
@@ -13,8 +15,11 @@ export class CommandComponent implements OnInit, OnDestroy {
   // This component while describe a command, and its command lines, with an editable form, mocking a transaction
   // Perhaps we'll also send an email to the person saying "succesfully ordered x,y,z"
 
+  constructor(private route: ActivatedRoute, private modalService: ModalService, private commandsService: CommandsService) {
+    this.username = route.snapshot.params['username'];
+    this.commandId = route.snapshot.params['id'];
 
-  constructor(private modalService: ModalService, private commandsService: CommandsService) {}
+  }
 
   userTokens: number = 500;
   // This is a mock, which must change!
@@ -24,7 +29,11 @@ export class CommandComponent implements OnInit, OnDestroy {
   commandSub$: any;
   deleteSub$: any;
 
-  commandLines: CommandLines = [
+  username: string;
+  commandId: string;
+
+
+  /*commandLines: CommandLines;/* = [
     {
       id: 8,
       name: "Tacos",
@@ -41,15 +50,15 @@ export class CommandComponent implements OnInit, OnDestroy {
       quantity: 1,
       price: 2.5
     }
-  ];
+  ];*/
 
-  command: Command = {
+  command: Command;/* = {
     id: 45879,
     totalPrice: 6.5,
     totalQuantity: 3,
     creationDate: "04/05/2017",
     lines: this.commandLines
-  };
+  };*/
 
   ngOnInit() {
       this.loadCommand();
@@ -58,6 +67,10 @@ export class CommandComponent implements OnInit, OnDestroy {
   loadCommand() {
     console.log("Loading command");
     // TODO:
+    this.commandSub$ = this.commandsService.getCommand("http://localhost:5000/orders", Number(this.commandId))
+                           .subscribe(command => { console.log(command); this.command = command; },
+                           err => { console.log(err); }
+                         );
   }
 
   openModal(id: string){

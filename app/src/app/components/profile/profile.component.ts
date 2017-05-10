@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { User, ListedItems, Command } from '../../models/index';
 
-import { UsersService } from '../../services/index';
+import { UsersService, ListedItemsService } from '../../services/index';
 
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -31,68 +31,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private user$: any;
   private postUser$: any;
   private passwordChangeSub$: any;
-
+  private commandSub$: any;
   // This is a mock
-  commands: ListedItems<Command> = {
-    pageCnt: 5,
-    pageSize: 10,
-    pageNumber: 0,
-    items: [
-      {
-        id: 45879,
-        totalPrice: 6.5,
-        totalQuantity: 3,
-        creationDate: "04/05/2017"
-      },{
-        id: 45869,
-        totalPrice: 50.5,
-        totalQuantity: 10,
-        creationDate: "14/04/2017"
-      },{
-        id: 45861,
-        totalPrice: 2.5,
-        totalQuantity: 1,
-        creationDate: "10/04/2017"
-      },{
-        id: 41506,
-        totalPrice: 0.5,
-        totalQuantity: 1,
-        creationDate: "09/04/2017"
-      },{
-        id: 38563,
-        totalPrice: 3.5,
-        totalQuantity: 2,
-        creationDate: "01/03/2017"
-      },{
-        id: 24568,
-        totalPrice: 5.5,
-        totalQuantity: 3,
-        creationDate: "27/02/2017"
-      },{
-        id: 23568,
-        totalPrice: 6.5,
-        totalQuantity: 3,
-        creationDate: "04/02/2017"
-      },{
-        id: 214578,
-        totalPrice: 16.5,
-        totalQuantity: 8,
-        creationDate: "12/01/2017"
-      },{
-        id: 21112,
-        totalPrice: 0.5,
-        totalQuantity: 1,
-        creationDate: "11/01/2017"
-      },{
-        id: 12345,
-        totalPrice: 7.5,
-        totalQuantity: 4,
-        creationDate: "7/12/2016"
-      },
-    ]
-  }
-
-  constructor(private route: ActivatedRoute, private userService: UsersService) {
+  commands: ListedItems<Command>;
+  
+  constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService) {
     this.username = route.snapshot.params['username'];
   }
 
@@ -100,10 +43,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadUser();
   }
 
+  loadCommands(userid: number) {
+    this.commandSub$ = this.listedItemsService.getItems<Command>("http://localhost:5000/orders/users/"+userid)
+                           .subscribe(commands => {
+                             this.commands = commands;
+                             console.log(userid, commands);
+                           },
+                           err => { console.log(err); }
+                         );
+  }
+
   loadUser() {
     this.user$ = this.userService.getUser("http://localhost:5000/users/login/", this.username)
         .subscribe(
-            user => { this.user = user; this.fullname = user.FirstName + " " + user.LastName;  },
+            user => { this.user = user; this.fullname = user.FirstName + " " + user.LastName; this.loadCommands(user.Id); },
             err => { console.log(err); }
         );
   }

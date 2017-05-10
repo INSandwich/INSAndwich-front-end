@@ -14,6 +14,9 @@ export class HeaderComponent {
 
   @Input() isAuthentificated: boolean;
   @Input() username: string;
+  @Input() userId: number;
+  //@Input() lastCommandId: number;
+  //@Input() lastCommandLinesNumber: number; 
 
   constructor(private authService: AuthService, private router: Router) {}
 
