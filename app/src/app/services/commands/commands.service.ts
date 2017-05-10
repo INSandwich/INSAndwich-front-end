@@ -41,7 +41,7 @@ export class CommandsService {
   }
 
   deleteCommandLine(url: string, commandId: number, id: number) {
-    return this.http.delete(url+"/"+commandId+"/lines/"+id)
+    return this.http.delete(url+"/"+String(commandId)+"/lines/"+String(id))
                     .map(this.extractData)
                     .catch(this.handleError);
   }

@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Command, CommandLines } from '../../models/index';
 
-import { ModalService, CommandsService, UsersService } from '../../services/index';
+import { ModalService, CommandsService, UsersService, AuthService } from '../../services/index';
 
 @Component({
   templateUrl: 'app/templates/checkout/checkout.html'
@@ -16,8 +16,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   // Perhaps we'll also send an email to the person saying "succesfully ordered x,y,z"
 
 
-  constructor(private route: ActivatedRoute, private modalService: ModalService, private commandsService: CommandsService, private userService: UsersService) {
+  constructor(private router: Router, private route: ActivatedRoute, private modalService: ModalService,
+    private commandsService: CommandsService, private userService: UsersService, private authService: AuthService) {
     this.userId = route.snapshot.params['userId'];
+    this.username = route.snapshot.params['username'];
   }
 
   userTokens: number = 0;
@@ -25,6 +27,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   selectedLine: CommandLines;
 
   userId: number = 0;
+  username: string;
 
   // Subs
   commandSub$: any;
@@ -96,15 +99,33 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
   deleteCommand(id: number) {
     console.log("Deleting Command ", String(id));
-    /* // TODO: Reroute to home on done
-    this.deleteSub$ = this.commandsService.
-    */
+    this.deleteSub$ = this.commandsService.deleteCommand("http://localhost:5000/orders", id)
+                          .subscribe(
+                            res => {
+                              this.authService.resetCartSize();
+                              this.router.navigate(['/profile', this.username]);
+                          },
+                            err => { console.log(err); }
+                          );
 
   }
 
   deleteCommandLine(id: number) {
-    console.log("Deleting Command Line", String(id));
+    console.log("Deleting Command Line", String(id), this.command);
     // TODO:
+    this.deleteLineSub$ = this.commandsService.deleteCommandLine("http://localhost:5000/orders", this.command.Id, id)
+                                              .subscribe(
+                                                res => { 
+                                                  if((this.command.lines.length-1) == 0) {
+                                                    console.log(this.command.Id);
+                                                    this.deleteCommand(this.command.Id);
+                                                  }
+                                                  else {
+                                                    this.loadCommand();
+                                                  }
+                                                },
+                                                err => { console.log(err); }
+                                              );
 
   }
 

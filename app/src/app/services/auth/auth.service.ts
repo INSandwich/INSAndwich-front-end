@@ -85,5 +85,8 @@ export class AuthService {
     this.appstate.cartSize += increment;
   }
 
+  resetCartSize() {
+    this.appstate.cartSize = 0;
+  }
 
 }

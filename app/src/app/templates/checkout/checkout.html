@@ -15,11 +15,11 @@
 <modal id="custom-modal-2">
     <div class="modal" *ngIf="command">
         <div class="modal-body">
-            <h1>Supprimer {{ command.Id }}?</h1>
+            <h1>Supprimer la commande n°{{ command.Id }} ?</h1>
             <p>
-                Etes vous sur de vouloir supprimer {{ command.Id }} ?
+                Etes vous sur de vouloir supprimer la commande n°{{ command.Id }} ?
             </p>
-            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="confirmCommandDelete('custom-modal-2', command.id);">Oui</button>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="confirmCommandDelete('custom-modal-2', command.Id);">Oui</button>
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" (click)="closeModal('custom-modal-2');">Non</button>
         </div>
     </div>
