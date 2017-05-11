@@ -19,6 +19,8 @@ export class ProductComponent implements OnInit, OnDestroy {
   userId: number;
   username: string;
 
+  amountToOrder: number = 1;
+
   private product$: any;
   private addToCartSub$: any;
 
@@ -30,7 +32,7 @@ export class ProductComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    console.log(this.id);
+    //console.log(this.id);
     this.loadProduct();
     this.userId = this.authService.getUserId();
     this.username = this.authService.getUsername();
@@ -50,16 +52,26 @@ export class ProductComponent implements OnInit, OnDestroy {
       this.router.navigate(['/login']);
     }
     else {
-      this.addToCartSub$ = this.commandsService.addToCart("http://localhost:5000/orders/lines", {user_id: this.userId, product_id: id, amount: 1})
+      this.addToCartSub$ = this.commandsService.addToCart("http://localhost:5000/orders/lines", {user_id: this.userId, product_id: id, amount: this.amountToOrder})
                                                .subscribe(res => {
                                                  // add navigation
-                                                 this.authService.incrementCartSize(1);
+                                                 this.authService.incrementCartSize(this.amountToOrder);
                                                  this.notifService.open("Ajout au panier", "Ajout au panier effectué avec succès !",true);
                                                  this.router.navigate(['/home']);
                                                },
                                              err => {
                                                this.notifService.open("Erreur lors de l'ajout au panier", err.detail, false);
                                              });
+    }
+  }
+
+  incrementAmount() {
+    this.amountToOrder += 1;
+  }
+
+  decrementAmount() {
+    if(this.amountToOrder - 1 > 0) {
+      this.amountToOrder -= 1;
     }
   }
 
