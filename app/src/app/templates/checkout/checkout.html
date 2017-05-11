@@ -15,11 +15,11 @@
 <modal id="custom-modal-2">
     <div class="modal" *ngIf="command">
         <div class="modal-body">
-            <h1>Supprimer {{ command.id }}?</h1>
+            <h1>Supprimer la commande n°{{ command.Id }} ?</h1>
             <p>
-                Etes vous sur de vouloir supprimer {{ command.id }} ?
+                Etes vous sur de vouloir supprimer la commande n°{{ command.Id }} ?
             </p>
-            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="confirmCommandDelete('custom-modal-2', command.id);">Oui</button>
+            <button class="mdl-button mdl-js-button mdl-button--colored mdl-button--raised mdl-js-ripple-effect" (click)="confirmCommandDelete('custom-modal-2', command.Id);">Oui</button>
             <button class="mdl-button mdl-js-button mdl-button--colored mdl-js-ripple-effect" (click)="closeModal('custom-modal-2');">Non</button>
         </div>
     </div>
@@ -33,7 +33,7 @@
   <div class="mdl-cell mdl-cell--12-col" *ngIf="command">
     <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
       <div class="mdl-card__title">
-        <h2 class="mdl-card__title-text">Commande n°{{ command.id }}</h2>
+        <h2 class="mdl-card__title-text">Commande n°{{ command.Id }}</h2>
       </div>
       <div class="commandCard mdl-card__supporting-text">
         <table class="insandwich-commandLines mdl-data-table mdl-js-data-table">
@@ -55,7 +55,7 @@
           </tbody>
           <tfoot>
             <td class="mdl-data-table__cell--non-numeric" colspan="2"><b>Total</b></td>
-            <td class="mdl-data-table__cell--non-numeric" colspan="2">{{ command.totalPrice }} token<span *ngIf="totalPrice > 1">s</span></td>
+            <td class="mdl-data-table__cell--non-numeric" colspan="2">{{ command.totalPrice }} token<span *ngIf="command.totalPrice > 1">s</span></td>
           </tfoot>
         </table>
       </div>

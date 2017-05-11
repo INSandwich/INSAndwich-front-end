@@ -4,7 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 
 import { ListedItems, Product } from '../../models/index';
 
-import { ListedItemsService } from '../../services/index';
+import { ListedItemsService, NotifService } from '../../services/index';
 
 @Component({
   templateUrl: 'app/templates/sandwiches/sandwiches.html'
@@ -13,7 +13,7 @@ export class SandwichesComponent implements OnInit, OnDestroy {
   // Accessible thru /sandwiches
 
   // This component will contain a nicely organized list of sandwiches
-  constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer) {}
+  constructor(private listedItemsService: ListedItemsService, private sanitizer: DomSanitizer, private notifService: NotifService) {}
 
   sandwiches: Array<Product>;
   pageNumber: number;
@@ -38,7 +38,9 @@ export class SandwichesComponent implements OnInit, OnDestroy {
             this.pageNumber = listedItems.pageNumber;
             this.pageCount = listedItems.pageCnt;
             },
-          err => { console.log(err); }
+          err => {
+            this.notifService.open("Chargement des sandwiches", err.detail, false);
+          }
         );
   }
 

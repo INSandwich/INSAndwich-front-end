@@ -12,6 +12,38 @@
     text-align: center;
 }
 
+.insandwich-notif {
+  position: fixed;
+  bottom: 15px;
+  animation: slideUp 0.6s;
+  right: 30px;
+  z-index: 9999;
+  color: #FFF;
+  box-shadow: 2px 2px 4px #888888;
+}
+
+.insandwich-notif-success {
+  background-color: green;
+}
+
+.insandwich-notif-failure {
+  background-color: #E42618;
+}
+
+.insandwich-notif-wrapper {
+  padding: 15px;
+}
+
+.insandwich-notif-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.insandwich-notif-message {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
 modal {
     /* modals are hidden by default */
     display: none;
@@ -510,6 +542,28 @@ insandwich-header {
     to {
         opacity:1;
     }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    bottom: -10px;
+  }
+  to {
+    opacity: 1;
+    bottom: 15px;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 1;
+    bottom: 15px;
+  }
+  to {
+    opacity: 0;
+    bottom: -10px;
+  }
 }
 
 @media (max-width: 900px) {

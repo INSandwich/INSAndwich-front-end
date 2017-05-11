@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { AuthService } from '../../services/index';
+import { AuthService, NotifService } from '../../services/index';
 
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   displayError: boolean = false;
   errorMessage: string = "";
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private notifService: NotifService) {}
 
   ngOnInit() {
     this.authService.logout();
@@ -24,12 +24,13 @@ export class LoginComponent implements OnInit {
   login() {
     this.authService.login(this.model.login, String(Md5.hashStr(this.model.password)))
                 .subscribe(
-                    data => { console.log(data);
+                    data => { //console.log(data);
+                          this.notifService.open("Authentification", "Connexion effectuée avec succès.", true);
                           this.router.navigate(['/home']);
                     },
                     error => {
-                      this.displayError = true;
-                      this.errorMessage = error.json().detail;
+                      //console.log(error);
+                      this.notifService.open("Authentification", error.json().detail, false);
                     });
   }
 

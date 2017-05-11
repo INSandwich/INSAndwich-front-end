@@ -5,8 +5,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent }  from './app.component';
 
-import { ModalComponent } from './components/index';
-import { ModalService, CommandsService } from './services/index';
+import { ModalComponent, NotificationsComponent } from './components/index';
+import { ModalService, CommandsService, NotifService } from './services/index';
 
 import {
   NotFoundComponent,
@@ -67,13 +67,15 @@ import { ListedItemsModule, AuthModule, UsersModule, ProductsModule } from './mo
                   TermsComponent,
                   UnauthorizedComponent,
                   MDLDirective,
-                  ModalComponent
+                  ModalComponent,
+                  NotificationsComponent
                 ],
   providers: [    AppState,
                   AdminGuard,
                   AuthGuard,
                   ModalService,
-                  CommandsService
+                  CommandsService,
+                  NotifService
              ],
   bootstrap:    [ AppComponent ]
 })

@@ -19,29 +19,36 @@ export class CommandsService {
                     .catch(this.handleError);
   }
 
-  createCommand(url: string, userId: number, commandLine: CommandLines) { //: Observable<number> { // retourne un Id
-    //return this.http.post(url+"/"+userId, )
-  }
-
-  checkoutCommand(url: string) {
+  addToCart(url: string, dataToSend: any) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, options)
+    return this.http.post(url, JSON.stringify(dataToSend), options)
+                    .map(this.extractData)
+                    .catch(this.handleError);
+  }
+
+  checkout(url: string, dataToSend: any) {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    headers.append('Accept', 'application/json');
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(url, JSON.stringify(dataToSend), options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   deleteCommand(url: string, id: number) {
-    return this.http.delete(url+"/"+id)
+    return this.http.delete(url+"/"+String(id))
                     .map(this.extractData)
                     .catch(this.handleError);
   }
 
   deleteCommandLine(url: string, commandId: number, id: number) {
-    return this.http.delete(url+"/"+commandId+"/lines/"+id)
+    return this.http.delete(url+"/"+String(commandId)+"/lines/"+String(id))
                     .map(this.extractData)
                     .catch(this.handleError);
   }

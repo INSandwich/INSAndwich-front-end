@@ -1,10 +1,14 @@
 <div mdl class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-  <insandwich-header [isAuthentificated]="appstate.isAuthentificated" [username]="appstate.username"></insandwich-header>
+  <insandwich-header [cartSize]="appstate?.cartSize" [userId]="appstate?.id" [isAuthentificated]="appstate?.isAuthentificated" [username]="appstate?.username"></insandwich-header>
   <div mdl class="page-content">
     <main class="insandwich-main mdl-layout__content">
       <router-outlet></router-outlet>
+
+      <!-- To further replace with a component -->
+      <notification></notification>
+
     </main>
   </div>
   <div class="mdl-layout-spacer"></div>
-  <insandwich-footer [role]="appstate.role"></insandwich-footer>
+  <insandwich-footer [role]="appstate?.role"></insandwich-footer>
 </div>

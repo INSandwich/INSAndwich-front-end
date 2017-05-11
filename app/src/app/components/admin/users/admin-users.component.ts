@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ListedItems, User } from '../../../models/index';
 
-import { UsersService, ListedItemsService, ModalService } from '../../../services/index';
+import { UsersService, ListedItemsService, ModalService, NotifService } from '../../../services/index';
 
 @Component({
   templateUrl: 'app/templates/admin/users/admin-users.html'
@@ -24,17 +24,12 @@ export class AdminUsersComponent {
 
   selectedUser: User;
 
-  // displays
-  displayModifiationSuccess: boolean = false;
-  displayModificationErr: boolean = false;
-
-  modificationErrMsg: string = "";
-
   // page count and number
   pageCount: number;
   pageNumber: number;
 
-  constructor(private modalService: ModalService, private usersService: UsersService, private listedItemsService: ListedItemsService) { }
+  constructor(private modalService: ModalService, private usersService: UsersService,
+    private listedItemsService: ListedItemsService, private notifService: NotifService) { }
 
   ngOnInit() {
     this.loadUsers("http://localhost:5000/users");
@@ -45,8 +40,13 @@ export class AdminUsersComponent {
     this.closeModal(divId);
     this.userDeleteSub$ = this.usersService.deleteUser("http://localhost:5000/users", id)
         .subscribe(
-          res => { this.loadUsers("http://localhost:5000/users"); },
-          err => {console.log(err); }
+          res => {
+            this.notifService.open("Suppression d'un utilisateur", "Suppression effectuée avec succès", true);
+            this.loadUsers("http://localhost:5000/users");
+          },
+          err => {
+            this.notifService.open("Suppression d'un utilisateur", err.detail, false);
+          }
         );
   }
 
@@ -81,7 +81,9 @@ export class AdminUsersComponent {
             this.pageCount = listedItems.pageCnt;
             this.onSelect(this.users[0]);
           },
-          err => { console.log(err); /*Handle error here, sometimes*/ }
+          err => {
+            this.notifService.open("Chargement des utilisateurs", err.detail, false);
+          }
         )
   }
 
@@ -93,34 +95,44 @@ export class AdminUsersComponent {
     else {
       this.selected = user.Id;
     }
-    console.log(user);
+    //console.log(user);
   }
 
   editUser() {
-    if((Object.keys(this.selectedUser).length)!=9) {
-        this.modificationError("Veuillez remplir tous les champs");
+
+    var isFilled: boolean = true;
+    for (var property in this.selectedUser) {
+      if (this.selectedUser.hasOwnProperty(property)) {
+        // do stuff
+        if(!this.selectedUser[property]) {
+          isFilled = false;
+        }
+      }
+    }
+
+    if(!isFilled) {
+        this.notifService.open("Mise à jour d'un utilisateur", "Veuillez remplir tous les champs", false);
         return;
     }
     this.userRoleModifSub$ = this.usersService.updateUserRole("http://localhost:5000/users/"+this.selectedUser.Id+"/role", this.selectedUser.Role)
                                  .subscribe(
-                                   response => { this.modificationSuccess(); },
-                                   err => { this.modificationError(err.detail); }
+                                   response => {
+                                      //this.notifService.open("Mise à jour d'un utilisateur", "Utilisateur bien mis à jour.", true);
+                                   },
+                                   err => {
+                                     this.notifService.open("Mise à jour d'un utilisateur", err.detail, false);
+                                   }
                                  );
     this.userTokensModifSub$ = this.usersService.updateUserTokens("http://localhost:5000/users/"+this.selectedUser.Id+"/tokens", this.selectedUser.Tokens)
                                    .subscribe(
-                                     response => { },
-                                     err => { this.modificationError(err.detail); }
+                                     response => {
+                                       this.notifService.open("Mise à jour d'un utilisateur", "Utilisateur bien mis à jour.", true);
+                                     },
+                                     err => {
+                                       this.notifService.open("Mise à jour d'un utilisateur", err.detail, false);
+                                     }
                                    );
 
-  }
-
-  modificationSuccess() {
-    this.displayModifiationSuccess = true;
-  }
-
-  modificationError(err: string) {
-    this.displayModificationErr = true;
-    this.modificationErrMsg = err;
   }
 
   search(pageNumber?: number) {

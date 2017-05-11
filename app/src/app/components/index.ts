@@ -18,3 +18,4 @@ export { SandwichesComponent } from './sandwiches/sandwiches.component';
 export { TermsComponent } from './terms/terms.component';
 export { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 export { ModalComponent } from './modal/modal.component';
+export { NotificationsComponent } from './notifications/notifications.component';

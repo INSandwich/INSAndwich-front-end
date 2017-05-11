@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ListedItems, Product } from '../../../models/index';
 
-import { ProductsService, ListedItemsService, ModalService } from '../../../services/index';
+import { ProductsService, ListedItemsService, ModalService, NotifService } from '../../../services/index';
 
 import {FormControl} from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
@@ -27,24 +27,14 @@ export class AdminProductsComponent {
   selectedProduct: Product;
   modifiedProductSub$: any;
 
-  // display
-  displayCreationErr: boolean = false;
-  creationErrMsg: string = "";
-
-  displayCreationSuccess: boolean = false;
-
-  displayModificationErr: boolean = false;
-  modificationErrMsg: string = "";
-
-  displayModificationSuccess: boolean = false;
-
   // page count and number
   pageCount: number;
   pageNumber: number;
 
   productDeleteSub$: any;
 
-  constructor(private modalService: ModalService, private productsService: ProductsService, private listedItemsService: ListedItemsService) {  }
+  constructor(private modalService: ModalService, private productsService: ProductsService,
+    private listedItemsService: ListedItemsService, private notifService: NotifService) {  }
 
   ngOnInit() {
     this.loadProducts("http://localhost:5000/products");
@@ -55,8 +45,13 @@ export class AdminProductsComponent {
     this.closeModal(divId);
     this.productDeleteSub$ = this.productsService.deleteProduct("http://localhost:5000/products", id)
         .subscribe(
-          res => { this.loadProducts("http://localhost:5000/products");},
-          err => { console.log(err); }
+          res => {
+            this.notifService.open("Suppression d'un produit", "Suppression effectuée avec succès", true);
+             this.loadProducts("http://localhost:5000/products");
+          },
+          err => {
+            this.notifService.open("Suppression d'un produit", err.detail, false);
+          }
         );
   }
 
@@ -83,7 +78,7 @@ export class AdminProductsComponent {
         newUrl += ("?pageNumber="+pageNumber);
       }
     }
-    console.log("toto", newUrl);
+    //console.log("toto", newUrl);
 
     this.products$ = this.listedItemsService.getItems<Product>(newUrl)
         .subscribe(
@@ -93,7 +88,9 @@ export class AdminProductsComponent {
             this.pageCount = listedItems.pageCnt;
             this.onSelect(this.products[0]);
           },
-          err => { console.log(err); }
+          err => {
+            this.notifService.open("Chargement des produits", err.detail, false);
+          }
         );
   }
 
@@ -103,7 +100,9 @@ export class AdminProductsComponent {
       .getProduct("http://localhost:5000/products/", String(pId))
       .subscribe(
         item => { this.selectedProduct = item; },
-        err => { console.log(err); }
+        err => {
+          this.notifService.open("Chargement d'un produit", err.detail, false);
+        }
       );
     if (this.selected === product.Id) {
       this.selected = 0;
@@ -132,41 +131,45 @@ export class AdminProductsComponent {
   createProduct() {
     this.productModel.Available = this.productModel.Available ? 1 : 0;
     if((Object.keys(this.productModel).length) != 6) {
-      this.creationError("Veuillez remplir tous les champs"); return;
+      this.notifService.open("Chargement des commandes", "Veuillez remplir tous les champs", false); return;
     }
     this.createdProductSub$ = this.productsService.createProduct("http://localhost:5000/products", this.productModel)
-        .subscribe(product => { this.onSelect(product); this.creationSuccess(); },
-          err => { console.log(err); this.creationError(err); }
+        .subscribe(product => {
+          this.onSelect(product);
+          this.notifService.open("Création d'un produit", "Produit crée avec succès.", true);
+        },
+          err => { 
+            this.notifService.open("Création d'un produit", err.detail, false);
+          }
         );
   }
 
   editProduct() {
-    if((Object.keys(this.selectedProduct).length) != 7) {
-      this.modificationError("Veuillez remplir tous les champs");
+
+    var isFilled: boolean = true;
+    for (var property in this.selectedProduct) {
+      if (this.selectedProduct.hasOwnProperty(property)) {
+        // do stuff
+        if(!this.selectedProduct[property]) {
+          isFilled = false;
+        }
+      }
+    }
+
+    if(!isFilled) {
+      this.notifService.open("Modification d'un produit", "Veuillez remplir tous les champs.", false);
       return;
     }
     this.modifiedProductSub$ = this.productsService.updateProduct("http://localhost:5000/products/"+this.selectedProduct.Id, this.selectedProduct)
-        .subscribe(product => { this.onSelect(product); this.modificationSuccess(); },
-                   err => { console.log(err); this.creationError(err); }
+        .subscribe(product => {
+          this.onSelect(product);
+          this.notifService.open("Modification d'un produit", "Modification effectuée avec succès.", true);
+          this.loadProducts("http://localhost:5000/products", this.productNameFilter);
+         },
+                   err => { 
+                     this.notifService.open("Modification d'un produit", err.detail, false);
+                   }
       );
-  }
-
-  modificationSuccess() {
-    this.displayModificationSuccess = true;
-  }
-
-  modificationError(err: string) {
-      this.modificationErrMsg = err;
-      this.displayModificationErr = true;
-  }
-
-  creationSuccess() {
-    this.displayCreationSuccess = true;
-  }
-
-  creationError(err: string) {
-    this.creationErrMsg = err;
-    this.displayCreationErr = true;
   }
 
   ngOnDestroy() {

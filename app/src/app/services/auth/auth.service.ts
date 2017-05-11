@@ -11,19 +11,23 @@ export class AuthService {
   public token: string;
   public role: string;
   public userId: number;
+  public cartSize: number;
 
   constructor(private http: Http, public appstate: AppState) {
     // set token if set in localstorage
     appstate.isAuthentificated = false;
-
-    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+	  var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.token = currentUser && currentUser.token;
     this.role = currentUser && currentUser.role;
     this.userId = currentUser && currentUser.id;
-    if(this.role && this.token) {
+    this.cartSize = currentUser && currentUser.cartSize;
+    console.log(currentUser);
+    if(this.role && this.token && this.userId && (this.cartSize >= 0)) {
+      console.log("in here");
       appstate.role = this.role;
       appstate.username = currentUser.username;
-      appstate.id = currentUser.userId;
+      appstate.id = currentUser.id;
+      appstate.cartSize = currentUser.cartSize;
       appstate.isAuthentificated = true;
     }
   }
@@ -42,13 +46,17 @@ export class AuthService {
                       let token = res.json() && res.json().token;
                       let role = res.json() && res.json().role;
                       let id = res.json() && res.json().id;
+                      let cartSize = (res.json() && res.json().cartSize)? (res.json() && res.json().cartSize): this.appstate.cartSize;
+                      console.log(cartSize);
                       if(token && role && id) {
                         this.token = token;
                         this.role = role;
                         this.userId = id;
+                        this.cartSize = cartSize;
 
-                        localStorage.setItem('currentUser', JSON.stringify({ username: username, role: role, token: token, id: id}));
+                        localStorage.setItem('currentUser', JSON.stringify({ username: username, role: role, token: token, id: id, cartSize: cartSize}));
                         this.appstate.isAuthentificated = true;
+                        this.appstate.cartSize = cartSize;
                         this.appstate.username = username;
                         this.appstate.role = role;
                         this.appstate.id = id;
@@ -57,6 +65,7 @@ export class AuthService {
                       else {
                         this.appstate.isAuthentificated = false;
                         this.appstate.role = 'user';
+                        this.appstate.cartSize = null;
                         this.appstate.id = 0;
                         return false;
                       }
@@ -68,10 +77,44 @@ export class AuthService {
     this.role = null;
     this.appstate.isAuthentificated = false;
     this.appstate.role = 'user';
+    this.appstate.cartSize = null;
     this.appstate.id = 0;
     localStorage.removeItem('currentUser');
   }
 
+  incrementCartSize(increment: number) {
+    this.appstate.cartSize += increment;
+    this.cartSize = this.appstate.cartSize;
+    this.updateCartSize(this.appstate.cartSize);
+  }
 
+  decrementCartSize(value: number) {
+    if ((this.appstate.cartSize - value) >= 0) {
+      this.appstate.cartSize -= value;
+    }
+    this.cartSize = this.appstate.cartSize;
+    this.updateCartSize(this.appstate.cartSize);
+  }
+
+  resetCartSize() {
+    this.appstate.cartSize = 0;
+    this.cartSize = this.appstate.cartSize;
+    this.updateCartSize(this.appstate.cartSize);
+  }
+
+  getUserId(): number {
+    return this.appstate.id;
+  }
+
+  getUsername(): string {
+    return this.appstate.username;
+  }
+
+  updateCartSize(value: number) {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    currentUser.cartSize = value;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+    console.log(currentUser);
+  }
 
 }
