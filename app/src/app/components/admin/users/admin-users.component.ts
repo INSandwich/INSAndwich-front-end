@@ -101,10 +101,10 @@ export class AdminUsersComponent {
   editUser() {
 
     var isFilled: boolean = true;
-    for (var property in this.selectedProduct) {
-      if (this.selectedProduct.hasOwnProperty(property)) {
+    for (var property in this.selectedUser) {
+      if (this.selectedUser.hasOwnProperty(property)) {
         // do stuff
-        if(!this.selectedProduct[property]) {
+        if(!this.selectedUser[property]) {
           isFilled = false;
         }
       }

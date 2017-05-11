@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
             this.notifService.open("Mise à jour des informations", "Vos informations ont bien été mises à jour.", true);
           },
           error => {
-            this.notifService.open("Mise à jour des informations", err.detail, false);
+            this.notifService.open("Mise à jour des informations", error.detail, false);
           }
         );
   }
