@@ -12,6 +12,11 @@
     text-align: center;
 }
 
+.insandwich-tokens-profile {
+  float: right;
+  font-size: 20px;
+}
+
 .insandwich-notif {
   position: fixed;
   bottom: 15px;
