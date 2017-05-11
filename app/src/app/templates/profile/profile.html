@@ -100,13 +100,13 @@
               </table>
               <div class="insandwich-pagination-wrapper">
                 <div class="insandwich-pagination">
-                  <a>&laquo;</a>
-                  <a>&lt;</a>
-                  <a class="insandwich-pagination-active">{{ commands.pageNumber + 1 }}</a>
+                  <a (click)="gotToFirstPage()">&laquo;</a>
+                  <a (click)="gotToPreviousPage()">&lt;</a>
+                  <a class="insandwich-pagination-active">{{ pageNumber + 1 }}</a>
                   <p>/</p>
-                  <p>{{ commands.pageCnt }}</p>
-                  <a>&gt;</a>
-                  <a>&raquo;</a>
+                  <p>{{ pageCount }}</p>
+                  <a (click)="goToNextPage()">&gt;</a>
+                  <a (click)="goToLastPage()">&raquo;</a>
                 </div>
               </div>
             </div>

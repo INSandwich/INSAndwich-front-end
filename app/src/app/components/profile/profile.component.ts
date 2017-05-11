@@ -32,8 +32,11 @@ export class ProfileComponent implements OnInit, OnDestroy {
   private postUser$: any;
   private passwordChangeSub$: any;
   private commandSub$: any;
-  // This is a mock
+
+  //Commands list stuff
   commands: ListedItems<Command>;
+  pageNumber: number;
+  pageCount: number;
 
   constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService) {
     this.username = route.snapshot.params['username'];
@@ -43,11 +46,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.loadUser();
   }
 
-  loadCommands(userid: number) {
-    this.commandSub$ = this.listedItemsService.getItems<Command>("http://localhost:5000/orders/users/"+userid)
+  loadCommands(userid: number, pageNumber?: number) {
+    this.commandSub$ = this.listedItemsService.getItemsFromPage<Command>("http://localhost:5000/orders/users/"+userid, pageNumber)
                            .subscribe(commands => {
                              this.commands = commands;
-                             console.log(userid, commands);
+                             this.pageNumber = commands.pageNumber;
+                             this.pageCount = commands.pageCnt;
                            },
                            err => { console.log(err); }
                          );
@@ -81,6 +85,30 @@ export class ProfileComponent implements OnInit, OnDestroy {
             data=>{ this.displayPasswordModificationSuccess = true; },
             error=>{ this.displayPasswordModificationError = true; this.pwdModificationErrorMessage = error.detail; console.log(error) }
           );
+    }
+  }
+
+  goToNextPage() {
+    if(this.pageNumber < this.pageCount - 1) {
+      this.loadCommands(this.user.Id, this.pageNumber+1);
+    }
+  }
+
+  gotToPreviousPage() {
+    if(this.pageNumber != 0) {
+      this.loadCommands(this.user.Id, this.pageNumber-1);
+    }
+  }
+
+  gotToFirstPage() {
+    if(this.pageNumber != 0) {
+      this.loadCommands(this.user.Id, 0);
+    }
+  }
+
+  goToLastPage() {
+    if(this.pageNumber != (this.pageCount - 1)) {
+      this.loadCommands(this.user.Id, this.pageCount - 1);
     }
   }
 
