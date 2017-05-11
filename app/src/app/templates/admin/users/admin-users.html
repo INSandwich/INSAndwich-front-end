@@ -66,10 +66,6 @@
         <h2 class="mdl-card__title-text">Modifier un utilisateur</h2>
       </div>
       <div class="mdl-card__supporting-text">
-        <div class="loginForm">
-          <div *ngIf="displayModifiationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
-          <div *ngIf="displayModificationErr" class="formated-error-message">Erreur: {{ modificationErrMsg }} </div>
-        </div>
         <div class="mdl-grid">
           <div class="mdl-cell mdl-cell--6-col">
             <p class="insandwich-item-property"><span class="insandwich-item-title">Identifier:</span> {{ selectedUser?.Id }} </p>

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Command, CommandLines } from '../../models/index';
 
-import { ModalService, CommandsService, UsersService, AuthService } from '../../services/index';
+import { ModalService, CommandsService, UsersService, AuthService, NotifService } from '../../services/index';
 
 @Component({
   templateUrl: 'app/templates/checkout/checkout.html'
@@ -17,7 +17,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
 
 
   constructor(private router: Router, private route: ActivatedRoute, private modalService: ModalService,
-    private commandsService: CommandsService, private userService: UsersService, private authService: AuthService) {
+    private commandsService: CommandsService, private userService: UsersService, private authService: AuthService,
+    private notifService: NotifService) {
     this.userId = route.snapshot.params['userId'];
     this.username = route.snapshot.params['username'];
   }
@@ -46,7 +47,6 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   */
 
   ngOnInit() {
-
       this.loadCommand();
       this.loadUserTokens();
   }
@@ -55,7 +55,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
     this.tokensSub$ = this.userService.getUser("http://localhost:5000/users/", String(this.userId))
                                       .subscribe(
                                         user => { this.userTokens = user.Tokens; },
-                                        err => { console.log(err); }
+                                        err => { this.notifService.open("Erreur lors du chargement des tokens", err.detail, false); }
                                       );
   }
 
@@ -65,7 +65,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                              this.command = command; console.log(command);
                                            },
                                            err => {
-                                             console.log(err);
+                                             this.notifService.open("Erreur lors du chargement de la commande", err.detail, false);
                                           });
   }
 
@@ -95,9 +95,12 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                             .subscribe(
                                               res => {
                                                 this.authService.resetCartSize();
+                                                this.notifService.open("Paiement", "Paiement effectué avec succès !", true);
                                                 this.router.navigate(['/profile', this.username]);
                                               },
-                                              err => { console.log(err); /* => handle this = next thing*/}
+                                              err => {
+                                                this.notifService.open("Erreur lors du paiement", err.detail, false);
+                                              }
                                             );
 
   }
@@ -108,9 +111,10 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                           .subscribe(
                             res => {
                               this.authService.resetCartSize();
+                              this.notifService.open("Suppresion d'une commande", "Commande supprimée avec succès", true);
                               this.router.navigate(['/profile', this.username]);
                           },
-                            err => { console.log(err); }
+                            err => { this.notifService.open("Erreur lors de la suppression", err.detail, false); }
                           );
 
   }
@@ -122,15 +126,16 @@ export class CheckoutComponent implements OnInit, OnDestroy {
                                               .subscribe(
                                                 res => { 
                                                   if((this.command.lines.length-1) == 0) {
-                                                    console.log(this.command.Id);
+                                                    //console.log(this.command.Id);
                                                     this.deleteCommand(this.command.Id);
                                                   }
                                                   else {
                                                     this.authService.decrementCartSize(this.selectedLine.quantity);
+                                                    this.notifService.open("Suppression d'une ligne de commande", "Ligne de commande bien retirée.", true);
                                                     this.loadCommand();
                                                   }
                                                 },
-                                                err => { console.log(err); }
+                                                err => { this.notifService.open("Erreur lors de la suppression", err.detail, false); }
                                               );
 
   }

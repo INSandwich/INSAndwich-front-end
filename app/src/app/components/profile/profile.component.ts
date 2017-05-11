@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { User, ListedItems, Command } from '../../models/index';
 
-import { UsersService, ListedItemsService } from '../../services/index';
+import { UsersService, ListedItemsService, NotifService } from '../../services/index';
 
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -16,15 +16,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
   username: string;
   user: User;
   model: any = {};
-
-  displayModificationSuccess: boolean = false;
-  displayError: boolean = false;
-
-  displayPasswordModificationSuccess: boolean = false;
-  displayPasswordModificationError: boolean = false;
-
-  errorMessage: string = "";
-  pwdModificationErrorMessage: string = "";
 
   fullname: string;
 
@@ -38,7 +29,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   pageNumber: number;
   pageCount: number;
 
-  constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService) {
+  constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService
+    , private notifService: NotifService) {
     this.username = route.snapshot.params['username'];
   }
 
@@ -53,7 +45,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
                              this.pageNumber = commands.pageNumber;
                              this.pageCount = commands.pageCnt;
                            },
-                           err => { console.log(err); }
+                           err => {
+                             this.notifService.open("Chargement des commandes", err.detail, false);
+                           }
                          );
   }
 
@@ -61,29 +55,44 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.user$ = this.userService.getUser("http://localhost:5000/users/login/", this.username)
         .subscribe(
             user => { this.user = user; this.fullname = user.FirstName + " " + user.LastName; this.loadCommands(user.Id); },
-            err => { console.log(err); }
+            err => {
+              this.notifService.open("Chargement des informations sur l'utilisateur", err.detail, false);
+            }
         );
   }
 
   updateUserInfos() {
     this.postUser$ = this.userService.updateInfos("http://localhost:5000/users/"+this.user.Id+"/update-info", this.user)
         .subscribe(
-          user => {  this.user = user; this.fullname = user.FirstName + " " + user.LastName; this.toggleSuccessDisplay(); },
-          error => { this.displayError = true; this.errorMessage = error.detail; console.log(error);}
+          user => { 
+            this.user = user;
+            this.fullname = user.FirstName + " " + user.LastName;
+            this.notifService.open("Mise à jour des informations", "Vos informations ont bien été mises à jour.", true);
+          },
+          error => {
+            this.notifService.open("Mise à jour des informations", err.detail, false);
+          }
         );
   }
 
   updatePassword() {
     if(this.model.oldpwd && this.model.pwd && this.model.pwdConfirm) {
-      console.log(this.model);
-      if(this.model.pwd != this.model.pwdConfirm) { this.pwdModificationErrorMessage="Les deux mots de passe ne correspondent pas."; this.displayPasswordModificationError = true; return; }
-      console.log(String(Md5.hashStr(this.model.oldpwd)));
-      console.log(this.user.Password);
+      //console.log(this.model);
+      if(this.model.pwd != this.model.pwdConfirm) {
+        this.notifService.open("Mise à jour du mot de passe", "Les deux mots de passe entrés de correspondent pas.", false);
+        return;
+      }
+      //console.log(String(Md5.hashStr(this.model.oldpwd)));
+      //console.log(this.user.Password);
       this.passwordChangeSub$ = this.userService
           .updatePassword("http://localhost:5000/users/"+this.user.Id+"/update-passw", String(Md5.hashStr(this.model.oldpwd)), String(Md5.hashStr(this.model.pwd)))
           .subscribe(
-            data=>{ this.displayPasswordModificationSuccess = true; },
-            error=>{ this.displayPasswordModificationError = true; this.pwdModificationErrorMessage = error.detail; console.log(error) }
+            data=>{
+              this.notifService.open("Mise à jour du mot de passe", "Mot de passe modifié avec succès.", true);
+            },
+            error=>{
+              this.notifService.open("Mise à jour du mot de passe", error.detail, false);
+            }
           );
     }
   }
@@ -110,10 +119,6 @@ export class ProfileComponent implements OnInit, OnDestroy {
     if(this.pageNumber != (this.pageCount - 1)) {
       this.loadCommands(this.user.Id, this.pageCount - 1);
     }
-  }
-
-  toggleSuccessDisplay() {
-    this.displayModificationSuccess = !this.displayModificationSuccess;
   }
 
   ngOnDestroy() {

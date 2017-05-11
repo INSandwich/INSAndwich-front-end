@@ -39,11 +39,6 @@
           </div>
         </div>
         <ul class="mdl-list">
-          <!--li class="insandwich-list-selected insandwich-search-section--item mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              Kebab
-            </span>
-          </li-->
           <li *ngFor="let product of products" (click)="onSelect(product)" [ngClass]="{'insandwich-list-selected': selected === product.Id }" class="insandwich-search-section--item mdl-list__item">
             <span class="mdl-list__item-primary-content">
               {{ product.Name }}
@@ -71,10 +66,6 @@
         <h2 class="mdl-card__title-text">Editer un produit</h2>
       </div>
       <div class="mdl-card__supporting-text" *ngIf="selectedProduct">
-            <div class="loginForm">
-              <div *ngIf="displayModifiationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
-              <div *ngIf="displayModificationErr" class="formated-error-message">Erreur: {{ modificationErrMsg }} </div>
-            </div>
             <div class="mdl-textfield mdl-js-textfield">
                 <label class="insandwich-form-label">Nom:</label>
                 <input class="mdl-textfield__input" placeholder="Nom de l'article" [(ngModel)]="selectedProduct.Name" type="text" id="name">
@@ -124,10 +115,6 @@
         <h2 class="mdl-card__title-text">Créer un nouveau produit</h2>
       </div>
       <div class="mdl-card__supporting-text">
-          <div class="loginForm">
-            <div *ngIf="displayCreationSuccess" class="formated-success-message">Opération effectuée avec succès</div><br />
-            <div *ngIf="displayCreationErr" class="formated-error-message">Erreur: {{ creationErrMsg }} </div>
-          </div>
           <div class="mdl-textfield mdl-js-textfield">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" [(ngModel)]="productModel.Name" type="text" id="name">

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { ProductsService, AuthService, CommandsService } from '../../services/index';
+import { ProductsService, AuthService, CommandsService, NotifService } from '../../services/index';
 
 import { Product } from '../../models/index';
 
@@ -24,7 +24,8 @@ export class ProductComponent implements OnInit, OnDestroy {
 
   constructor(private route: ActivatedRoute, private productsService: ProductsService, private commandsService: CommandsService,
      private sanitizer: DomSanitizer,
-     private authService: AuthService, private router: Router) {
+     private authService: AuthService, private router: Router,
+     private notifService: NotifService) {
     this.id = route.snapshot.params['id'];
   }
 
@@ -38,14 +39,13 @@ export class ProductComponent implements OnInit, OnDestroy {
   loadProduct() {
     this.product$ = this.productsService.getProduct("http://localhost:5000/products/", this.id)
                         .subscribe(
-                            product => { console.log(product); this.product = product; },
-                            err => { console.log(err); }
+                            product => { this.product = product; },
+                            err => { this.notifService.open("Erreur lors du chargement", err.detail, false); }
                         );
   }
 
   addToCart(id: number) {
     // todo later, change amount
-    console.log(id, this.userId);
     if(!this.userId) {
       this.router.navigate(['/login']);
     }
@@ -54,10 +54,11 @@ export class ProductComponent implements OnInit, OnDestroy {
                                                .subscribe(res => {
                                                  // add navigation
                                                  this.authService.incrementCartSize(1);
+                                                 this.notifService.open("Ajout au panier", "Ajout au panier effectué avec succès !",true);
                                                  this.router.navigate(['/home']);
                                                },
                                              err => {
-                                              console.log(err);
+                                               this.notifService.open("Erreur lors de l'ajout au panier", err.detail, false);
                                              });
     }
   }

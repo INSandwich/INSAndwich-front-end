@@ -3,6 +3,6 @@ export class AppState {
     username: string;
     role: string;
     id: number;
-    //lastCommandId: number;
+    lastCommandId: number;
     cartSize: number;
 }
