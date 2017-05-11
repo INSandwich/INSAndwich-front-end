@@ -30,13 +30,13 @@ export class CommandsService {
                     .catch(this.handleError);
   }
 
-  checkoutCommand(url: string) {
+  checkout(url: string, dataToSend: any) {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     let options = new RequestOptions({ headers: headers });
 
-    return this.http.post(url, options)
+    return this.http.post(url, JSON.stringify(dataToSend), options)
                     .map(this.extractData)
                     .catch(this.handleError);
   }

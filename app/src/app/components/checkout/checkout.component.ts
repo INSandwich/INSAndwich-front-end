@@ -91,10 +91,15 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   checkout() {
     console.log("Checking out :)");
 
-    /* // TODO :
-    this.checkoutSub$ = this.commandsService.checkout()
-                                            .subscribe();
-    */
+    this.checkoutSub$ = this.commandsService.checkout("http://localhost:5000/orders/checkout", {userTokens: this.userTokens, user_id: this.userId, command_id: this.command.Id, commandTotal: this.command.totalPrice})
+                                            .subscribe(
+                                              res => {
+                                                this.authService.resetCartSize();
+                                                this.router.navigate(['/profile', this.username]);
+                                              },
+                                              err => { console.log(err); /* => handle this = next thing*/}
+                                            );
+
   }
 
   deleteCommand(id: number) {
