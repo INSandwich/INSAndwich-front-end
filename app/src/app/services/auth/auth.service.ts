@@ -119,7 +119,6 @@ export class AuthService {
   updateUsername(username: string) {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     this.appstate.username = username;
-    this.username = username;
     currentUser.username = username;
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }

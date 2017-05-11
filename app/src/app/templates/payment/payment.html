@@ -1,1 +1,55 @@
-<p>Pay pls</p>
+
+<div mdl class="insandwich-different mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="logo-font insandwich-slogan">
+      Ajouter des tokens
+    </div>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col">
+    <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h2 class="mdl-card__title-text">Choisissez votre moyent de paiement</h2>
+      </div>
+      <div class="loginForm mdl-card__supporting-text">
+        <ul class="insandwich-list-control mdl-list">
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Carte Bancaire
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-1">
+                <input type="radio" id="list-option-1" class="mdl-radio__button" name="options" value="1" checked />
+              </label>
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Izly
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-2">
+                <input type="radio" id="list-option-2" class="mdl-radio__button" name="options" value="1" />
+              </label>
+            </span>
+          </li>
+          <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              Paypal
+            </span>
+            <span class="mdl-list__item-secondary-action">
+              <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="list-option-3">
+                <input type="radio" id="list-option-3" class="mdl-radio__button" name="options" value="1" />
+              </label>
+            </span>
+          </li>
+        </ul>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a (click)="pay()" class="mdl-button mdl-button--colored mdl-button--raised mdl-js-button mdl-js-ripple-effect">
+          Payer
+        </a>
+        <span> Sachez que ce composant est un mock qui vous rajoutera toujours 10 tokens</span>
+      </div>
+    </div>
+  </div>
+</div>

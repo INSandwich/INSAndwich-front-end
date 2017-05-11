@@ -17,6 +17,10 @@
   font-size: 20px;
 }
 
+.insandwich-list-control {
+  width: 200px;
+}
+
 .insandwich-notif {
   position: fixed;
   bottom: 15px;

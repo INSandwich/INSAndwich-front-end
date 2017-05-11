@@ -20,10 +20,10 @@ export class PaymentComponent implements OnDestroy {
   }
 
   pay() {
-    this.userSub$ = this.userService.updateUserTokens("http://localhost:5000/user"+this.userId+"/add/", 10)
+    this.userSub$ = this.userService.updateUserTokens("http://localhost:5000/users/"+this.userId+"/add/", 10)
                                     .subscribe(
                                       res => {
-                                        this.notifService.open("Payment", "Votre compte à été crédité de 10 tokens.");
+                                        this.notifService.open("Payment", "Votre compte à été crédité de 10 tokens.", true);
                                       },
                                       err => {
                                         this.notifService.open("Payment", err.detail, false);
