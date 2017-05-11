@@ -28,7 +28,14 @@
 
 <div mdl class="insandwich-different mdl-grid">
   <div class="mdl-cell mdl-cell--12-col">
-    <div class="logo-font insandwich-slogan">Panier</div>
+    <div class="logo-font insandwich-slogan">
+      Panier
+      <div class="insandwich-tokens-profile">
+        <a [routerLink]="['/pay']" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+          Ajouter des tokens
+        </a>
+      </div>
+    </div>
   </div>
   <div class="mdl-cell mdl-cell--12-col" *ngIf="command">
     <div class="insandwich-card-wide mdl-card mdl-shadow--2dp">

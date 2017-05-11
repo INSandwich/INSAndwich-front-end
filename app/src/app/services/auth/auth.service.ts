@@ -114,7 +114,14 @@ export class AuthService {
     var currentUser = JSON.parse(localStorage.getItem('currentUser'));
     currentUser.cartSize = value;
     localStorage.setItem('currentUser', JSON.stringify(currentUser));
-    console.log(currentUser);
+  }
+
+  updateUsername(username: string) {
+    var currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.appstate.username = username;
+    this.username = username;
+    currentUser.username = username;
+    localStorage.setItem('currentUser', JSON.stringify(currentUser));
   }
 
 }

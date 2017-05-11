@@ -1,10 +1,10 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { User, ListedItems, Command } from '../../models/index';
 
-import { UsersService, ListedItemsService, NotifService } from '../../services/index';
+import { UsersService, ListedItemsService, NotifService, AuthService } from '../../services/index';
 
 import { Md5 } from 'ts-md5/dist/md5';
 
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   pageCount: number;
 
   constructor(private route: ActivatedRoute, private userService: UsersService, private listedItemsService: ListedItemsService
-    , private notifService: NotifService) {
+    , private notifService: NotifService, private authService: AuthService, private router: Router) {
     this.username = route.snapshot.params['username'];
   }
 
@@ -65,8 +65,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.postUser$ = this.userService.updateInfos("http://localhost:5000/users/"+this.user.Id+"/update-info", this.user)
         .subscribe(
           user => { 
-            this.user = user;
-            this.fullname = user.FirstName + " " + user.LastName;
+            this.authService.updateUsername(user.Login);
+            this.router.navigate(['/profile', user.Login]);
             this.notifService.open("Mise à jour des informations", "Vos informations ont bien été mises à jour.", true);
           },
           error => {
@@ -88,6 +88,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
           .updatePassword("http://localhost:5000/users/"+this.user.Id+"/update-passw", String(Md5.hashStr(this.model.oldpwd)), String(Md5.hashStr(this.model.pwd)))
           .subscribe(
             data=>{
+              this.model = {};
               this.notifService.open("Mise à jour du mot de passe", "Mot de passe modifié avec succès.", true);
             },
             error=>{

@@ -19,3 +19,4 @@ export { TermsComponent } from './terms/terms.component';
 export { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 export { ModalComponent } from './modal/modal.component';
 export { NotificationsComponent } from './notifications/notifications.component';
+export { PaymentComponent } from './payment/payment.component';
