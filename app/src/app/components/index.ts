@@ -4,6 +4,7 @@ export { CheckoutComponent } from './checkout/checkout.component';
 export { CommandComponent } from './command/command.component';
 export { DessertsComponent } from './desserts/desserts.component';
 export { DrinksComponent } from './drinks/drinks.component';
+export { FaqComponent } from './faq/faq.component';
 export { FooterComponent } from './footer/footer.component';
 export { HeaderComponent } from './header/header.component';
 export { HomeComponent } from './home/home.component';
