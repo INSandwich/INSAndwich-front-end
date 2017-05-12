@@ -593,6 +593,11 @@ insandwich-header {
   .insandwich-navigation {
     display: none !important;
   }
+
+  .insandwich-search-bar {
+    width: 150px;
+  }
+
 }
 
 @media (max-width: 1400px) {
@@ -609,7 +614,9 @@ insandwich-header {
   .box-icon {
     display: none !important;
   }
-
+  .insandwich-search-bar {
+    width: 150px;
+  }
   .cart-icon {
     display: none !important;
   }

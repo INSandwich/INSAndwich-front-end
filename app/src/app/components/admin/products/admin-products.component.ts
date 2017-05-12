@@ -130,6 +130,7 @@ export class AdminProductsComponent {
 
   createProduct() {
     this.productModel.Available = this.productModel.Available ? 1 : 0;
+    
     if((Object.keys(this.productModel).length) != 6) {
       this.notifService.open("Chargement des commandes", "Veuillez remplir tous les champs", false); return;
     }

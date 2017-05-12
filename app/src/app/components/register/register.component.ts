@@ -20,6 +20,10 @@ export class RegisterComponent implements OnDestroy {
   constructor(private usersService: UsersService, private router: Router, private notifService: NotifService) {}
 
   register() {
+    if((Object.keys(this.model).length) != 7) {
+      this.notifService.open("Création de compte", "Veuillez remplir tous les champs", false); 
+      return;
+    }
     if (this.model.passwordConfirm == this.model.password) {
       this.usersService.createUser('http://localhost:5000/users', this.model.firstname, this.model.lastname, this.model.email, this.model.login, String(Md5.hashStr(this.model.password)), this.model.adresse)
                        .subscribe(
