@@ -21,9 +21,9 @@ export class AuthService {
     this.role = currentUser && currentUser.role;
     this.userId = currentUser && currentUser.id;
     this.cartSize = currentUser && currentUser.cartSize;
-    console.log(currentUser);
+    //console.log(currentUser);
     if(this.role && this.token && this.userId && (this.cartSize >= 0)) {
-      console.log("in here");
+      //console.log("in here");
       appstate.role = this.role;
       appstate.username = currentUser.username;
       appstate.id = currentUser.id;
@@ -42,12 +42,12 @@ export class AuthService {
 
     return this.http.post('http://localhost:5000/auth', JSON.stringify({ login: username, password: password }), options)
                     .map((res: Response) => {
-                      console.log(res.json());
+                      //console.log(res.json());
                       let token = res.json() && res.json().token;
                       let role = res.json() && res.json().role;
                       let id = res.json() && res.json().id;
                       let cartSize = (res.json() && res.json().cartSize)? (res.json() && res.json().cartSize): this.appstate.cartSize;
-                      console.log(cartSize);
+                      //console.log(cartSize);
                       if(token && role && id) {
                         this.token = token;
                         this.role = role;

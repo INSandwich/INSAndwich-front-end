@@ -62,7 +62,7 @@ export class UsersService {
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/json');
     let options = new RequestOptions({ headers: headers });
-    console.log(newRole);
+    //console.log(newRole);
 
     return this.http.put(url, JSON.stringify({role: newRole}), options)
                .map(this.extractData)
@@ -95,7 +95,7 @@ export class UsersService {
       // In a real world app, you might use a remote logging infrastructure
       let errMsg: string;
       if (error instanceof Response) {
-        console.log(error.json());
+        //console.log(error.json());
         const body = error.json() || '';
         //const err = body.error || JSON.stringify(body);
         errMsg = body;

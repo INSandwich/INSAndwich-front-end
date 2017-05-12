@@ -40,8 +40,7 @@ export class CommandComponent implements OnInit, OnDestroy {
   }
 
   loadCommand() {
-    console.log("Loading command");
-    // TODO:
+    //console.log("Loading command");
     this.commandSub$ = this.commandsService.getCommand("http://localhost:5000/orders", Number(this.commandId))
                            .subscribe(command => { this.command = command; },
                            err => { this.notifService.open("Erreur lors du chargement d'une commande", err.detail, false); }
@@ -62,7 +61,7 @@ export class CommandComponent implements OnInit, OnDestroy {
   }
 
   deleteCommand(id: number) {
-    console.log("Deleting Command ", String(id));
+    //console.log("Deleting Command ", String(id));
     this.deleteSub$ = this.commandsService.deleteCommand("http://localhost:5000/orders", id)
                           .subscribe(
                             res => {

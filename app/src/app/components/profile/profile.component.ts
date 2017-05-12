@@ -96,6 +96,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
             }
           );
     }
+    else {
+      this.notifService.open("Mise à jour du mot de passe", "Veuillez remplir tous les champs.", false);
+    }
   }
 
   goToNextPage() {

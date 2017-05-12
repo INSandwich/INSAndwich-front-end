@@ -62,7 +62,8 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   loadCommand() {
     this.commandSub$ = this.commandsService.getCommand("http://localhost:5000/orders/last", this.userId)
                                            .subscribe(command => {
-                                             this.command = command; console.log(command);
+                                             this.command = command;
+                                             //console.log(command);
                                            },
                                            err => {
                                              this.notifService.open("Erreur lors du chargement de la commande", err.detail, false);
@@ -89,7 +90,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   checkout() {
-    console.log("Checking out :)");
+    //console.log("Checking out :)");
 
     this.checkoutSub$ = this.commandsService.checkout("http://localhost:5000/orders/checkout", {userTokens: this.userTokens, user_id: this.userId, command_id: this.command.Id, commandTotal: this.command.totalPrice})
                                             .subscribe(
@@ -106,7 +107,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   deleteCommand(id: number) {
-    console.log("Deleting Command ", String(id));
+    //console.log("Deleting Command ", String(id));
     this.deleteSub$ = this.commandsService.deleteCommand("http://localhost:5000/orders", id)
                           .subscribe(
                             res => {
@@ -120,8 +121,7 @@ export class CheckoutComponent implements OnInit, OnDestroy {
   }
 
   deleteCommandLine(id: number) {
-    console.log("Deleting Command Line", String(id), this.command);
-    // TODO:
+    //console.log("Deleting Command Line", String(id), this.command);
     this.deleteLineSub$ = this.commandsService.deleteCommandLine("http://localhost:5000/orders", this.command.Id, id)
                                               .subscribe(
                                                 res => { 

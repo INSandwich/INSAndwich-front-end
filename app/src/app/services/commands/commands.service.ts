@@ -62,7 +62,7 @@ export class CommandsService {
     // In a real world app, you might use a remote logging infrastructure
     let errMsg: string;
     if (error instanceof Response) {
-      console.log(error.json());
+      //console.log(error.json());
       const body = error.json() || '';
       //const err = body.error || JSON.stringify(body);
       errMsg = body;
