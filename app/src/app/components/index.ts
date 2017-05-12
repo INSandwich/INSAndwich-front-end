@@ -1,4 +1,5 @@
 export { NotFoundComponent } from './404/404.component';
+export { AboutComponent } from './about/about.component';
 export { AdminComponent, AdminUsersComponent, AdminProductsComponent } from './admin/index';
 export { CheckoutComponent } from './checkout/checkout.component';
 export { CommandComponent } from './command/command.component';

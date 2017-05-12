@@ -10,6 +10,7 @@ import { ModalService, CommandsService, NotifService } from './services/index';
 
 import {
   NotFoundComponent,
+  AboutComponent,
   AdminComponent,
   AdminUsersComponent,
   AdminProductsComponent,
@@ -53,6 +54,7 @@ import { ListedItemsModule, AuthModule, UsersModule, ProductsModule } from './mo
   ],
   // This should change, as we add modules
   declarations: [ NotFoundComponent,
+                  AboutComponent,
                   AdminComponent,
                   AdminUsersComponent,
                   AdminProductsComponent,

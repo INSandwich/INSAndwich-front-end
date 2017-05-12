@@ -7,6 +7,7 @@ import { AdminGuard, AuthGuard } from './guards/index';
 
 import {
   NotFoundComponent,
+  AboutComponent,
   AdminComponent,
   AdminProductsComponent,
   AdminUsersComponent,
@@ -29,6 +30,7 @@ import {
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: '404', component: NotFoundComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'admin', component: AdminComponent, canActivate: [AdminGuard]},
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminGuard]},
   { path: 'admin/users', component: AdminUsersComponent, canActivate: [AdminGuard]},
