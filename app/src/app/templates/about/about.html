@@ -18,7 +18,7 @@
       <p>Dans le cas où l’utilisateur ne possède pas encore un compte, l’application l’invite à en créer un. Quelques champs sont à remplir afin de pouvoir identifier la personne sur le campus. Il ne reste plus qu’alors à se connecter et faire son choix.</p>
 
       <h1>Fonctionnement Général</h1>
-
+      <img src="https://docs.google.com/drawings/d/1XfEaFMrW3xMYEoBO4vtAezExMmeGK_ZGSl2fqFwdRbw/pub?w=480&amp;h=360">
       <p></p>
 
     </div>
@@ -43,12 +43,30 @@
         de données et <a href="https://getmdl.io">Material Design Lite</a> pour l'affichage stylisé.
       </p>
 
-      <h5>Angular 2 et Architecture</h5>
+      <h5>Angular 2</h5>
 
-      <p><b>Components</b></p>
-      <p>Les components, ou composants, sont la base de l'application</p>
+      <p><b>Architecture</b></p>
+      <p>Le front-end se constitue de plusieurs éléments qui dialoguent entre eux. Pour bien comprendre le fonctionnement de ce dernier, nous vous proposons d’étudier le schéma “architecture” fournit sur le site d’angular 2.</p>
+      <img src="https://angular.io/resources/images/devguide/architecture/overview2.png" height="300">
+      <p>Comme nous pouvons le voir il y a divers éléments qui constituent notre application. Le coeur de métier d’Insandwich réside dans les <b>“components”</b>. En effet, chacune des pages que l’on peut visiter sur ce site est en fait un composant ayant un but unique, par exemple celui de récupérer les informations d’un produit pour les afficher.
+        Pour ce faire, le composant va appeler un <b>service</b>, qui lui ira chercher dans le back-end la ressource demandée en fonction de l’URL et de la méthode HTTP employée. Le composant stockera l’information qui pourra ensuite être liée au <b>template</b>. Le template quant à lui est ce que l’utilisateur va voir, c’est-à-dire le HTML et CSS, grâce à son navigateur.
+      </p>
+      <p>On utilise également des <b>directives</b>, qui permettent de modifier elles aussi le DOM, par exemple pour les descriptions des produits que l’on tronque à 100 caractères dans les listes de produits, ou encore l’actualisation du javascript utilisé par material design lite à l’initialisation de l’application grâce à la directive “mdl”.
+      </p>
 
-      <p></p>
+      <p><b>"Single Page App"</b></p>
+
+      <p>Une particularité d’Angular 2 est son aspect “<b>Single Page App</b>”. Pour obtenir cet aspect, il y a un composant <b>routeur</b> qui permet d’associer à chaque route son composant. Par exemple:
+        <code>{{ '{' }} path: 'about', component: AboutComponent {{ '}' }}</code>. Grâce à cette association et lorsque la route ‘/about’ de notre site est chargée, Angular 2 affiche le template du composant “AboutComponent”. Couplé à un header et un footer comportant des liens vers les composants divers, il n’est donc <b>pas nécessaire</b> de recharger la page pour voir des informations différentes. Voici un schéma pour illustrer ces propos :
+      </p>
+      <img src="https://docs.google.com/drawings/d/19-2P-a-grUXF2w8N-SKmWWbGOpTHoyZlhUWR1BLXxec/pub?w=960&amp;h=480">
+
+      <p><b>Spécificités liées à notre projet</b></p>
+      <p>Une des spécificités de notre projet et l’aspect <b>authentification</b> par tokens et rôles des utilisateurs. En effet, un utilisateur ne pourra pas accéder à toutes les pages qu’il souhaite. Il faudrait par exemple que l’utilisateur soit un administrateur du site afin de pouvoir charger la page /admin de notre site. S’il n’est pas autorisé, l’utilisateur sera redirigé à une page /unauthorized.</p>
+      <p>Tout cela est possible grâce à plusieurs mécanismes. L’utilisateur doit tout d’abord se connecter au site via la route /login. Il rentre son nom d’utilisateur, son mot de passe, puis le mot de passe est <b>hashé</b>, envoyé au back-end, et s’il correspond au mot de passe sauvegardé en base de données, le back-end renvoie diverses informations, notamment un <b>token</b> qui permettra de confirmer que l’utilisateur est bien authentifié, et de gérer l’accès aux diverses routes du back-end.</p>
+      <p>Un autre mécanisme est celui des “<b>guards</b>”. Ces guards autorisent ou non l’utilisateur à accéder à une page, selon son rôle notamment, et s’il est authentifié. Tout cela est défini une fois de plus dans le composant de routage de notre application.</p>
+      <p>Nous avons également mis en place plusieurs composants sur mesure tels qu’un <b>système de notification</b> pour l’utilisateur et des <b>boîtes de dialogue</b>. Ces derniers sont décrits comme des composants et sont eux-mêmes liés à des services, qui permettent d’ouvrir une notification ou une boîte de dialogue (ex : création de compte, suppression de commandes…).</p>
+      <p>Enfin, nous avons optés pour la <b>pagination</b> des éléments listés afin d’éviter de faire de très grosses requêtes sur la base de données.</p>
 
     </div>
     <div class="mdl-tabs__panel" id="conclusion-panel">
