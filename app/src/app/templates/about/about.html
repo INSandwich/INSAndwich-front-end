@@ -24,7 +24,49 @@
     </div>
     <div class="mdl-tabs__panel" id="back-panel">
       <br />
-      <p>back</p>
+      <h1>Fonctionnement du back-end</h1>
+      <p>Le back-end se compose principalement d'une API Rest, qui interagit avec une base de données.</p>
+      <h3>API Rest</h3>
+      <h3>Base de données</h3>
+      <p>
+          L’architecture de la base de données est la suivante :
+          <a href="./images/database_diagram.png"><img alt="Database diagram" src="./images/database_diagram.png" /></a>
+      </p>
+      <p>
+          Une commande, stockée dans une entrée de <i>Commands</i>, peut avoir plusieurs produits
+          différents, stockés dans <i>Command_Lines</i>. Chaque produit peut être commandé
+          en plusieurs exemplaires (<i>Amount</i>), et chaque commande, crée à une date donnée
+          (<i>Creation_date</i>), est associée à l’utilisateur qui l’a créé (dont les données sont
+          stockées dans <i>Users</i>). Les mots de passe ne sont pas stockés en clair mais hashés.
+          Les différents produits disponibles sont stockés dans la table <i>Products</i>, et
+          appartiennent à une catégorie (sandwich, boisson…) ce qui permet un tri efficace
+          sur le site.
+        </p>
+        <p>
+          La base de donnée répond aux critères de la 3ème forme normale (3FN)
+          ce qui permet de s’assurer de la cohérence des données. C’est pour cela que les
+          produits d’une commande sont, séparés de la commande. Cela améliore également
+          l’expérience utilisateur, car le front-end propose la même structure de données
+          avec une gestion par commandes séparées.
+        </p>
+        <p>
+
+          Cette base de donnée, relationnelle, est gérée
+          par sqlite3, moteur relationnel de base de données. Il a l’avantage d’être
+          relativement simple à prendre en main, et est également bien pris en
+          charge par Express.
+        </p>
+        <p>
+          Il est de travailler sur la base de données à l'aide de sqlite3, pour cela : <br/>
+          <code>$ cd INSAndwich-Rest-API/api</code><br />
+          <code>$ sqlite3 insadwich.db</code><br />
+
+          Il est également à tout moment possible de regénérer la base de données à partir d'un
+          fichier de commandes sql :  <br/>
+          <code>$ rm insadwich.db</code><br />
+          <code>$ sqlite3 insadwich.db < sql/insadwich.db </code><br />
+        </p>
+
     </div>
     <div class="mdl-tabs__panel" id="front-panel">
       <br />
