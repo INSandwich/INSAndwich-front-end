@@ -4,7 +4,7 @@
         <a href="#intro-panel" class="mdl-tabs__tab is-active">Introduction &amp; Fonctionnement Général</a>
         <a href="#back-panel" class="mdl-tabs__tab">Back-End &amp; Base de Données</a>
         <a href="#front-panel" class="mdl-tabs__tab">Front-End</a>
-        <a href="#conclusion-panel" class="mdl-tabs__tab">Conclusion</a>
+        <a href="#conclusion-panel" class="mdl-tabs__tab">Pistes d'amélioration</a>
     </div>
 
     <div class="mdl-tabs__panel is-active" id="intro-panel">
@@ -18,20 +18,68 @@
       <p>Dans le cas où l’utilisateur ne possède pas encore un compte, l’application l’invite à en créer un. Quelques champs sont à remplir afin de pouvoir identifier la personne sur le campus. Il ne reste plus qu’alors à se connecter et faire son choix.</p>
 
       <h1>Fonctionnement Général</h1>
+      <p>Voici tout d'abord le schéma général de notre application : </p>
       <img src="https://docs.google.com/drawings/d/1XfEaFMrW3xMYEoBO4vtAezExMmeGK_ZGSl2fqFwdRbw/pub?w=480&amp;h=360">
-      <p></p>
+      <p>Commençons avec la base de données. Pour cette dernière, nous avons optés pour utiliser <b>sqlite3</b>, basé donc sur du SQL. Cette base de données
+        nous permets de stocker diverses informations grace à SQL. Ces données peuvent également être supprimées, mises à jour... La base de données de notre
+        projet fait partie du <b>"back-end"</b> de notre application.</p>
+      <p>Une autre partie de notre back-end est l'api rest. Cette dernière permet de faire la relation entre la base de données et des routes HTTP. Elle
+        transforme en fait nos données SQL en Objet JSON qui pourra être traité par notre front-end par la suite. Le principe de l'api rest est de renvoyer
+        une information précise en fonction de l'url, du verbe HTTP et de l'eventuelle ressource JSON envoyée par le front-end.</p>
+      <p>La raison principale pour laquelle nous avons choisi de faire une api rest est pour la portabilité de l'application car il serait alors possible
+        de créer, à titre d'exemple, une application mobile faisant des appels sur cette api à l'aide d'HTTP.</p>
+      <p>Enfin, le <b>front-end</b> est la partie "visible" par l'utilisateur. Le front-end génère ce que l'on nomme ds "vues" pour l'utilisateur, et fait
+        des requetes sur notre back-end en fonction des boutons cliqués, des pages à afficher, etc...</p>
+      <p>Pour le front-end nous avons décidés d'utiliser une technologie plutôt récente, angular 2 car basé sur javascript et plutôt agréable a utiliser,
+        et qui présente des facilités notamment dans l'organisation du code.</p>
+      <p>Finalement, pour le design du site, nous utilisons material design lite, car plutôt à la mode, et d'actualité (les interfaces android récentes notamment
+        sont en material design). Nous avons étés contraints néanmoins à écrire un peu de css nous mêmes.</p>
+
 
     </div>
     <div class="mdl-tabs__panel" id="back-panel">
       <br />
       <h1>Fonctionnement du back-end</h1>
       <p>Le back-end se compose principalement d'une API Rest, qui interagit avec une base de données.</p>
+
+      <p>Pour lancer le projet, ils vous faut tout d'abord installer <a href="https://nodejs.org/en/download/package-manager/">nodejs</a> (Version > 4). <br />
+        Ensuite, installez <a href="https://www.npmjs.com/">npm</a> (Version > 3.6).<br />
+        Enfin, executez les commandes suivantes :</p>
+
+      <code>$ git clone https://github.com/INSandwich/INSAndwich-Rest-API.git</code><br />
+      <code>$ cd INSAndwich-Rest-API/api</code><br />
+      <code>$ npm install</code><br />
+      <code>$ npm start</code><br /><br />
+
       <h3>API Rest</h3>
+
+      <p>Utilisant la technologie Express, qui est une bibliothèque de javascript, notre API utilise plusieurs contrôleurs dédiés à chaque partie de notre site : </p>
+
+      <p>Le contrôleur index.js qui définit et répertorie chaque route accessible depuis le site, puis y associe une fonction. Les fonctions sont ensuite définies au sein de leur controleur respectif.</p>
+
+      <p>On distingue quatre controleurs : </p>
+
+      <p><b>Categories.js</b></p>
+
+      <p>Contient les fonctions de gestion de catégories de produits (Sandwiches - Boissons - Desserts). Ces fonctions nous permettent d’obtenir les produits suivant leur catégorie et ainsi pouvoir afficher les Sandwiches et Boissons de façon séparée. Les fonctions create, update et delete nous permettent depuis le panneau d’administration de gérer nos catégories et d’en ajouter (ou supprimer) suivant l’évolution de notre gamme de produits (eg : ajouter une catégorie pizza).</p>
+
+      <p><b>Orders.js</b></p>
+
+      <p>Contient les fonctions de gestion de commandes. Ces fonctions nous permettent la gestion du panier et du paiement. Par exemple lors de l’ajout d’un produit au panier, il faudra soit créer une nouvelle entrée commande dans la base, ou l’ajouter à une commande existante. Pour cela il faudra connaître l’état des commandes en cours (payées ou non payées). La dernière commande passée non payée est sauvegardée et peut être complétée et payée à tout moment par l’utilisateur afin de satisfaire sa faim. Enfin le paiement est géré dans ce contrôleur par une fonction checkout, qui vérifie le montant total et la quantité de tokens disponibles de l’utilisateur.</p>
+
+      <p><b>Users.js</b></p>
+
+      <p>Contient les fonctions de gestion des utilisateurs. Ces fonctions nous permettent la gestion des connections et des utilisateurs du site. On pourra donc lister les utilisateurs et effectuer des recherches par login ou clé Id. Chaque utilisateur a la possibilité de changer ses informations dans un panneau dédié du site et grâce à une fonction vérifiant des paramètre valides. La gestion de l’authentification est aussi réalisée dans ce contrôleur : le mot de passe hashé dans le front-end est comparé à un hash stocké dans la Base. Nous ne transmettons, ni stockons de mots de passe en clair sur notre site ce qui garantit une sécurité optimale pour nos utilisateurs.</p>
+
+      <p><b>Product.js</b></p>
+
+      <p>Très semblable au contrôleur des utilisateurs, il permet de créer, supprimer ou mettre à jour les produits disponibles. De plus la gestion de catégories nous permet d’afficher uniquement une certaine partie de produits et ainsi séparer les différents types dans l’affichage.</p>
+
       <h3>Base de données</h3>
       <p>
           L’architecture de la base de données est la suivante :
-          <a href="./images/database_diagram.png"><img alt="Database diagram" src="./images/database_diagram.png" /></a>
       </p>
+      <img alt="Database diagram" src="./images/database_diagram.png"/>
       <p>
           Une commande, stockée dans une entrée de <i>Commands</i>, peut avoir plusieurs produits
           différents, stockés dans <i>Command_Lines</i>. Chaque produit peut être commandé
@@ -50,7 +98,6 @@
           avec une gestion par commandes séparées.
         </p>
         <p>
-
           Cette base de donnée, relationnelle, est gérée
           par sqlite3, moteur relationnel de base de données. Il a l’avantage d’être
           relativement simple à prendre en main, et est également bien pris en
@@ -113,8 +160,7 @@
     </div>
     <div class="mdl-tabs__panel" id="conclusion-panel">
       <br />
-      <h3>Conclusion</h3>
-      <h4>Pistes d'amélioration</h4>
+      <h3>Pistes d'amélioration</h3>
       <p>Durant nos réunions, notre équipe a mis en évidence plusieurs point d'amélioration
         possibles pour notre projet :</p>
       <ul>
@@ -132,6 +178,9 @@
         d'une commande s'accompagne d'un mail envoyé aux interessés. Ce serait intéressant
         d'activer une telle fonctionnalité, et également de créer un formulaire de contact
         intégré au site</p></li>
+      <li><p><b>Sécurité de l'api rest</b>. Un problème actuel, et ce qui nous pousse à ne pas mettre en ligne
+        le site internet est l'absence d'authetification et de gestion de roles du coté back-end, et notamment
+        api rest. C'est donc une amélioration possible du projet.</p></li>
       </ul>
     </div>
   </div>
